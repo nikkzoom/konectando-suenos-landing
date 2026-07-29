@@ -1,0 +1,250 @@
+<section id="c-hero">
+  <div class="c-hero__grain"></div>
+
+  <div class="c-hero__hidden-chaos" id="hero-chaos">
+    <span class="chaos-item" style="top: 15%; left: 10%;">00:14:23:05</span>
+    <span class="chaos-item" style="top: 70%; left: 15%;">TIMELINE_V3_FINAL.drp</span>
+    <span class="chaos-item" style="top: 25%; left: 80%;">AUDIO_SYNC_MISSING</span>
+    <span class="chaos-item" style="top: 80%; left: 75%;">C004_RAW_100FPS.mp4</span>
+    <span class="chaos-item" style="top: 50%; left: 5%;">RENDER_ERROR_77</span>
+    <span class="chaos-item" style="top: 40%; left: 85%;">REVISIÓN_CLIENTE_2</span>
+  </div>
+
+  <div class="c-hero__ambient-glow"></div>
+
+  <div class="c-hero__content">
+    <h1 class="c-hero__title">
+      Grabas con entusiasmo, pero tu contenido<br> 
+      se queda en la <span class="text-highlight">oscuridad.</span>
+    </h1>
+    <p class="c-hero__subtitle">
+      Has acumulado horas de video buscando el momento perfecto para publicar. Te ayudamos a salir de la selva del montaje para conectar tus ideas con el mundo.
+    </p>
+    
+    <div class="c-hero__actions">
+      <a href="https://wa.me/573207418361?text=Hola%20Konectando%20Sue%C3%B1os,%20quiero%20salir%20de%20la%20oscuridad%20y%20empezar%20a%20publicar." target="_blank" class="c-hero__btn">
+        Encender la luz
+      </a>
+      <span class="c-hero__note">* Solo si ya estás grabando contenido</span>
+    </div>
+  </div>
+
+  <a href="#problema" class="c-hero__scroll">
+    <span class="c-hero__scroll-text">[ INICIAR ASCENSO ]</span>
+    <div class="c-hero__scroll-line"></div>
+  </a>
+</section>
+
+<style>
+  /* === VARIABLES LOCALES Y SCOPING === */
+  #c-hero {
+    /* Coordenadas iniciales del mouse en el centro */
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+    
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-main);
+    overflow: hidden;
+    padding: 0 2rem;
+    z-index: 1;
+  }
+
+  /* 1. Efecto de Grano Cinematográfico */
+  #c-hero .c-hero__grain {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  /* 2. Capa Oculta del Caos (Se revela con Mask-Image interactivo) */
+  #c-hero .c-hero__hidden-chaos {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    /* La magia ocurre aquí: Una máscara radial que sigue las coordenadas del mouse */
+    -webkit-mask-image: radial-gradient(circle 350px at var(--mouse-x) var(--mouse-y), black 0%, transparent 100%);
+    mask-image: radial-gradient(circle 350px at var(--mouse-x) var(--mouse-y), black 0%, transparent 100%);
+    transition: -webkit-mask-image 0.1s ease, mask-image 0.1s ease;
+  }
+
+  #c-hero .chaos-item {
+    position: absolute;
+    font-family: var(--font-mono);
+    color: rgba(245, 158, 11, 0.4); /* Dorado desgastado */
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    user-select: none;
+  }
+
+  /* 3. Brillo de Fondo General */
+  #c-hero .c-hero__ambient-glow {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: radial-gradient(circle at 50% 120%, rgba(245, 158, 11, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* 4. Contenido Principal Frontal */
+  #c-hero .c-hero__content {
+    position: relative;
+    z-index: 10;
+    max-width: 900px;
+    text-align: center;
+    margin-top: calc(var(--header-height) * -1); /* Compensar el header fijo */
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  #c-hero .c-hero__title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+  }
+
+  #c-hero .text-highlight {
+    color: #475569; /* Gris oscuro para representar la oscuridad */
+    transition: color 0.5s ease, text-shadow 0.5s ease;
+  }
+
+  /* Interacción sutil: al iluminar cerca, la palabra brilla */
+  #c-hero:hover .text-highlight {
+    color: var(--accent-gold);
+    text-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+  }
+
+  #c-hero .c-hero__subtitle {
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    color: var(--text-secondary);
+    max-width: 650px;
+    margin: 0 auto 3rem auto;
+    font-weight: 400;
+  }
+
+  /* 5. Acciones y Botón */
+  #c-hero .c-hero__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  #c-hero .c-hero__btn {
+    display: inline-flex;
+    padding: 1rem 2.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--bg-main);
+    background-color: var(--text-primary);
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  }
+
+  #c-hero .c-hero__btn:hover {
+    background-color: var(--accent-gold);
+    color: var(--bg-main);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+  }
+
+  #c-hero .c-hero__note {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+  }
+
+  /* 6. Indicador de Scroll (La Grieta de Luz) */
+  #c-hero .c-hero__scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 10;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+
+  #c-hero .c-hero__scroll:hover {
+    opacity: 1;
+  }
+
+  #c-hero .c-hero__scroll-text {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+  }
+
+  #c-hero .c-hero__scroll-line {
+    width: 2px;
+    height: 60px;
+    background: linear-gradient(to bottom, rgba(245, 158, 11, 0.8), transparent);
+    animation: pulseLight 2s infinite ease-in-out;
+  }
+
+  /* Animaciones */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulseLight {
+    0%, 100% { height: 40px; opacity: 0.5; }
+    50% { height: 70px; opacity: 1; }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    #c-hero .c-hero__content { margin-top: 0; }
+    #c-hero .chaos-item { font-size: 0.65rem; }
+  }
+</style>
+
+<script>
+  /* === LÓGICA DEL SPOTLIGHT (ANTORCHA) === */
+  (function () {
+    const heroSection = document.getElementById("c-hero");
+    if (!heroSection) return;
+
+    // Actualiza las variables CSS con la posición exacta del ratón
+    heroSection.addEventListener("mousemove", (e) => {
+      const rect = heroSection.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      heroSection.style.setProperty("--mouse-x", `${x}px`);
+      heroSection.style.setProperty("--mouse-y", `${y}px`);
+    });
+
+    // En pantallas táctiles (móviles), hace que el toque revele la zona
+    heroSection.addEventListener("touchmove", (e) => {
+      const rect = heroSection.getBoundingClientRect();
+      const touch = e.touches[0];
+      const x = touch.clientX - rect.left;
+      const y = touch.clientY - rect.top;
+
+      heroSection.style.setProperty("--mouse-x", `${x}px`);
+      heroSection.style.setProperty("--mouse-y", `${y}px`);
+    });
+  })();
+</script>

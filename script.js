@@ -31,3 +31,13 @@ async function loadComponent(containerId, componentPath) {
 document.addEventListener("DOMContentLoaded", () => {
   loadComponent("header-container", "components/header.html");
 });
+// ... (Mantén la función loadComponent igual) ...
+
+// Inicialización de componentes en orden
+document.addEventListener("DOMContentLoaded", () => {
+  // Carga el Header
+  loadComponent("header-container", "components/header.html");
+  
+  // Carga el Hero inmediatamente después
+  loadComponent("hero-container", "components/hero.html");
+});
