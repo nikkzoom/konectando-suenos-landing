@@ -1,11 +1,9 @@
 <section id="c-vortice">
   
-  <svg style="display: none;">
-    <filter id="viscous-distortion">
-      <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise" />
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="25" xChannelSelector="R" yChannelSelector="G" />
-    </filter>
-  </svg>
+  <div class="c-vortice__transition-top"></div>
+
+  <div class="c-vortice__aurora"></div>
+  <div class="c-vortice__ash-particles" id="ash-container"></div>
 
   <div class="c-vortice__viewport">
     
@@ -13,31 +11,31 @@
       
       <div id="word-swarm"></div>
 
-      <div class="torment-layer" style="--z: -1500px;">
-        <h2 class="cinematic-text viscous-effect">
+      <div class="torment-layer" data-z="2500" style="transform: translate(-50%, -50%) translateZ(-2500px);">
+        <h2 class="cinematic-text">
           Naces con una visión clara y la chispa para inspirar...<br>
           <span class="muted">pero tu mensaje se ahoga en la sombra de la duda.</span>
         </h2>
       </div>
 
-      <div class="torment-layer" style="--z: -3500px;">
-        <h2 class="cinematic-text glitch-effect">
+      <div class="torment-layer" data-z="5500" style="transform: translate(-50%, -50%) translateZ(-5500px);">
+        <h2 class="cinematic-text">
           Los días pasan. La energía se consume.<br>
           <span class="muted">El peso de lo no publicado te paraliza.</span>
         </h2>
       </div>
 
-      <div class="torment-layer" style="--z: -5500px;">
-        <h2 class="cinematic-text dust-effect">
+      <div class="torment-layer" data-z="8500" style="transform: translate(-50%, -50%) translateZ(-8500px);">
+        <h2 class="cinematic-text">
           Otros, con la mitad de tu propósito,<br>
           <span class="muted">se quedan con el espacio que a ti te pertenece.</span>
         </h2>
       </div>
 
-      <div class="torment-layer climax" style="--z: -7500px;">
-        <h3 class="fire-inscription">
+      <div class="torment-layer climax" data-z="11500" style="transform: translate(-50%, -50%) translateZ(-11500px);">
+        <h3 class="climax-inscription">
           NO ES QUE NO TENGAS NADA QUE DECIR.<br>
-          <span class="burn">TU VOZ SIGUE SECUESTRADA EN EL SILENCIO.</span>
+          <span class="elegant-glow">TU VOZ SIGUE SECUESTRADA EN EL SILENCIO.</span>
         </h3>
       </div>
 
@@ -46,13 +44,25 @@
 </section>
 
 <style>
-  /* === 1. CONFIGURACIÓN DEL ESPACIO 3D === */
+  /* === 1. CONFIGURACIÓN DEL ESPACIO === */
   #c-vortice {
-    /* Altura masiva para permitir hacer mucho scroll sin salir de la sección */
+    /* Altura masiva para la caída */
     height: 500vh; 
-    background-color: #010103; /* Negro abismal absoluto */
+    background-color: #030407; /* Base oscura */
     position: relative;
     z-index: 2;
+  }
+
+  /* Transición de fundido con el Hero */
+  .c-vortice__transition-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30vh;
+    background: linear-gradient(to bottom, var(--bg-main) 0%, transparent 100%);
+    z-index: 20;
+    pointer-events: none;
   }
 
   .c-vortice__viewport {
@@ -61,11 +71,56 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    /* Aquí creamos la lente de la cámara 3D */
-    perspective: 1200px;
-    background: radial-gradient(circle at center, #0a0a0f 0%, #010103 100%);
+    perspective: 1000px;
   }
 
+  /* === 2. AURORA INFERNAL Y ATMÓSFERA === */
+  .c-vortice__aurora {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(153, 27, 27, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(245, 158, 11, 0.08) 0%, transparent 50%);
+    filter: blur(60px);
+    opacity: 0.6;
+    animation: auroraBreathe 10s infinite alternate ease-in-out;
+  }
+
+  @keyframes auroraBreathe {
+    0% { transform: scale(1); opacity: 0.4; }
+    100% { transform: scale(1.2); opacity: 0.8; }
+  }
+
+  /* Cenizas cayendo (Fondo) */
+  .c-vortice__ash-particles {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .ash {
+    position: absolute;
+    background-color: rgba(245, 158, 11, 0.4);
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: ashFloat linear infinite;
+  }
+
+  @keyframes ashFloat {
+    0% { transform: translateY(110vh) translateX(0) scale(1); opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translateY(-10vh) translateX(50px) scale(0.5); opacity: 0; }
+  }
+
+  /* === 3. ESCENA 3D Y CAPAS === */
   .c-vortice__scene {
     position: absolute;
     top: 0;
@@ -74,127 +129,74 @@
     height: 100%;
     transform-style: preserve-3d;
     will-change: transform;
-    /* La transición suaviza el movimiento del mouse, el scroll lo controla JS */
-    transition: transform 0.1s ease-out; 
+    z-index: 5;
   }
 
-  /* === 2. CAPAS DE TEXTO Y TORMENTOS === */
   .torment-layer {
     position: absolute;
     top: 50%;
     left: 50%;
     width: 90%;
-    max-width: 1000px;
+    max-width: 900px;
     text-align: center;
-    /* Posicionamos cada capa en el centro y la empujamos hacia el fondo (eje Z) */
-    transform: translate(-50%, -50%) translateZ(var(--z));
     pointer-events: none;
+    /* Inicialmente invisibles, JS controla la opacidad */
+    opacity: 0; 
+    transition: opacity 0.3s ease-out;
   }
 
+  /* === 4. TIPOGRAFÍA Y ESTÉTICA === */
   .cinematic-text {
     font-family: var(--font-main);
     font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.3;
-    color: #f8fafc;
-    text-shadow: 0 10px 40px rgba(0,0,0,0.9);
+    color: #f1f5f9;
+    text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    letter-spacing: -0.01em;
   }
 
   .cinematic-text .muted {
     display: block;
-    font-weight: 500;
-    color: #64748b;
-    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    font-weight: 300;
+    color: #94a3b8;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
     margin-top: 1rem;
   }
 
-  /* === 3. EFECTOS VISCERALES (INNOVACIÓN PURA) === */
-  
-  /* Filtro líquido/humo usando SVG */
-  .viscous-effect {
-    filter: url(#viscous-distortion);
-    opacity: 0.8;
-  }
-
-  /* Parpadeo caótico */
-  .glitch-effect {
-    animation: textFlicker 4s infinite alternate;
-  }
-
-  /* Efecto de ceniza / desenfoque */
-  .dust-effect {
-    filter: blur(1px);
-    opacity: 0.6;
-    letter-spacing: 0.05em;
-  }
-
-  /* === 4. EL ENJAMBRE DE PALABRAS FLOTANTES === */
+  /* Enjambre inicial */
   .swarm-word {
     position: absolute;
     font-family: var(--font-mono);
-    color: rgba(245, 158, 11, 0.2);
-    font-size: clamp(1rem, 2vw, 2.5rem);
-    font-weight: 900;
+    color: rgba(245, 158, 11, 0.3);
+    font-size: clamp(0.8rem, 1.5vw, 1.5rem);
+    font-weight: 600;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     white-space: nowrap;
     opacity: 0.5;
-    /* Efecto de flotación fantasma */
-    animation: floatGhost 6s infinite ease-in-out alternate;
   }
 
-  /* === 5. LA SENTENCIA FINAL EN FUEGO === */
-  .climax {
-    /* Un pequeño resplandor detrás de la frase final */
-    background: radial-gradient(circle at center, rgba(245, 158, 11, 0.1) 0%, transparent 60%);
-    padding: 100px;
-  }
-
-  .fire-inscription {
+  /* === 5. EL CLÍMAX (El nuevo fuego estético) === */
+  .climax-inscription {
     font-family: var(--font-main);
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    font-weight: 900;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: #1e293b;
+    font-size: clamp(2.2rem, 4.5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #334155; /* Color base oscuro para el texto superior */
   }
 
-  .fire-inscription .burn {
+  .climax-inscription .elegant-glow {
     display: block;
-    margin-top: 1rem;
-    color: #fff;
-    /* Efecto de fuego con múltiples sombras CSS */
-    text-shadow: 
-      0 0 10px #fff,
-      0 -5px 20px #fcd34d,
-      0 -10px 40px #f59e0b,
-      0 -20px 60px #ea580c,
-      0 -30px 80px #b91c1c;
-    animation: firePulse 0.1s infinite alternate;
-  }
-
-  /* === 6. ANIMACIONES === */
-  @keyframes floatGhost {
-    0% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
-    100% { transform: translateY(-30px) rotate(2deg); opacity: 0.6; }
-  }
-
-  @keyframes textFlicker {
-    0%, 100% { opacity: 1; filter: blur(0); }
-    92% { opacity: 1; filter: blur(0); }
-    93% { opacity: 0.2; filter: blur(4px); transform: skewX(5deg); }
-    94% { opacity: 0.8; filter: blur(0); transform: skewX(0); }
-    96% { opacity: 0.4; transform: skewX(-5deg); }
-    98% { opacity: 1; transform: skewX(0); }
-  }
-
-  @keyframes firePulse {
-    0% { text-shadow: 0 0 10px #fff, 0 -5px 20px #fcd34d, 0 -10px 30px #f59e0b, 0 -15px 50px #ea580c, 0 -25px 70px #b91c1c; }
-    100% { text-shadow: 0 0 15px #fff, 0 -10px 30px #fcd34d, 0 -20px 50px #f59e0b, 0 -30px 70px #ea580c, 0 -40px 90px #b91c1c; }
-  }
-
-  /* MÓVIL */
-  @media (max-width: 768px) {
-    .climax { padding: 20px; }
+    margin-top: 1.2rem;
+    /* Efecto "Oro Fundido" / Brasas internas */
+    color: transparent;
+    background: linear-gradient(180deg, #fef3c7 0%, #f59e0b 50%, #b45309 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    /* Resplandor ambiental suave y elegante */
+    text-shadow: 0 0 40px rgba(245, 158, 11, 0.3), 0 0 15px rgba(245, 158, 11, 0.1);
   }
 </style>
 
@@ -205,79 +207,87 @@
 
     const scene = document.getElementById("vortice-scene");
     const swarmContainer = document.getElementById("word-swarm");
+    const tormentLayers = document.querySelectorAll('.torment-layer');
+    const ashContainer = document.getElementById("ash-container");
 
-    // 1. GENERADOR DEL ENJAMBRE DE PALABRAS (Físicas iniciales)
-    const words = ["Dudas", "Miedo", "Mañana", "Perfección", "Silencio", "Olvido", "Ruido", "Espera", "Frustración"];
-    const wordCount = window.innerWidth > 768 ? 40 : 15; // Menos partículas en móvil
-    
-    for (let i = 0; i < wordCount; i++) {
+    // 1. GENERAR CENIZAS DE FONDO
+    for (let i = 0; i < 25; i++) {
+      let ash = document.createElement('div');
+      ash.className = 'ash';
+      let size = Math.random() * 4 + 2; // 2px a 6px
+      ash.style.width = `${size}px`;
+      ash.style.height = `${size}px`;
+      ash.style.left = `${Math.random() * 100}%`;
+      ash.style.animationDuration = `${Math.random() * 5 + 5}s`;
+      ash.style.animationDelay = `${Math.random() * 5}s`;
+      ashContainer.appendChild(ash);
+    }
+
+    // 2. GENERAR ENJAMBRE INICIAL
+    const words = ["Dudas", "Miedo", "Olvido", "Silencio", "Frustración", "Parálisis", "Tiempo", "Ruido"];
+    for (let i = 0; i < 20; i++) {
       let span = document.createElement('span');
       span.className = 'swarm-word';
       span.innerText = words[Math.floor(Math.random() * words.length)];
       
-      // Posición aleatoria extrema en 3D
-      let x = (Math.random() - 0.5) * 150; // -75vw a 75vw
-      let y = (Math.random() - 0.5) * 150; // -75vh a 75vh
-      let z = Math.random() * -3000;       // Profundidad de 0 a -3000px
+      let x = (Math.random() - 0.5) * 100; // -50vw a 50vw
+      let y = (Math.random() - 0.5) * 100; // -50vh a 50vh
+      let z = Math.random() * -1500;       // Profundidad corta (hasta -1500px)
 
       span.style.left = `50%`;
       span.style.top = `50%`;
       span.style.transform = `translate3d(calc(-50% + ${x}vw), calc(-50% + ${y}vh), ${z}px)`;
-      span.style.animationDelay = `${Math.random() * 5}s`;
-      
       swarmContainer.appendChild(span);
     }
 
-    // 2. MOTOR DE CAÍDA 3D (SCROLL TO Z-AXIS)
+    // 3. MOTOR 3D Y CONTROL DE OPACIDAD DINÁMICA
     let currentZ = 0;
     let targetZ = 0;
-    
-    // Variables de rotación por mouse
-    let mouseX = 0;
-    let mouseY = 0;
-    let targetRotX = 0;
-    let targetRotY = 0;
+    let ticking = false;
 
     const update3DScene = () => {
-      // Cálculo del scroll relativo a esta sección
       const rect = vorticeSection.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
       
-      // Si la sección está visible
       if (rect.top <= viewportHeight && rect.bottom >= 0) {
-        // Calculamos progreso de 0 a 1 (0 es inicio, 1 es el final del scroll de los 500vh)
+        // Progreso del scroll (0 al inicio, 1 al final)
         let progress = Math.max(0, Math.min(1, -rect.top / (rect.height - viewportHeight)));
         
-        // La cámara viaja desde 0 hasta 8000px hacia adentro
-        targetZ = progress * 8000;
-        
-        // Suavizado (Lerp) para que el movimiento sea fluido
-        currentZ += (targetZ - currentZ) * 0.1;
+        // La cámara viaja desde 0 hasta 12000px
+        targetZ = progress * 12500; 
+        currentZ += (targetZ - currentZ) * 0.08; // Suavizado (Lerp)
 
-        // Suavizado de rotación del mouse
-        targetRotX += (mouseY - targetRotX) * 0.05;
-        targetRotY += (mouseX - targetRotY) * 0.05;
+        // 3.1. Mover la escena en Z
+        scene.style.transform = `translateZ(${currentZ}px)`;
 
-        // Aplicar transformación 3D a toda la escena
-        scene.style.transform = `translateZ(${currentZ}px) rotateX(${targetRotX}deg) rotateY(${targetRotY}deg)`;
+        // 3.2. Control de Opacidad (Desvanece el enjambre rápido)
+        swarmContainer.style.opacity = Math.max(0, 1 - (currentZ / 1500));
+
+        // 3.3. Lógica de "Fade-in / Fade-out" por capa según la distancia Z
+        tormentLayers.forEach(layer => {
+          let layerZ = parseFloat(layer.getAttribute('data-z'));
+          let distance = Math.abs(currentZ - layerZ);
+          
+          // La capa es visible (opacidad 1) cuando la distancia es 0.
+          // Se desvanece a 0 cuando la distancia es mayor a 1200px.
+          let opacity = Math.max(0, 1 - (distance / 1200));
+          
+          layer.style.opacity = opacity.toFixed(3);
+        });
       }
       
-      requestAnimationFrame(update3DScene);
+      ticking = false;
     };
 
-    // Iniciar loop de animación
-    requestAnimationFrame(update3DScene);
-
-    // 3. MOVIMIENTO DE CÁMARA CON EL MOUSE (Sensación de mirar alrededor en el abismo)
-    window.addEventListener('mousemove', (e) => {
-      // Normalizamos coordenadas del mouse de -1 a 1
-      const x = (e.clientX / window.innerWidth) * 2 - 1;
-      const y = (e.clientY / window.innerHeight) * 2 - 1;
-      
-      // El mouse gira sutilmente la escena
-      mouseX = x * 10; // Gira max 10 grados en Y
-      mouseY = -y * 10; // Gira max 10 grados en X
-    });
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(update3DScene);
+        ticking = true;
+      }
+    }, { passive: true });
+    
+    // Disparar una vez al cargar
+    update3DScene();
 
   })();
 </script>
