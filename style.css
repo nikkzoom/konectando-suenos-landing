@@ -1,0 +1,61 @@
+/* ======================================================
+   KONECTANDO SUEÑOS - SISTEMA VISUAL CLEAN & DIVINO
+   ====================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  /* Fondos Base (Espacio Profundo) */
+  --bg-main: #05070a;
+  --bg-surface: #0d111a;
+  
+  /* Acentos (Técnico y Celestial) */
+  --accent-blue: #1d4ed8;
+  --accent-gold: #f59e0b;
+  --accent-gold-hover: #d97706;
+
+  /* Bordes y Líneas (Estructura Clean 1px) */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+
+  /* Tipografías */
+  --font-main: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  /* Textos */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+
+  /* Layout */
+  --max-width: 1200px;
+  --header-height: 72px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
