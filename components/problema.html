@@ -1,393 +1,206 @@
-<section id="c-descenso">
+<section id="c-mascara">
   
-  <div class="c-descenso__top-mask"></div>
+  <div class="c-mascara__sticky">
+    
+    <h1 class="mascara-texto" id="mascara-texto">CAOS</h1>
 
-  <div class="c-descenso__fast-shadows" id="fast-shadows">
-    <div class="shadow-streak s1"></div>
-    <div class="shadow-streak s2"></div>
-    <div class="shadow-streak s3"></div>
-  </div>
-
-  <div class="c-descenso__container">
-
-    <div class="descenso-panel fade-up is-visible-initially">
-      <div class="panel-text">
-        <span class="sys-tag">[ 01 // EL PESO ]</span>
-        <h2>Naces con una visión clara y la chispa para inspirar...</h2>
-        <p>Pero tu mejor material se ahoga, petrificado en la sombra de tu disco duro.</p>
+    <div class="mascara-revelacion" id="mascara-revelacion">
+      <div class="revelacion-inner">
+        <p class="revelacion-parrafo">
+          Tienes las ideas y la pasión. Pero tus horas de grabación y las ediciones que nunca terminan se acumulan en un limbo digital que solo tú conoces.
+        </p>
+        <div class="divisor-tecnico"></div>
+        <h3 class="revelacion-climax">
+          AL FINAL, NO ES QUE NO ESTÉS CREANDO...<br>
+          <span class="climax-brillo">ES QUE NO ESTÁS PUBLICANDO.</span>
+        </h3>
       </div>
-      <div class="panel-visual">
-        <div class="stone-files">
-          <div class="file-card f1">RAW_01</div>
-          <div class="file-card f2">PROYECTO_FINAL</div>
-          <div class="file-card f3">IDEAS.txt</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="descenso-panel reverse fade-up">
-      <div class="panel-text">
-        <span class="sys-tag">[ 02 // LA PARÁLISIS ]</span>
-        <h2>Los días pasan. La energía se consume.</h2>
-        <p>Buscas la edición perfecta o a alguien que te entienda, pero el peso de lo no publicado te paraliza.</p>
-      </div>
-      <div class="panel-visual">
-        <div class="render-glitch">
-          <div class="ring-track"></div>
-          <div class="ring-progress"></div>
-          <div class="ring-text">99%<br><span>STUCK</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="descenso-panel fade-up" id="trigger-shadows">
-      <div class="panel-text">
-        <span class="sys-tag">[ 03 // EL OLVIDO ]</span>
-        <h2>Otros, con la mitad de tu propósito, avanzan rápido.</h2>
-        <p>Mientras tú te quedas inmóvil, ellos se quedan con la audiencia y el espacio que a ti te pertenece.</p>
-      </div>
-      <div class="panel-visual">
-        <div class="empty-focus">
-          <div class="focus-brackets">[ &nbsp; &nbsp; &nbsp; ]</div>
-          <span>TÚ ESTÁS AQUÍ</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="descenso-climax fade-up">
-      <div class="volumetric-light"></div>
-      <h3 class="climax-title">
-        NO ES QUE NO TENGAS NADA QUE DECIR.
-        <span class="reveal-text">TU VOZ SIGUE SECUESTRADA EN EL SILENCIO.</span>
-      </h3>
     </div>
 
   </div>
+
 </section>
 
 <style>
-  /* === 1. CONFIGURACIÓN DEL ESPACIO (Dante's Abyss) === */
-  #c-descenso {
+  /* === 1. CONTENEDOR PRINCIPAL === */
+  #c-mascara {
+    /* Altura masiva (300vh) para permitir que el usuario haga scroll y active la animación */
+    height: 350vh; 
+    background-color: #010101; /* Negro absoluto, sin distracciones */
     position: relative;
-    width: 100%;
-    background-color: #030407; /* Negro profundo de base */
-    color: var(--text-primary);
-    overflow: hidden;
-    padding-bottom: 20vh;
     z-index: 2;
   }
 
-  /* Transición suave desde la sección anterior (Hero) */
-  .c-descenso__top-mask {
-    position: absolute;
+  /* El bloque que se "pega" a la pantalla mientras haces scroll en los 350vh */
+  .c-mascara__sticky {
+    position: sticky;
     top: 0;
-    left: 0;
     width: 100%;
-    height: 30vh; /* Solapado más largo para mejor fusión */
-    /* Crea un degradado que funde el fondo del Hero con el negro de esta sección */
-    background: linear-gradient(to bottom, transparent 0%, #030407 100%);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Evita que el zoom rompa la pantalla */
+  }
+
+  /* === 2. LA PALABRA GIGANTE (MÁSCARA DE VIDEO/GLITCH) === */
+  .mascara-texto {
+    position: absolute;
+    font-family: var(--font-main);
+    font-size: 25vw; /* Ocupa todo el ancho */
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    text-transform: uppercase;
+    margin: 0;
     z-index: 10;
-    pointer-events: none;
-    transform: translateY(-99%); /* Lo sube para solaparse con el Hero */
+    will-change: transform, opacity;
+
+    /* EL TRUCO DE LA MÁSCARA */
+    /* Por ahora tiene un glitch CSS, pero puedes poner url('tu-timeline-davinci.gif') */
+    background: repeating-linear-gradient(
+      -45deg,
+      #050505 0%,
+      #050505 10%,
+      #ef4444 10%,
+      #ef4444 11%,
+      #111 11%,
+      #111 20%
+    );
+    background-size: 200% 200%;
+    animation: timelineGlitch 0.4s infinite linear;
+    
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; /* Hace que el texto sea transparente para ver el fondo */
   }
 
-  .c-descenso__container {
-    position: relative;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 10vh 5% 0 5%;
-    z-index: 15;
-    display: flex;
-    flex-direction: column;
-    gap: 15vh; /* Espacio cómodo de lectura, sin tiempos muertos */
+  @keyframes timelineGlitch {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
   }
 
-  /* === 2. AURORA INFERNAL Y ATMÓSFERA === */
-  /* Reintroducimos el fondo atmosférico que palpita para que no sea negro plano */
-  #c-descenso::before {
-    content: '';
+  /* === 3. EL MENSAJE REVELADO === */
+  .mascara-revelacion {
     position: absolute;
-    inset: 0;
-    z-index: 0;
-    background: 
-      radial-gradient(circle at 10% 90%, rgba(153, 27, 27, 0.12) 0%, transparent 50%),
-      radial-gradient(circle at 90% 10%, rgba(245, 158, 11, 0.08) 0%, transparent 50%);
-    filter: blur(80px);
-    opacity: 0.5;
-    animation: auroraBreathe 10s infinite alternate ease-in-out;
-  }
-
-  @keyframes auroraBreathe {
-    0% { transform: scale(1); opacity: 0.3; }
-    100% { transform: scale(1.1); opacity: 0.6; }
-  }
-
-  /* === 3. ESTRUCTURA DE LOS PANELES === */
-  .descenso-panel {
-    display: flex;
-    align-items: center;
-    gap: 4rem;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .descenso-panel.reverse {
-    flex-direction: row-reverse;
-  }
-
-  /* Clase que añade Intersection Observer */
-  .descenso-panel.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* === ARREGLO UX: Clase para el primer panel, visible sin scroll === */
-  .descenso-panel.is-visible-initially {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .panel-text {
-    flex: 1;
-  }
-
-  .sys-tag {
-    font-family: var(--font-mono);
-    color: rgba(245, 158, 11, 0.6);
-    font-size: 0.85rem;
-    letter-spacing: 0.15em;
-    display: block;
-    margin-bottom: 1.5rem;
-  }
-
-  .panel-text h2 {
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 500;
-    line-height: 1.2;
-    color: #f8fafc;
-    margin-bottom: 1rem;
-    letter-spacing: -0.01em;
-  }
-
-  .panel-text p {
-    font-size: clamp(1.1rem, 1.5vw, 1.3rem);
-    color: #94a3b8; /* Gris más claro para mejor contraste */
-    line-height: 1.6;
-  }
-
-  .panel-visual {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    height: 300px;
-  }
-
-  /* === 4. METÁFORAS VISUALES EN CSS (Cero imágenes) === */
-
-  /* A. Archivos Petrificados */
-  .stone-files {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    perspective: 1000px;
-    transform-style: preserve-3d;
-  }
-  .file-card {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #0f172a;
-    border: 1px solid #1e293b;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: #334155;
-    box-shadow: 10px 20px 40px rgba(0,0,0,0.8);
-    transition: transform 0.5s ease;
-  }
-  .f1 { transform: translateZ(-40px) rotateY(-15deg) translateX(-20px); opacity: 0.4; }
-  .f2 { transform: translateZ(-20px) rotateY(-5deg) translateX(-10px); opacity: 0.7; }
-  .file-card:last-of-type { transform: translateZ(0) rotateY(5deg); color: #475569; border-color: #334155; z-index: 2; }
-  
-  /* Animación suave flotante */
-  .stone-files { animation: floatStone 6s infinite ease-in-out alternate; }
-  @keyframes floatStone { 
-    0% { transform: translateY(0); } 
-    100% { transform: translateY(-15px); } 
-  }
-
-  /* B. El Render Roto (Glitch Ring) */
-  .render-glitch {
-    position: relative;
-    width: 180px;
-    height: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .ring-track {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 2px solid #1e293b;
-  }
-  .ring-progress {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 2px solid transparent;
-    border-top-color: #ef4444; /* Rojo de error */
-    border-right-color: #ef4444;
-    animation: spinGlitch 2.1s infinite linear;
-  }
-  .ring-text {
-    text-align: center;
-    font-family: var(--font-mono);
-    font-size: 2.1rem;
-    font-weight: 700;
-    color: #ef4444;
-  }
-  .ring-text span { font-size: 0.8rem; letter-spacing: 0.2em; opacity: 0.7; }
-  
-  @keyframes spinGlitch {
-    0% { transform: rotate(0deg); }
-    80% { transform: rotate(280deg); }
-    85% { transform: rotate(275deg); } /* Atasco */
-    90% { transform: rotate(285deg); }
-    95% { transform: rotate(280deg); }
-    100% { transform: rotate(360deg); }
-  }
-
-  /* C. TÚ ESTÁS AQUÍ (Foco estático mientras las sombras se mueven) */
-  .empty-focus {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #334155;
-    font-family: var(--font-mono);
-  }
-  .focus-brackets { font-size: 3.2rem; margin-bottom: 0.5rem; letter-spacing: -5px; }
-
-  /* D. Sombras Rápidas del Fondo (Controladas por JS) */
-  .c-descenso__fast-shadows {
-    position: absolute;
-    inset: 0;
     z-index: 5;
-    pointer-events: none;
-    overflow: hidden;
-    opacity: 0; /* JS lo enciende al llegar a la escena 3 */
-    transition: opacity 1s ease;
-  }
-  .shadow-streak {
-    position: absolute;
-    width: 30vw;
-    height: 10px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
-    filter: blur(10px);
-    animation: streakMove 1.5s infinite linear;
-  }
-  .s1 { top: 20%; left: -30vw; animation-duration: 1s; }
-  .s2 { top: 60%; left: -30vw; animation-duration: 0.8s; animation-delay: 0.3s; }
-  .s3 { top: 80%; left: -30vw; animation-duration: 1.8s; animation-delay: 0.1s; }
-
-  @keyframes streakMove {
-    0% { transform: translateX(-10vw); }
-    100% { transform: translateX(120vw); }
-  }
-
-  /* === 5. EL CLÍMAX (LUZ VOLUMÉTRICA PREMIUM) === */
-  .descenso-climax {
-    position: relative;
+    width: 90%;
+    max-width: 900px;
     text-align: center;
-    padding: 15vh 0;
+    /* Inicia oculto y desplazado hacia abajo. JS lo controlará */
     opacity: 0;
-    transform: scale(0.95);
-    transition: opacity 1.5s ease, transform 1.5s ease;
-  }
-  .descenso-climax.is-visible {
-    opacity: 1;
-    transform: scale(1);
+    transform: translateY(50px);
+    will-change: transform, opacity;
   }
 
-  /* El rayo de luz cinematográfico */
-  .volumetric-light {
-    position: absolute;
-    top: -50%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(from 180deg at 50% 0%, transparent 140deg, rgba(245, 158, 11, 0.05) 180deg, transparent 220deg);
-    pointer-events: none;
-    z-index: -1;
+  .revelacion-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
   }
 
-  .climax-title {
+  .revelacion-parrafo {
+    font-family: var(--font-main);
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 300;
+    line-height: 1.5;
+    color: #94a3b8;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  }
+
+  .divisor-tecnico {
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, rgba(245, 158, 11, 0.5), transparent);
+  }
+
+  .revelacion-climax {
+    font-family: var(--font-main);
     font-size: clamp(1.8rem, 4vw, 3.5rem);
     font-weight: 800;
     line-height: 1.2;
-    color: #475569; /* Gris opaco */
+    color: #475569;
     letter-spacing: -0.02em;
   }
 
-  .climax-title .reveal-text {
+  .climax-brillo {
     display: block;
-    margin-top: 1.2rem;
-    color: #f8fafc; /* Blanco nítido */
-    text-shadow: 0 0 35px rgba(245, 158, 11, 0.4), 0 0 10px rgba(245, 158, 11, 0.1); /* Resplandor de luz */
+    margin-top: 1rem;
+    color: #f8fafc;
+    /* Resplandor elegante, sin exagerar */
+    text-shadow: 0 0 40px rgba(245, 158, 11, 0.3), 0 0 10px rgba(245, 158, 11, 0.1);
   }
 
   /* MÓVIL */
   @media (max-width: 768px) {
-    .c-descenso__container { gap: 10vh; padding-top: 5vh; }
-    .descenso-panel, .descenso-panel.reverse {
-      flex-direction: column;
-      text-align: center;
-      gap: 2rem;
-    }
-    .panel-visual { height: 200px; }
+    .mascara-texto { font-size: 35vw; }
+    .revelacion-parrafo { font-size: 1.2rem; }
+    .revelacion-climax { font-size: 1.5rem; }
   }
 </style>
 
 <script>
   (function () {
-    const fadeElements = document.querySelectorAll('.fade-up');
-    const shadowsContainer = document.getElementById('fast-shadows');
-    const triggerShadowsPanel = document.getElementById('trigger-shadows');
+    const section = document.getElementById('c-mascara');
+    const textoMascara = document.getElementById('mascara-texto');
+    const revelacion = document.getElementById('mascara-revelacion');
 
-    if (!fadeElements.length || !shadowsContainer || !triggerShadowsPanel) return;
+    if (!section || !textoMascara || !revelacion) return;
 
-    // Intersection Observer para apariciones suaves (Fade-up)
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          
-          // Lógica especial: Encender las "sombras rápidas" del fondo al ver la Escena 3
-          if (entry.target.id === 'trigger-shadows') {
-            shadowsContainer.style.opacity = '1';
-          }
-        } else {
-          // Apagar sombras si sales de la Escena 3 (Opcional, para mejor UX)
-          if (entry.target.id === 'trigger-shadows') {
-            shadowsContainer.style.opacity = '0';
-          }
+    let ticking = false;
+
+    const actualizarAnimacion = () => {
+      const rect = section.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Comprobamos si estamos haciendo scroll DENTRO de los 350vh de esta sección
+      if (rect.top <= 0 && rect.bottom >= windowHeight) {
+        
+        // Calculamos el progreso del scroll de 0 (inicio) a 1 (final)
+        const scrollTotal = rect.height - windowHeight;
+        const scrollActual = Math.abs(rect.top);
+        let progreso = scrollActual / scrollTotal; 
+
+        // 1. Efecto Zoom Extremo a la Palabra
+        // La escala arranca en 1 y crece hasta 60 veces su tamaño
+        const scaleValue = 1 + (progreso * 80);
+        
+        // 2. Desvanecimiento de la Máscara
+        // A partir del 25% del recorrido, la palabra empieza a volverse transparente
+        let opacityTexto = 1;
+        if (progreso > 0.25) {
+          opacityTexto = 1 - ((progreso - 0.25) * 4); // Se vuelve 0 rápido
         }
-      });
-    }, {
-      root: null,
-      rootMargin: '0px 0px -18% 0px', // Un poco antes (era -15%) para eliminar sensación de retraso
-      threshold: 0.1
-    });
 
-    fadeElements.forEach(el => observer.observe(el));
+        textoMascara.style.transform = `scale(${scaleValue})`;
+        textoMascara.style.opacity = Math.max(0, opacityTexto);
+
+        // 3. Aparición Suave del Párrafo Revelado
+        // A partir del 40% del recorrido, el texto limpio sube y aparece
+        let opacityRevelacion = 0;
+        let translateY = 50; // Inicia 50px abajo
+        
+        if (progreso > 0.40) {
+          opacityRevelacion = (progreso - 0.40) * 2.5; 
+          translateY = 50 - (Math.min(1, opacityRevelacion) * 50); // Sube a 0px
+        }
+
+        revelacion.style.opacity = Math.min(1, Math.max(0, opacityRevelacion));
+        revelacion.style.transform = `translateY(${Math.max(0, translateY)}px)`;
+      }
+
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(actualizarAnimacion);
+        ticking = true;
+      }
+    }, { passive: true });
+    
+    // Forzar actualización inicial
+    actualizarAnimacion();
   })();
 </script>
