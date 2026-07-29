@@ -40,32 +40,37 @@
 <style>
   /* === ANIMACIONES GLOBALES DEL HEADER === */
   @keyframes slideDownFade {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   /* === SCOPING CSS === */
   #c-header {
     width: 100%;
     height: var(--header-height);
-    background-color: rgba(5, 7, 10, 0.75); /* Transparencia elegante */
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border-subtle);
+    /* INICIALMENTE TRANSPARENTE */
+    background-color: transparent; 
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid transparent; /* Sin borde inicial */
     position: fixed;
     top: 0;
     left: 0;
     z-index: 9999;
     animation: slideDownFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    /* Transición suave cuando se añade la clase de scroll */
+    transition: background-color 0.4s ease, backdrop-filter 0.4s ease, border-bottom 0.4s ease, box-shadow 0.4s ease;
   }
 
-  /* Aprovechamos toda la pantalla con padding fluido en lugar de max-width fijo */
+  /* CLASE DINÁMICA: Se activa al hacer scroll */
+  #c-header.is-scrolled {
+    background-color: rgba(5, 7, 10, 0.85); /* Regresa el negro abismal transparente */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-subtle);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+
   #c-header .c-header__inner {
     width: 100%;
     height: 100%;
@@ -76,11 +81,7 @@
   }
 
   /* --- Lado Izquierdo --- */
-  #c-header .c-header__left {
-    display: flex;
-    align-items: center;
-    gap: 3.5rem; /* Separación amplia tipo Nu */
-  }
+  #c-header .c-header__left { display: flex; align-items: center; gap: 3.5rem; }
 
   #c-header .c-header__logo {
     font-family: var(--font-main);
@@ -92,34 +93,25 @@
     align-items: center;
     gap: 0.25rem;
     transition: transform 0.3s ease;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Sombra sutil para leerse bien sin fondo */
   }
 
-  #c-header .c-header__logo:hover {
-    transform: scale(1.02);
-  }
+  #c-header .c-header__logo:hover { transform: scale(1.02); }
+  #c-header .c-header__logo span { font-family: var(--font-mono); font-weight: 400; font-size: 1.1rem; color: var(--text-secondary); }
 
-  #c-header .c-header__logo span {
-    font-family: var(--font-mono);
-    font-weight: 400;
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-  }
+  #c-header .c-header__nav { display: flex; gap: 2.5rem; }
 
-  #c-header .c-header__nav {
-    display: flex;
-    gap: 2.5rem;
-  }
-
-  /* Links Animados (Subrayado deslizante) */
   #c-header .c-header__link {
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--text-secondary);
+    color: var(--text-primary); /* Más blanco para resaltar sin fondo */
     text-transform: uppercase;
     letter-spacing: 0.08em;
     position: relative;
     padding: 0.5rem 0;
     transition: color 0.3s ease;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    opacity: 0.8;
   }
 
   #c-header .c-header__link::after {
@@ -135,14 +127,8 @@
     transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
   }
 
-  #c-header .c-header__link:hover {
-    color: var(--text-primary);
-  }
-
-  #c-header .c-header__link:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
+  #c-header .c-header__link:hover { opacity: 1; }
+  #c-header .c-header__link:hover::after { transform: scaleX(1); transform-origin: left; }
 
   /* --- Lado Derecho (CTA) --- */
   #c-header .c-header__cta {
@@ -160,16 +146,15 @@
     letter-spacing: 0.05em;
   }
 
-  /* Animación Hover del CTA (Brillo y expansión) */
   #c-header .c-header__cta:hover {
-    background-color: var(--accent-gold-hover);
+    background-color: #d97706; /* Dorado un poco más oscuro en hover */
     transform: translateY(-2px) scale(1.02);
     box-shadow: 0 10px 25px rgba(245, 158, 11, 0.25);
   }
 
-  /* --- Menú Móvil (Botón Hamburguesa) --- */
+  /* --- Menú Móvil --- */
   #c-header .c-header__toggle {
-    display: none; /* Oculto en escritorio */
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     width: 28px;
@@ -184,21 +169,12 @@
     background-color: var(--text-primary);
     border-radius: 2px;
     transition: transform 0.4s ease, opacity 0.4s ease, background-color 0.4s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
   }
 
-  /* Animación de Hamburguesa a "X" */
-  #c-header .c-header__toggle.is-active .bar1 {
-    transform: translateY(9px) rotate(45deg);
-    background-color: var(--accent-gold);
-  }
-  #c-header .c-header__toggle.is-active .bar2 {
-    opacity: 0;
-    transform: translateX(10px);
-  }
-  #c-header .c-header__toggle.is-active .bar3 {
-    transform: translateY(-9px) rotate(-45deg);
-    background-color: var(--accent-gold);
-  }
+  #c-header .c-header__toggle.is-active .bar1 { transform: translateY(9px) rotate(45deg); background-color: var(--accent-gold); box-shadow: none; }
+  #c-header .c-header__toggle.is-active .bar2 { opacity: 0; transform: translateX(10px); }
+  #c-header .c-header__toggle.is-active .bar3 { transform: translateY(-9px) rotate(-45deg); background-color: var(--accent-gold); box-shadow: none; }
 
   /* --- Desplegable Móvil --- */
   #c-header .c-header__mobile {
@@ -207,7 +183,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: var(--bg-main);
+    background-color: rgba(5, 7, 10, 0.98);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -219,19 +195,9 @@
     z-index: 9998;
   }
 
-  #c-header .c-header__mobile.is-active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  #c-header .c-header__mobile-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-
+  #c-header .c-header__mobile.is-active { opacity: 1; visibility: visible; transform: translateY(0); }
+  #c-header .c-header__mobile-nav { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+  
   #c-header .c-header__mobile-link {
     font-size: 1.5rem;
     font-weight: 700;
@@ -240,12 +206,9 @@
     letter-spacing: 0.1em;
     transition: color 0.3s ease, transform 0.3s ease;
   }
-
-  #c-header .c-header__mobile-link:hover {
-    color: var(--accent-gold);
-    transform: scale(1.05);
-  }
-
+  
+  #c-header .c-header__mobile-link:hover { color: var(--accent-gold); transform: scale(1.05); }
+  
   #c-header .c-header__mobile-cta {
     margin-top: 1rem;
     padding: 1rem 2.5rem;
@@ -257,48 +220,44 @@
     text-transform: uppercase;
   }
 
-  /* === RESPONSIVE (MÓVIL / TABLET) === */
   @media (max-width: 900px) {
-    #c-header .c-header__nav,
-    #c-header .c-header__cta {
-      display: none; /* Ocultamos nav y cta de escritorio */
-    }
-    
-    #c-header .c-header__toggle {
-      display: flex; /* Mostramos hamburguesa */
-    }
+    #c-header .c-header__nav, #c-header .c-header__cta { display: none; }
+    #c-header .c-header__toggle { display: flex; }
   }
 </style>
 
 <script>
-  /* === LÓGICA DEL MENÚ MÓVIL AISLADA === */
+  /* === LÓGICA DEL COMPONENTE === */
   (function () {
+    const header = document.getElementById("c-header");
     const toggle = document.getElementById("c-header-toggle");
     const mobileMenu = document.getElementById("c-header-mobile");
     const mobileLinks = document.querySelectorAll("#c-header .c-header__mobile-link");
 
-    if (toggle && mobileMenu) {
-      // Abrir/Cerrar menú
-      toggle.addEventListener("click", () => {
-        toggle.classList.toggle("is-active");
-        mobileMenu.classList.toggle("is-active");
-        
-        // Evitar scroll de la página cuando el menú está abierto
-        if(mobileMenu.classList.contains("is-active")) {
-          document.body.style.overflow = "hidden";
-        } else {
-          document.body.style.overflow = "";
-        }
-      });
+    if (!header || !toggle || !mobileMenu) return;
 
-      // Cerrar menú al hacer clic en un enlace
-      mobileLinks.forEach(link => {
-        link.addEventListener("click", () => {
-          toggle.classList.remove("is-active");
-          mobileMenu.classList.remove("is-active");
-          document.body.style.overflow = "";
-        });
+    // 1. Efecto Scroll: Transparente arriba, oscuro al bajar
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        header.classList.add("is-scrolled");
+      } else {
+        header.classList.remove("is-scrolled");
+      }
+    }, { passive: true });
+
+    // 2. Menú Móvil
+    toggle.addEventListener("click", () => {
+      toggle.classList.toggle("is-active");
+      mobileMenu.classList.toggle("is-active");
+      document.body.style.overflow = mobileMenu.classList.contains("is-active") ? "hidden" : "";
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        toggle.classList.remove("is-active");
+        mobileMenu.classList.remove("is-active");
+        document.body.style.overflow = "";
       });
-    }
+    });
   })();
 </script>
