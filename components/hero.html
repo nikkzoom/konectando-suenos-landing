@@ -1,22 +1,22 @@
 <section id="c-hero">
+  <div class="c-hero__bg-image"></div>
+  
+  <div class="c-hero__overlay"></div>
+  
   <div class="c-hero__grain"></div>
 
   <div class="c-hero__hidden-chaos" id="hero-chaos">
-    
     <div class="track" style="top: 15%;">
       <div class="clip" style="left: 5%; width: 25%;">V1: C004_RAW_100FPS.mp4</div>
       <div class="clip missing" style="left: 35%; width: 20%;">MEDIA OFFLINE</div>
     </div>
-    
     <div class="track" style="top: 30%;">
       <div class="clip audio" style="left: 10%; width: 45%;">A1: AUDIO_SYNC_MISSING.wav</div>
     </div>
-
     <div class="track" style="top: 70%;">
       <div class="clip" style="left: 50%; width: 30%;">V3: TIMELINE_V3_FINAL_DEF.drp</div>
       <div class="clip error" style="left: 85%; width: 15%;">RENDER_ERR_77</div>
     </div>
-
     <div class="track" style="top: 85%;">
       <div class="clip audio" style="left: 45%; width: 50%;">A2: MUSICA_SIN_COPYRIGHT_v2.mp3</div>
     </div>
@@ -43,9 +43,16 @@
     </div>
   </div>
 
-  <a href="#problema" class="c-hero__scroll">
-    <span class="c-hero__scroll-text">[ INICIAR ASCENSO ]</span>
-    <div class="c-hero__scroll-line"></div>
+  <a href="#problema" class="c-hero__scroll-indicator">
+    <div class="mouse">
+      <div class="wheel"></div>
+    </div>
+    <span class="scroll-text">Iniciar Ascenso</span>
+    <div class="chevron-container">
+      <div class="chevron"></div>
+      <div class="chevron"></div>
+      <div class="chevron"></div>
+    </div>
   </a>
 </section>
 
@@ -63,11 +70,37 @@
     align-items: center;
     background-color: var(--bg-main);
     overflow: hidden;
-    padding: 0 2rem;
+    padding: 0 5%; /* Padding relativo para mejor adaptación en móvil */
     z-index: 1;
   }
 
-  /* 1. Grano de película */
+  /* 1. Fondo Fotográfico */
+  #c-hero .c-hero__bg-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    /* Usa la ruta correcta de tu imagen. Si no está, se verá el color de fondo. */
+    background-image: url('../assets/dark-forest-bg.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.6; /* Ajusta esto según qué tan oscura sea tu imagen */
+  }
+
+  /* Overlay para legibilidad del texto */
+  #c-hero .c-hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to bottom,
+      rgba(5, 7, 10, 0.8) 0%,
+      rgba(5, 7, 10, 0.4) 50%,
+      rgba(5, 7, 10, 0.9) 100%
+    );
+  }
+
+  /* 2. Grano de película */
   #c-hero .c-hero__grain {
     position: absolute;
     inset: 0;
@@ -77,135 +110,135 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   }
 
-  /* 2. Capa Oculta (La magia de la linterna) */
+  /* 3. Capa Oculta (Linterna) */
   #c-hero .c-hero__hidden-chaos {
     position: absolute;
     inset: 0;
     z-index: 3;
     pointer-events: none;
-    /* Linterna mucho más brillante y con bordes más duros para que se note */
-    -webkit-mask-image: radial-gradient(circle 350px at var(--mouse-x) var(--mouse-y), rgba(0,0,0,1) 10%, rgba(0,0,0,0.6) 40%, transparent 100%);
-    mask-image: radial-gradient(circle 350px at var(--mouse-x) var(--mouse-y), rgba(0,0,0,1) 10%, rgba(0,0,0,0.6) 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle 400px at var(--mouse-x) var(--mouse-y), rgba(0,0,0,1) 5%, rgba(0,0,0,0.5) 45%, transparent 100%);
+    mask-image: radial-gradient(circle 400px at var(--mouse-x) var(--mouse-y), rgba(0,0,0,1) 5%, rgba(0,0,0,0.5) 45%, transparent 100%);
   }
 
-  /* 2.1 Diseño de las Pistas de Edición (Tracks) */
   #c-hero .track {
     position: absolute;
     width: 100%;
-    height: 40px;
-    border-top: 1px dashed rgba(245, 158, 11, 0.2);
-    border-bottom: 1px dashed rgba(245, 158, 11, 0.2);
+    height: 35px;
+    border-top: 1px dashed rgba(245, 158, 11, 0.15);
+    border-bottom: 1px dashed rgba(245, 158, 11, 0.15);
     background: rgba(245, 158, 11, 0.02);
   }
 
   #c-hero .clip {
     position: absolute;
     height: 100%;
-    background: rgba(245, 158, 11, 0.15);
-    border: 1px solid rgba(245, 158, 11, 0.8);
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.6);
     display: flex;
     align-items: center;
-    padding: 0 15px;
+    padding: 0 12px;
     font-family: var(--font-mono);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    color: #fcd34d; /* Dorado brillante */
-    text-shadow: 0 0 10px rgba(245, 158, 11, 0.8);
+    color: #fcd34d;
+    text-shadow: 0 0 8px rgba(245, 158, 11, 0.8);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
-  #c-hero .clip.audio { background: rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.8); color: #93c5fd; text-shadow: 0 0 10px rgba(59, 130, 246, 0.8); }
-  #c-hero .clip.missing { background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.8); color: #fca5a5; text-shadow: 0 0 10px rgba(239, 68, 68, 0.8); background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(239,68,68,0.2) 10px, rgba(239,68,68,0.2) 20px); }
-  #c-hero .clip.error { background: rgba(220, 38, 38, 0.3); border-color: #ef4444; color: #fff; }
+  
+  #c-hero .clip.audio { background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.6); color: #93c5fd; text-shadow: 0 0 8px rgba(59, 130, 246, 0.8); }
+  #c-hero .clip.missing { background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.6); color: #fca5a5; text-shadow: 0 0 8px rgba(239, 68, 68, 0.8); background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(239,68,68,0.15) 10px, rgba(239,68,68,0.15) 20px); }
+  #c-hero .clip.error { background: rgba(220, 38, 38, 0.2); border-color: #ef4444; color: #fff; }
 
   #c-hero .chaos-timecode {
     position: absolute;
     font-family: var(--font-mono);
     color: #fcd34d;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.15em;
-    text-shadow: 0 0 15px rgba(245, 158, 11, 0.9);
+    text-shadow: 0 0 12px rgba(245, 158, 11, 0.9);
   }
 
-  /* 3. Contenido Principal Frontal */
+  /* 4. Contenido Principal Frontal */
   #c-hero .c-hero__content {
     position: relative;
     z-index: 10;
     max-width: 900px;
     text-align: center;
     margin-top: calc(var(--header-height) * -1);
-    animation: fadeUp 1.2s forwards;
-    pointer-events: none; /* Deja que el ratón "atraviese" el texto para iluminar el fondo */
+    animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    pointer-events: none;
   }
 
-  /* Hacemos que solo los botones sean interactivos */
   #c-hero .c-hero__actions { pointer-events: auto; }
 
   #c-hero .c-hero__title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2rem, 5vw, 4.5rem); /* Ajuste responsivo avanzado */
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -0.02em;
     margin-bottom: 1.5rem;
     color: var(--text-primary);
+    text-shadow: 0 4px 20px rgba(0,0,0,0.6); /* Sombra para resaltar sobre el fondo */
   }
 
   #c-hero .text-highlight {
-    color: #334155; /* Oscuridad */
+    color: #64748b; /* Un gris más claro para que contraste en móvil */
     transition: color 0.5s ease, text-shadow 0.5s ease;
   }
 
   #c-hero:hover .text-highlight {
     color: var(--accent-gold);
-    text-shadow: 0 0 25px rgba(245, 158, 11, 0.5);
+    text-shadow: 0 0 25px rgba(245, 158, 11, 0.6);
   }
 
   #c-hero .c-hero__subtitle {
-    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
     color: var(--text-secondary);
-    max-width: 650px;
+    max-width: 700px;
     margin: 0 auto 3rem auto;
     font-weight: 400;
+    line-height: 1.6;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
   }
 
-  /* 4. Botón principal */
   #c-hero .c-hero__actions {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 1.2rem;
   }
 
   #c-hero .c-hero__btn {
     display: inline-flex;
-    padding: 1rem 2.5rem;
-    font-size: 0.95rem;
+    padding: 1.1rem 3rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--bg-main);
     background-color: var(--text-primary);
     border-radius: 8px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    transition: all 0.4s;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   }
 
   #c-hero .c-hero__btn:hover {
     background-color: var(--accent-gold);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(245, 158, 11, 0.4);
   }
 
   #c-hero .c-hero__note {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--text-secondary);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
   }
 
-  /* 5. Scroll (Grieta de Luz) */
-  #c-hero .c-hero__scroll {
+  /* 5. Indicador de Scroll Refinado (Estilo Mouse) */
+  #c-hero .c-hero__scroll-indicator {
     position: absolute;
     bottom: 2rem;
     left: 50%;
@@ -215,65 +248,162 @@
     align-items: center;
     gap: 0.5rem;
     z-index: 10;
-    opacity: 0.7;
-    transition: opacity 0.3s;
     pointer-events: auto;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s;
   }
 
-  #c-hero .c-hero__scroll:hover { opacity: 1; }
-  
-  #c-hero .c-hero__scroll-text {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    color: var(--text-secondary);
+  #c-hero .c-hero__scroll-indicator:hover {
+    opacity: 1;
   }
 
-  #c-hero .c-hero__scroll-line {
-    width: 2px;
-    height: 60px;
-    background: linear-gradient(to bottom, rgba(245, 158, 11, 1), transparent);
-    animation: pulseLight 2s infinite ease-in-out;
+  /* El "ratón" */
+  #c-hero .mouse {
+    width: 24px;
+    height: 36px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 6px;
   }
 
+  /* La ruedita del ratón animada */
+  #c-hero .wheel {
+    width: 4px;
+    height: 8px;
+    background-color: var(--accent-gold);
+    border-radius: 2px;
+    animation: scrollWheel 2s cubic-bezier(0.15, 0.41, 0.69, 0.94) infinite;
+  }
+
+  #c-hero .scroll-text {
+    font-family: var(--font-main);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 4px;
+  }
+
+  /* Flechas hacia abajo */
+  #c-hero .chevron-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -5px;
+  }
+
+  #c-hero .chevron {
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid var(--accent-gold);
+    border-bottom: 2px solid var(--accent-gold);
+    transform: rotate(45deg);
+    animation: chevronFade 2s infinite;
+    margin-top: -4px; /* Superpone un poco las flechas */
+  }
+
+  #c-hero .chevron:nth-child(1) { animation-delay: 0s; }
+  #c-hero .chevron:nth-child(2) { animation-delay: 0.2s; }
+  #c-hero .chevron:nth-child(3) { animation-delay: 0.4s; }
+
+
+  /* ANIMACIONES */
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
+    from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  @keyframes pulseLight {
-    0%, 100% { height: 40px; opacity: 0.5; }
-    50% { height: 70px; opacity: 1; }
+  @keyframes scrollWheel {
+    0% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(10px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 0; }
+  }
+
+  @keyframes chevronFade {
+    0% { opacity: 0; transform: rotate(45deg) translate(-5px, -5px); }
+    50% { opacity: 1; }
+    100% { opacity: 0; transform: rotate(45deg) translate(5px, 5px); }
+  }
+
+
+  /* === ADAPTACIÓN MÓVIL (Smartphones) === */
+  @media (max-width: 768px) {
+    /* Ajustes generales */
+    #c-hero { padding: 0 6%; }
+    
+    /* El overlay debe ser más oscuro en móvil para asegurar que el texto se lea sobre la imagen */
+    #c-hero .c-hero__overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(5, 7, 10, 0.85) 0%,
+        rgba(5, 7, 10, 0.6) 50%,
+        rgba(5, 7, 10, 0.95) 100%
+      );
+    }
+
+    /* Reducimos el tamaño de la máscara (linterna) para pantallas pequeñas */
+    #c-hero .c-hero__hidden-chaos {
+      -webkit-mask-image: radial-gradient(circle 200px at var(--mouse-x) var(--mouse-y), rgba(0,0,0,1) 10%, rgba(0,0,0,0.5) 50%, transparent 100%);
+      mask-image: radial-gradient(circle 200px at var(--mouse-x) var(--mouse-y), rgba(0,0,0,1) 10%, rgba(0,0,0,0.5) 50%, transparent 100%);
+    }
+    
+    /* Ajustes de pistas para móvil */
+    #c-hero .track { height: 25px; }
+    #c-hero .clip { font-size: 0.6rem; padding: 0 8px; }
+    #c-hero .chaos-timecode { font-size: 0.8rem; }
+
+    /* Ajustes de texto */
+    #c-hero .c-hero__content { margin-top: 0; }
+    #c-hero .c-hero__title { margin-bottom: 1rem; }
+    #c-hero .c-hero__subtitle { margin-bottom: 2.5rem; font-size: 1rem; }
+    
+    /* Ajustes del botón */
+    #c-hero .c-hero__btn { width: 100%; justify-content: center; padding: 1.2rem 2rem; }
+    
+    /* Ocultar el texto de scroll en móvil, dejamos solo el icono */
+    #c-hero .scroll-text { display: none; }
   }
 </style>
 
 <script>
-  /* === LÓGICA DE SEGUIMIENTO (Reforzada) === */
+  /* === LÓGICA DE SEGUIMIENTO (Táctil y Mouse) === */
   (function () {
     const heroSection = document.getElementById("c-hero");
     if (!heroSection) return;
 
-    // Función unificada para calcular la posición sin importar el scroll
-    const updateMouse = (e) => {
+    const updatePosition = (x, y) => {
       const rect = heroSection.getBoundingClientRect();
-      let clientX = e.clientX;
-      let clientY = e.clientY;
-
-      // Soporte para pantallas táctiles (móviles)
-      if (e.touches && e.touches.length > 0) {
-        clientX = e.touches[0].clientX;
-        clientY = e.touches[0].clientY;
+      const relativeX = x - rect.left;
+      const relativeY = y - rect.top;
+      
+      // Aseguramos que los valores sean positivos
+      if(relativeX >= 0 && relativeY >= 0) {
+        heroSection.style.setProperty("--mouse-x", `${relativeX}px`);
+        heroSection.style.setProperty("--mouse-y", `${relativeY}px`);
       }
-
-      const x = clientX - rect.left;
-      const y = clientY - rect.top;
-
-      heroSection.style.setProperty("--mouse-x", `${x}px`);
-      heroSection.style.setProperty("--mouse-y", `${y}px`);
     };
 
-    // Escuchamos el evento en toda la ventana para que nunca se pierda el rastro
-    window.addEventListener("mousemove", updateMouse);
-    window.addEventListener("touchmove", updateMouse);
+    // Para Desktop
+    window.addEventListener("mousemove", (e) => updatePosition(e.clientX, e.clientY), { passive: true });
+    
+    // Para Móvil (Seguimiento del dedo)
+    window.addEventListener("touchmove", (e) => {
+      if(e.touches.length > 0) {
+        updatePosition(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+
+    // En móvil, si tocas la pantalla, la linterna se mueve ahí
+    window.addEventListener("touchstart", (e) => {
+      if(e.touches.length > 0) {
+         updatePosition(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
   })();
 </script>
