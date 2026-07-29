@@ -1,0 +1,403 @@
+<section id="c-problema">
+  <div class="c-problema__static"></div>
+
+  <div class="c-problema__container">
+    
+    <div class="c-problema__header fade-in">
+      <span class="sys-warning">[ SYS // ERROR DE MONTAJE ]</span>
+      <h2 class="c-problema__title glitch" data-text="¿TE ESTÁ PASANDO ESTO?">¿TE ESTÁ PASANDO ESTO?</h2>
+    </div>
+
+    <div class="c-problema__torment fade-in">
+      <div class="torment-visual">
+        <div class="media-offline">
+          <span class="danger-text">MEDIA OFFLINE</span>
+          <span class="file-name">01_IDEAS_GENIALES.mp4</span>
+        </div>
+      </div>
+      <div class="torment-text">
+        <p>Grabas con la chispa de una gran idea...</p>
+        <p class="highlight-red">Pero tus mejores tomas se pudren en una carpeta que nadie jamás abrirá.</p>
+      </div>
+    </div>
+
+    <div class="c-problema__torment fade-in reverse">
+      <div class="torment-visual">
+        <div class="flatline-container">
+          <div class="flatline-wave"></div>
+          <span class="danger-text small">AUDIO_SYNC_FAILED</span>
+        </div>
+      </div>
+      <div class="torment-text">
+        <p>Buscas editores para liberarte de la carga...</p>
+        <p class="highlight-red">Pero caes en el silencio de quienes desaparecen o te devuelven algo que destruye tu marca.</p>
+      </div>
+    </div>
+
+    <div class="c-problema__torment fade-in">
+      <div class="torment-visual">
+        <div class="render-error">
+          <span class="glitch-number" data-text="99%">99%</span>
+          <span class="danger-text">RENDER KILLED</span>
+        </div>
+      </div>
+      <div class="torment-text">
+        <p>Mientras tu material se acumula esperando ser perfecto...</p>
+        <p class="highlight-red">Otros con la mitad de tu talento se están quedando con tu audiencia.</p>
+      </div>
+    </div>
+
+    <div class="c-problema__climax fade-in">
+      <div class="climax-box">
+        <h3 class="climax-text">
+          AL FINAL, NO ES QUE NO ESTÉS CREANDO...<br>
+          <span class="gold-burn">ES QUE NO ESTÁS PUBLICANDO.</span>
+        </h3>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* === VARIABLES Y SCOPING === */
+  #c-problema {
+    position: relative;
+    width: 100%;
+    background-color: #020305; /* Más oscuro que el Hero para tragar la luz */
+    color: var(--text-primary);
+    overflow: hidden;
+    padding: 8rem 5%;
+    z-index: 2;
+    border-top: 1px solid rgba(239, 68, 68, 0.1); /* Línea roja sutil de entrada */
+  }
+
+  /* 1. Capa de Estática Agresiva */
+  #c-problema .c-problema__static {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.04;
+    background-image: repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 2px, rgba(255,255,255,0.1) 2px, rgba(255,255,255,0.1) 4px);
+    animation: staticNoise 0.2s infinite;
+    pointer-events: none;
+  }
+
+  #c-problema .c-problema__container {
+    position: relative;
+    z-index: 10;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8rem; /* Mucho espacio para sentir el descenso */
+  }
+
+  /* 2. Textos y Alertas */
+  #c-problema .sys-warning {
+    font-family: var(--font-mono);
+    color: #ef4444;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    animation: pulseRed 2s infinite;
+  }
+
+  #c-problema .c-problema__header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  #c-problema .c-problema__title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    color: var(--text-primary);
+  }
+
+  /* --- EL EFECTO GLITCH CSS PURO --- */
+  #c-problema .glitch {
+    position: relative;
+  }
+  #c-problema .glitch::before,
+  #c-problema .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #020305;
+  }
+  #c-problema .glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 #ef4444; /* Rojo */
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-1 3s infinite linear alternate-reverse;
+  }
+  #c-problema .glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 #3b82f6; /* Azul técnico */
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+  }
+
+  /* 3. Los Tormentos (Bloques) */
+  #c-problema .c-problema__torment {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  #c-problema .c-problema__torment.reverse {
+    flex-direction: row-reverse;
+  }
+  #c-problema .c-problema__torment.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #c-problema .torment-text {
+    flex: 1;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+  #c-problema .torment-text .highlight-red {
+    color: #f8fafc;
+    font-weight: 700;
+    margin-top: 1rem;
+    text-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+  }
+
+  /* Visuales del Tormento (Interfaces Corruptas) */
+  #c-problema .torment-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* 3A. Media Offline */
+  #c-problema .media-offline {
+    width: 100%;
+    max-width: 400px;
+    height: 220px;
+    background: #ef4444; /* Rojo vivo de error */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #7f1d1d;
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  #c-problema .media-offline::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.2) 10px, rgba(0,0,0,0.2) 20px);
+  }
+  #c-problema .danger-text {
+    font-family: var(--font-mono);
+    font-size: 2rem;
+    font-weight: 900;
+    color: #000;
+    z-index: 2;
+  }
+  #c-problema .file-name {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: #000;
+    margin-top: 0.5rem;
+    z-index: 2;
+  }
+
+  /* 3B. Flatline Audio */
+  #c-problema .flatline-container {
+    width: 100%;
+    max-width: 400px;
+    height: 120px;
+    background: #05070a;
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 2rem;
+  }
+  #c-problema .flatline-wave {
+    width: 100%;
+    height: 2px;
+    background: #ef4444;
+    box-shadow: 0 0 10px #ef4444;
+    position: relative;
+  }
+  #c-problema .flatline-wave::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -4px;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    animation: flatlineScan 2s infinite linear;
+  }
+  #c-problema .danger-text.small {
+    font-size: 0.8rem;
+    color: #ef4444;
+    margin-top: 1rem;
+    text-align: right;
+  }
+
+  /* 3C. Render Error */
+  #c-problema .render-error {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+  }
+  #c-problema .glitch-number {
+    font-family: var(--font-mono);
+    font-size: 5rem;
+    font-weight: 900;
+    color: #ef4444;
+    display: block;
+    position: relative;
+    animation: flickerNumber 0.5s infinite;
+  }
+
+  /* 4. Clímax Final */
+  #c-problema .c-problema__climax {
+    margin-top: 4rem;
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 1s ease;
+  }
+  #c-problema .c-problema__climax.is-visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+  #c-problema .climax-box {
+    padding: 4rem 2rem;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    background: radial-gradient(circle at center, rgba(245, 158, 11, 0.05) 0%, transparent 70%);
+  }
+  #c-problema .climax-text {
+    font-size: clamp(1.8rem, 4vw, 3.5rem);
+    line-height: 1.2;
+    font-weight: 800;
+    color: var(--text-secondary);
+  }
+  #c-problema .gold-burn {
+    display: block;
+    color: var(--accent-gold);
+    margin-top: 1rem;
+    text-shadow: 0 0 30px rgba(245, 158, 11, 0.6);
+  }
+
+  /* --- KEYFRAMES --- */
+  @keyframes staticNoise {
+    0% { transform: translate(0, 0); }
+    10% { transform: translate(-1%, -1%); }
+    20% { transform: translate(1%, 1%); }
+    30% { transform: translate(-2%, 2%); }
+    40% { transform: translate(2%, -2%); }
+    50% { transform: translate(-1%, 2%); }
+    60% { transform: translate(1%, -1%); }
+    70% { transform: translate(2%, 1%); }
+    80% { transform: translate(-2%, -1%); }
+    90% { transform: translate(1%, 2%); }
+    100% { transform: translate(0, 0); }
+  }
+
+  @keyframes pulseRed {
+    0%, 100% { opacity: 1; text-shadow: 0 0 10px rgba(239,68,68,0.8); }
+    50% { opacity: 0.5; text-shadow: none; }
+  }
+
+  @keyframes glitch-anim-1 {
+    0% { clip: rect(10px, 9999px, 31px, 0); }
+    5% { clip: rect(70px, 9999px, 12px, 0); }
+    10% { clip: rect(40px, 9999px, 80px, 0); }
+    15% { clip: rect(90px, 9999px, 20px, 0); }
+    20% { clip: rect(15px, 9999px, 60px, 0); }
+    25% { clip: rect(80px, 9999px, 5px, 0); }
+    100% { clip: rect(80px, 9999px, 5px, 0); }
+  }
+  @keyframes glitch-anim-2 {
+    0% { clip: rect(65px, 9999px, 100px, 0); }
+    5% { clip: rect(20px, 9999px, 50px, 0); }
+    10% { clip: rect(85px, 9999px, 10px, 0); }
+    15% { clip: rect(10px, 9999px, 90px, 0); }
+    20% { clip: rect(50px, 9999px, 30px, 0); }
+    25% { clip: rect(30px, 9999px, 70px, 0); }
+    100% { clip: rect(30px, 9999px, 70px, 0); }
+  }
+
+  @keyframes flatlineScan {
+    0% { left: 0; opacity: 1; }
+    90% { left: 100%; opacity: 1; }
+    100% { left: 100%; opacity: 0; }
+  }
+
+  @keyframes flickerNumber {
+    0%, 100% { opacity: 1; text-shadow: 0 0 20px rgba(239,68,68,0.8); }
+    33% { opacity: 0.8; }
+    34% { opacity: 0; }
+    35% { opacity: 1; }
+    66% { opacity: 1; }
+    67% { opacity: 0; }
+    68% { opacity: 0.9; }
+  }
+
+  /* --- MÓVIL --- */
+  @media (max-width: 768px) {
+    #c-problema { padding: 5rem 6%; }
+    #c-problema .c-problema__container { gap: 6rem; }
+    #c-problema .c-problema__torment,
+    #c-problema .c-problema__torment.reverse {
+      flex-direction: column;
+      gap: 2rem;
+      text-align: center;
+    }
+    #c-problema .torment-visual { width: 100%; }
+    #c-problema .c-problema__climax { margin-top: 2rem; }
+    #c-problema .climax-box { padding: 3rem 1rem; }
+  }
+</style>
+
+<script>
+  /* === LÓGICA DE REVELACIÓN AL HACER SCROLL (INTERSECTION OBSERVER) === */
+  (function () {
+    const problemaSection = document.getElementById("c-problema");
+    if (!problemaSection) return;
+
+    // Seleccionamos todos los elementos con la clase fade-in
+    const elementsToReveal = problemaSection.querySelectorAll('.fade-in');
+
+    const revealOptions = {
+      root: null,
+      rootMargin: '0px 0px -15% 0px', // Se activa cuando el elemento entra un 15% en la pantalla
+      threshold: 0.1
+    };
+
+    const revealCallback = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          // Una vez revelado, dejamos de observarlo para que se quede visible
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
+
+    elementsToReveal.forEach(el => {
+      revealObserver.observe(el);
+    });
+  })();
+</script>
