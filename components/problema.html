@@ -1,206 +1,195 @@
-<section id="c-mascara">
+<section id="c-puerta-infierno">
   
-  <div class="c-mascara__sticky">
-    
-    <h1 class="mascara-texto" id="mascara-texto">CAOS</h1>
+  <div class="fade-mask-top"></div>
 
-    <div class="mascara-revelacion" id="mascara-revelacion">
-      <div class="revelacion-inner">
-        <p class="revelacion-parrafo">
-          Tienes las ideas y la pasión. Pero tus horas de grabación y las ediciones que nunca terminan se acumulan en un limbo digital que solo tú conoces.
+  <div class="portal-wrapper">
+    <div class="portal-card" id="portal-card">
+      
+      <div class="mouse-glow" id="mouse-glow"></div>
+      
+      <div class="portal-content">
+        
+        <span class="sys-tag">[ 01 // EL INFIERNO CREADOR ]</span>
+        
+        <p class="narrativa">
+          Tienes <span class="highlight">ideas</span>. Tienes <span class="highlight">pasión</span>. Tienes todo lo necesario para crear contenido que puede cambiar vidas... pero ahí se queda. En borradores. En carpetas. En un limbo digital que solo tú conoces. Horas de grabación acumulándose. Ediciones que nunca terminan. Publicaciones que nunca llegan. Y mientras tanto, otros que crean menos que tú... están llegando más lejos.
         </p>
-        <div class="divisor-tecnico"></div>
-        <h3 class="revelacion-climax">
+        
+        <div class="divider"></div>
+        
+        <h3 class="climax">
           AL FINAL, NO ES QUE NO ESTÉS CREANDO...<br>
-          <span class="climax-brillo">ES QUE NO ESTÁS PUBLICANDO.</span>
+          <span class="gold-text">ES QUE NO ESTÁS PUBLICANDO.</span>
         </h3>
+        
       </div>
     </div>
-
   </div>
 
 </section>
 
 <style>
-  /* === 1. CONTENEDOR PRINCIPAL === */
-  #c-mascara {
-    /* Altura masiva (300vh) para permitir que el usuario haga scroll y active la animación */
-    height: 350vh; 
-    background-color: #010101; /* Negro absoluto, sin distracciones */
+  /* === 1. CONFIGURACIÓN DEL ESPACIO === */
+  #c-puerta-infierno {
+    position: relative;
+    width: 100%;
+    background-color: #020203; /* Negro casi absoluto */
+    color: #f8fafc;
+    padding: 15vh 5%;
+    z-index: 2;
+    overflow: hidden;
+  }
+
+  /* Fusión con la imagen/fondo del Hero */
+  .fade-mask-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15vh;
+    background: linear-gradient(to bottom, transparent 0%, #020203 100%);
+    transform: translateY(-99%);
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  /* Fondo atmosférico sutil (brasas lejanas) */
+  #c-puerta-infierno::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 100%, rgba(245, 158, 11, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* === 2. EL PORTAL (Clean UI) === */
+  .portal-wrapper {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    z-index: 10;
+  }
+
+  .portal-card {
+    position: relative;
+    background: rgba(10, 10, 12, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 4rem 3rem;
+    overflow: hidden; /* Mantiene la luz dentro de la caja */
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* Animación de entrada suave */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: portalFadeIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes portalFadeIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* === 3. LUZ DINÁMICA (Mouse Tracking) === */
+  .mouse-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      600px circle at var(--mouse-x) var(--mouse-y), 
+      rgba(245, 158, 11, 0.08), 
+      transparent 40%
+    );
+    pointer-events: none; /* Para no estorbar el texto */
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .portal-card:hover .mouse-glow {
+    opacity: 1;
+  }
+
+  /* === 4. CONTENIDO Y TIPOGRAFÍA === */
+  .portal-content {
     position: relative;
     z-index: 2;
-  }
-
-  /* El bloque que se "pega" a la pantalla mientras haces scroll en los 350vh */
-  .c-mascara__sticky {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden; /* Evita que el zoom rompa la pantalla */
-  }
-
-  /* === 2. LA PALABRA GIGANTE (MÁSCARA DE VIDEO/GLITCH) === */
-  .mascara-texto {
-    position: absolute;
-    font-family: var(--font-main);
-    font-size: 25vw; /* Ocupa todo el ancho */
-    font-weight: 900;
-    letter-spacing: -0.05em;
-    line-height: 1;
-    text-transform: uppercase;
-    margin: 0;
-    z-index: 10;
-    will-change: transform, opacity;
-
-    /* EL TRUCO DE LA MÁSCARA */
-    /* Por ahora tiene un glitch CSS, pero puedes poner url('tu-timeline-davinci.gif') */
-    background: repeating-linear-gradient(
-      -45deg,
-      #050505 0%,
-      #050505 10%,
-      #ef4444 10%,
-      #ef4444 11%,
-      #111 11%,
-      #111 20%
-    );
-    background-size: 200% 200%;
-    animation: timelineGlitch 0.4s infinite linear;
-    
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent; /* Hace que el texto sea transparente para ver el fondo */
-  }
-
-  @keyframes timelineGlitch {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 100% 100%; }
-  }
-
-  /* === 3. EL MENSAJE REVELADO === */
-  .mascara-revelacion {
-    position: absolute;
-    z-index: 5;
-    width: 90%;
-    max-width: 900px;
     text-align: center;
-    /* Inicia oculto y desplazado hacia abajo. JS lo controlará */
-    opacity: 0;
-    transform: translateY(50px);
-    will-change: transform, opacity;
-  }
-
-  .revelacion-inner {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3rem;
+    gap: 2.5rem;
   }
 
-  .revelacion-parrafo {
-    font-family: var(--font-main);
-    font-size: clamp(1.4rem, 2.5vw, 2rem);
+  .sys-tag {
+    font-family: var(--font-mono, monospace);
+    color: rgba(245, 158, 11, 0.7);
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+  }
+
+  .narrativa {
+    font-family: var(--font-main, sans-serif);
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    line-height: 1.6;
+    color: #cbd5e1; /* Gris elegante */
     font-weight: 300;
-    line-height: 1.5;
-    color: #94a3b8;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    max-width: 800px;
   }
 
-  .divisor-tecnico {
-    width: 2px;
-    height: 40px;
-    background: linear-gradient(to bottom, transparent, rgba(245, 158, 11, 0.5), transparent);
+  .narrativa .highlight {
+    color: #f8fafc;
+    font-weight: 500;
   }
 
-  .revelacion-climax {
-    font-family: var(--font-main);
-    font-size: clamp(1.8rem, 4vw, 3.5rem);
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(245, 158, 11, 0.3);
+  }
+
+  .climax {
+    font-family: var(--font-main, sans-serif);
+    font-size: clamp(1.6rem, 3.5vw, 2.5rem);
     font-weight: 800;
     line-height: 1.2;
-    color: #475569;
+    color: #475569; /* Gris oscuro que contrasta con el oro */
     letter-spacing: -0.02em;
   }
 
-  .climax-brillo {
+  .gold-text {
     display: block;
-    margin-top: 1rem;
-    color: #f8fafc;
-    /* Resplandor elegante, sin exagerar */
-    text-shadow: 0 0 40px rgba(245, 158, 11, 0.3), 0 0 10px rgba(245, 158, 11, 0.1);
+    margin-top: 0.5rem;
+    color: transparent;
+    background: linear-gradient(135deg, #fef3c7 0%, #f59e0b 50%, #b45309 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
   }
 
   /* MÓVIL */
   @media (max-width: 768px) {
-    .mascara-texto { font-size: 35vw; }
-    .revelacion-parrafo { font-size: 1.2rem; }
-    .revelacion-climax { font-size: 1.5rem; }
+    .portal-card { padding: 3rem 1.5rem; }
   }
 </style>
 
 <script>
-  (function () {
-    const section = document.getElementById('c-mascara');
-    const textoMascara = document.getElementById('mascara-texto');
-    const revelacion = document.getElementById('mascara-revelacion');
-
-    if (!section || !textoMascara || !revelacion) return;
-
-    let ticking = false;
-
-    const actualizarAnimacion = () => {
-      const rect = section.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      
-      // Comprobamos si estamos haciendo scroll DENTRO de los 350vh de esta sección
-      if (rect.top <= 0 && rect.bottom >= windowHeight) {
-        
-        // Calculamos el progreso del scroll de 0 (inicio) a 1 (final)
-        const scrollTotal = rect.height - windowHeight;
-        const scrollActual = Math.abs(rect.top);
-        let progreso = scrollActual / scrollTotal; 
-
-        // 1. Efecto Zoom Extremo a la Palabra
-        // La escala arranca en 1 y crece hasta 60 veces su tamaño
-        const scaleValue = 1 + (progreso * 80);
-        
-        // 2. Desvanecimiento de la Máscara
-        // A partir del 25% del recorrido, la palabra empieza a volverse transparente
-        let opacityTexto = 1;
-        if (progreso > 0.25) {
-          opacityTexto = 1 - ((progreso - 0.25) * 4); // Se vuelve 0 rápido
-        }
-
-        textoMascara.style.transform = `scale(${scaleValue})`;
-        textoMascara.style.opacity = Math.max(0, opacityTexto);
-
-        // 3. Aparición Suave del Párrafo Revelado
-        // A partir del 40% del recorrido, el texto limpio sube y aparece
-        let opacityRevelacion = 0;
-        let translateY = 50; // Inicia 50px abajo
-        
-        if (progreso > 0.40) {
-          opacityRevelacion = (progreso - 0.40) * 2.5; 
-          translateY = 50 - (Math.min(1, opacityRevelacion) * 50); // Sube a 0px
-        }
-
-        revelacion.style.opacity = Math.min(1, Math.max(0, opacityRevelacion));
-        revelacion.style.transform = `translateY(${Math.max(0, translateY)}px)`;
-      }
-
-      ticking = false;
-    };
-
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(actualizarAnimacion);
-        ticking = true;
-      }
-    }, { passive: true });
+  (function() {
+    const card = document.getElementById('portal-card');
     
-    // Forzar actualización inicial
-    actualizarAnimacion();
+    if(!card) return;
+
+    // Lógica para que la luz siga al ratón dentro de la tarjeta
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
   })();
 </script>
