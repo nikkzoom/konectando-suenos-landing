@@ -47,11 +47,14 @@ img {
     left: 0;
     width: 100%; 
     z-index: 999;
-    padding: 0.5rem 0; 
+    /* Reducimos el padding drásticamente para pegarlo al techo */
+    padding: 15px 0; 
 }
 
 .k-header__container {
     width: 100%;
+    max-width: 1600px; /* Evita que se separe demasiado en monitores gigantes */
+    margin: 0 auto;
     padding: 0 4%; 
     box-sizing: border-box;
     display: flex;
@@ -132,7 +135,9 @@ img {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 120px 5% 60px 5%;
+    /* Aumentamos el padding top de 120px a 160px para bajar el texto 
+       y alejarlo del header de cristal */
+    padding: 160px 5% 60px 5%;
     box-sizing: border-box;
     background-color: var(--bg-dark);
 }
