@@ -1,0 +1,279 @@
+<section id="problema" class="k-problem">
+  
+  <div class="k-problem__divider">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 C480,140 960,140 1440,0 L1440,121 L0,121 Z"></path>
+    </svg>
+  </div>
+
+  <div class="k-problem__container">
+    
+    <div class="k-problem__header fade-up">
+      <h2 class="k-problem__title">
+        El verdadero enemigo de tus sueños no es la falta de talento.<br>
+        <span class="text-gradient">Es el caos digital.</span>
+      </h2>
+      <p class="k-problem__subtitle">
+        Cientos de gigabytes de ideas brillantes terminan sepultados en carpetas olvidadas por falta de tiempo, sistema o narrativa. Ahí es donde los grandes proyectos mueren en silencio.
+      </p>
+    </div>
+
+    <div class="k-problem__grid">
+      
+      <article class="glass-folder fade-up" style="transition-delay: 0.1s;">
+        <div class="folder-tab">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+          01 // horas_perdidas/
+        </div>
+        <div class="folder-body">
+          <h3>La trampa de la edición infinita</h3>
+          <p>Grabas durante 5 horas para obtener 60 segundos de video. El agotamiento de editar tú mismo devora el tiempo y la energía que deberías estar invirtiendo en crear y grabar.</p>
+        </div>
+      </article>
+
+      <article class="glass-folder fade-up" style="transition-delay: 0.2s;">
+        <div class="folder-tab">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+          02 // algoritmo_invisible/
+        </div>
+        <div class="folder-body">
+          <h3>Contenido que nadie ve</h3>
+          <p>Tu mensaje es increíble, pero si editas sin entender de narrativa y retención, perderás a tu audiencia en los primeros 3 segundos vitales. El algoritmo no perdona el aburrimiento.</p>
+        </div>
+      </article>
+
+      <article class="glass-folder fade-up" style="transition-delay: 0.3s;">
+        <div class="folder-tab">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+          03 // sin_constancia/
+        </div>
+        <div class="folder-body">
+          <h3>El ciclo del burnout</h3>
+          <p>Publicar un video genial... y desaparecer durante semanas. La falta de un sistema de postproducción predecible y delegable te arrastra a la inconsistencia y frena tu crecimiento.</p>
+        </div>
+      </article>
+
+      <article class="glass-folder fade-up" style="transition-delay: 0.4s;">
+        <div class="folder-tab accent-tab">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+          04 // suenos_en_el_disco.raw
+        </div>
+        <div class="folder-body">
+          <h3>El potencial desperdiciado</h3>
+          <p>Tu mejor versión sigue guardada en un disco duro. El verdadero fracaso no es intentarlo y fallar, es dejar que tu mejor material se pudra en el almacenamiento porque nunca vio la luz.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Base de la sección */
+  .k-problem {
+    position: relative;
+    width: 100%;
+    /* Un azul noche muy profundo, casi negro, para mantener la estética celestial oscura */
+    background-color: #040914; 
+    padding: 80px 0 120px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+  }
+
+  /* Transición SVG Superior */
+  .k-problem__divider {
+    position: absolute;
+    top: -119px; /* Sube para solaparse perfectamente con el fondo del Hero */
+    left: 0;
+    width: 100%;
+    height: 120px;
+    z-index: 11;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .k-problem__divider svg {
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 100%;
+  }
+
+  .k-problem__divider path {
+    fill: #040914; /* Mismo color que el fondo de esta sección */
+  }
+
+  .k-problem__container {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 12;
+  }
+
+  /* Encabezado */
+  .k-problem__header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 5rem auto;
+  }
+
+  .k-problem__title {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #f8fafc 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .k-problem__subtitle {
+    font-size: clamp(1.05rem, 1.5vw, 1.15rem);
+    color: #cbd5e1;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  /* Grid de Carpetas */
+  .k-problem__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+  }
+
+  /* Diseño de las Carpetas OS (Glassmorphism modular) */
+  .glass-folder {
+    display: flex;
+    flex-direction: column;
+    perspective: 1000px;
+  }
+
+  /* La Pestaña de la carpeta (Tab) */
+  .folder-tab {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1.2rem;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+    color: #94a3b8;
+    font-family: monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+  }
+
+  /* Carpeta destacada (La cruda realidad final) */
+  .accent-tab {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: rgba(245, 158, 11, 0.3);
+    color: #fcd34d;
+  }
+
+  /* El Cuerpo de la carpeta */
+  .folder-body {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 0 16px 16px 16px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    height: 100%;
+  }
+
+  /* Resplandor interno sutil en el borde superior para dar volumen 3D */
+  .folder-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%);
+    opacity: 0.5;
+  }
+
+  .folder-body h3 {
+    font-size: 1.4rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .folder-body p {
+    color: #94a3b8;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Interacción Hover */
+  .glass-folder:hover .folder-body {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-folder:hover .folder-tab {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .glass-folder:hover .accent-tab {
+    color: #fef08a;
+    background: rgba(245, 158, 11, 0.25);
+    border-color: rgba(245, 158, 11, 0.5);
+  }
+
+  /* Animación de entrada por scroll */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .fade-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Adaptación Móvil */
+  @media (max-width: 768px) {
+    .k-problem {
+      padding: 60px 0 80px 0;
+    }
+    .k-problem__divider {
+      top: -59px;
+      height: 60px;
+    }
+    .k-problem__header {
+      margin-bottom: 3rem;
+    }
+    .folder-body {
+      padding: 1.8rem 1.5rem;
+    }
+    .glass-folder:hover .folder-body {
+      transform: translateY(-4px); /* Menos movimiento en móvil */
+    }
+  }
+</style>
