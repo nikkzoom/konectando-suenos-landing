@@ -47,15 +47,14 @@ img {
     left: 0;
     width: 100%; 
     z-index: 999;
-    /* Reducimos el padding drásticamente para pegarlo al techo */
-    padding: 15px 0; 
+    /* Le devolvemos un poco de aire vertical para no apeñuscarlo (25px) */
+    padding: 25px 0; 
 }
 
 .k-header__container {
     width: 100%;
-    max-width: 1600px; /* Evita que se separe demasiado en monitores gigantes */
-    margin: 0 auto;
-    padding: 0 4%; 
+    /* Eliminé el max-width para que los elementos se expandan por toda la pantalla */
+    padding: 0 4%; /* Solo un margen estético a los lados */
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
