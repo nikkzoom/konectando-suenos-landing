@@ -82,7 +82,7 @@
 
   .k-hero__bg-container {
     position: absolute;
-    inset: -30px; /* Margen extra para el movimiento sin cortar bordes */
+    inset: -30px; 
     z-index: 1;
   }
 
@@ -91,17 +91,13 @@
     height: 100%;
     background-size: cover;
     background-position: center center;
-    /* Suaviza el movimiento del mouse */
     transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
-    /* Elimina cualquier filtro que degrade la calidad */
     filter: none; 
-    /* Truco para forzar renderizado de alta calidad en navegadores WebKit */
     transform-style: preserve-3d;
     backface-visibility: hidden;
     will-change: transform;
   }
 
-  /* Capa para asegurar que el texto blanco se lea, sin oscurecer toda la imagen */
   .k-hero__legibility-overlay {
     position: absolute;
     inset: 0;
@@ -110,7 +106,6 @@
     pointer-events: none;
   }
 
-  /* El resplandor dinámico que sigue al ratón (devuelto) */
   .k-hero__light-overlay {
     position: absolute;
     inset: 0;
@@ -121,7 +116,7 @@
       transparent 50%
     );
     pointer-events: none;
-    mix-blend-mode: overlay; /* Vuelve a dar ese toque mágico sin quemar */
+    mix-blend-mode: overlay;
   }
 
   /* === 2. TEXTO Y BOTONES === */
@@ -143,7 +138,6 @@
     color: #ffffff;
     margin: 0;
     letter-spacing: -0.02em;
-    /* Sombra refinada: difuminada, no pesada */
     text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); 
   }
 
@@ -215,19 +209,21 @@
     transform: translateY(-50%);
     z-index: 20;
     display: flex;
-    flex-direction: row; /* Coloca el título al lado del dock */
+    flex-direction: row; 
     align-items: center;
     gap: 1rem;
   }
 
+  /* CORRECCIÓN 1: Legibilidad del texto mejorada */
   .k-hero__dock-title {
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.95); /* Color mucho más sólido */
+    font-weight: 600; /* Letra más gruesa */
     writing-mode: vertical-rl;
     transform: rotate(180deg);
-    text-shadow: none; /* Limpio */
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8); /* Sombra fuerte para despegarlo del fondo */
   }
 
   .k-hero__dock {
@@ -306,54 +302,74 @@
 
   /* === ADAPTACIONES MÓVILES (iOS / Responsive) === */
   @media (max-width: 1024px) {
-    /* En tablets, el dock pasa a la parte inferior horizontal */
-    .k-hero__dock-wrapper {
-      position: absolute;
-      bottom: 5%;
-      right: auto;
-      left: 50%;
-      top: auto;
-      transform: translateX(-50%);
+    /* CORRECCIÓN 2: Evitar que choquen los elementos convirtiendo el hero en una columna */
+    .k-hero {
       flex-direction: column;
-      width: 90%;
+    }
+
+    .k-hero__dock-wrapper {
+      position: relative; /* Devuelve el dock al flujo normal para que no sobreponga nada */
+      bottom: auto;
+      right: auto;
+      left: auto;
+      top: auto;
+      transform: none;
+      margin-top: 3rem;
+      flex-direction: column;
+      width: 100%;
+      max-width: 90vw;
     }
 
     .k-hero__dock-title {
       writing-mode: horizontal-tb;
       transform: none;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
+      text-align: center;
+      width: 100%;
+      display: block;
     }
 
+    /* CORRECCIÓN 3: Hacer que los clientes sean una sola línea scrolleable */
     .k-hero__dock {
       flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 0.8rem 1.2rem;
+      flex-wrap: nowrap; /* Evita que salten a una segunda fila */
+      overflow-x: auto; /* Activa el scroll horizontal */
+      -webkit-overflow-scrolling: touch; /* Scroll suave en móviles */
+      justify-content: flex-start;
+      padding: 1rem 1.5rem;
+      gap: 1rem;
+      width: 100%;
+      /* Ocultar barra de scroll para estética limpia */
+      scrollbar-width: none; 
+      -ms-overflow-style: none;
+    }
+    
+    .k-hero__dock::-webkit-scrollbar {
+      display: none;
+    }
+
+    .dock-item {
+      flex: 0 0 auto; /* Obliga a los avatares a mantener su tamaño y no encogerse */
     }
 
     .dock-item:hover {
       transform: scale(1.15) translateY(-5px);
     }
 
+    /* Ocultamos tooltips en móvil para no interferir con el touch/scroll */
     .dock-item::after {
-      right: auto;
-      top: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .dock-item:hover::after {
-      top: -45px;
+      display: none;
     }
   }
 
   @media (max-width: 768px) {
     .k-hero {
-      padding: 100px 5% 140px 5%; /* Espacio extra abajo para el dock móvil */
+      /* Padding inferior aumentado para que no choque con la botonera de la app en celular */
+      padding: 120px 5% 130px 5%; 
     }
 
     .k-hero__title {
-      font-size: 2.2rem; /* Ajuste tipográfico móvil */
+      font-size: 2.2rem;
     }
 
     .k-hero__subtitle {
@@ -371,7 +387,6 @@
       box-sizing: border-box;
     }
 
-    /* Ocultamos la luz dinámica en móvil por rendimiento y usabilidad */
     .k-hero__light-overlay {
       display: none; 
     }
@@ -385,18 +400,15 @@
     
     if (heroSection && heroBg) {
       heroSection.addEventListener('mousemove', (e) => {
-        // Ignorar interacciones en pantallas táctiles pequeñas
         if (window.innerWidth <= 768) return; 
 
         const rect = heroSection.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
 
-        // Actualiza el centro del gradiente de luz radial
         heroSection.style.setProperty('--mouse-x', `${x}px`);
         heroSection.style.setProperty('--mouse-y', `${y}px`);
 
-        // Movimiento sutil de la imagen para efecto 3D
         const moveX = (e.clientX - window.innerWidth / 2) * -0.015;
         const moveY = (e.clientY - window.innerHeight / 2) * -0.015;
         heroBg.style.transform = `scale(1.05) translate(${moveX}px, ${moveY}px)`;
