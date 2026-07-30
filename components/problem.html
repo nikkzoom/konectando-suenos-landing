@@ -1,12 +1,6 @@
 <section id="problema" class="k-problem">
   
-  <div class="k-problem__fade-overlay"></div>
-
-  <div class="k-problem__bg-pattern"></div>
-  <div class="k-problem__glow-orbs">
-    <div class="glow-orb orb-azure"></div>
-    <div class="glow-orb orb-amber"></div>
-  </div>
+  <div class="k-problem__top-blend"></div>
 
   <div class="k-problem__container">
     
@@ -24,63 +18,43 @@
 
     <div class="k-problem__row">
       
-      <article class="glass-card fade-up">
-        <div class="glass-card__content">
-          <div class="card-meta">
-            <div class="spark-ring">
-              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAoMBgE/bN38AAAAASUVORK5CYII=" alt="idea thumbnail">
-            </div>
-            <span class="meta-text">01 // horas_perdidas</span>
-          </div>
-          <div class="card-body">
-            <h3>La trampa de la edición infinita</h3>
-            <p>Grabas durante 5 horas para obtener 60 segundos de video. El agotamiento de editar tú mismo devora la energía que deberías invertir en crear.</p>
-          </div>
+      <article class="b-folder fade-up">
+        <div class="b-folder__tab">
+          <span class="tab-code">01 // horas_perdidas</span>
+        </div>
+        <div class="b-folder__body">
+          <h3>La trampa de la edición infinita</h3>
+          <p>Grabas durante 5 horas para obtener 60 segundos de video. El agotamiento de editar tú mismo devora la energía que deberías invertir en crear.</p>
         </div>
       </article>
 
-      <article class="glass-card fade-up">
-        <div class="glass-card__content">
-          <div class="card-meta">
-            <div class="spark-ring">
-              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAoMBgE/bN38AAAAASUVORK5CYII=" alt="retention thumbnail">
-            </div>
-            <span class="meta-text">02 // algoritmo_invisible</span>
-          </div>
-          <div class="card-body">
-            <h3>Contenido que nadie ve</h3>
-            <p>Tu mensaje es increíble, pero si editas sin entender de narrativa y retención, perderás a tu audiencia en los primeros 3 segundos vitales. El algoritmo no perdona.</p>
-          </div>
+      <article class="b-folder fade-up">
+        <div class="b-folder__tab">
+          <span class="tab-code">02 // algoritmo_invisible</span>
+        </div>
+        <div class="b-folder__body">
+          <h3>Contenido que nadie ve</h3>
+          <p>Tu mensaje es increíble, pero si editas sin entender de narrativa y retención, perderás a tu audiencia en los primeros 3 segundos vitales. El algoritmo no perdona.</p>
         </div>
       </article>
 
-      <article class="glass-card fade-up">
-        <div class="glass-card__content">
-          <div class="card-meta">
-            <div class="spark-ring">
-              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAoMBgE/bN38AAAAASUVORK5CYII=" alt="system thumbnail">
-            </div>
-            <span class="meta-text">03 // sin_constancia</span>
-          </div>
-          <div class="card-body">
-            <h3>El ciclo del burnout</h3>
-            <p>Publicar un video genial... y desaparecer durante semanas. La falta de un sistema de postproducción predecible y delegable te arrastra a la inconsistencia.</p>
-          </div>
+      <article class="b-folder fade-up">
+        <div class="b-folder__tab">
+          <span class="tab-code">03 // sin_constancia</span>
+        </div>
+        <div class="b-folder__body">
+          <h3>El ciclo del burnout</h3>
+          <p>Publicar un video genial... y desaparecer durante semanas. La falta de un sistema de postproducción predecible y delegable te arrastra a la inconsistencia.</p>
         </div>
       </article>
 
-      <article class="glass-card accent-card fade-up">
-        <div class="glass-card__content">
-          <div class="card-meta">
-            <div class="spark-ring">
-              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAoMBgE/bN38AAAAASUVORK5CYII=" alt="dream thumbnail">
-            </div>
-            <span class="meta-text">04 // suenos_en_el_disco</span>
-          </div>
-          <div class="card-body">
-            <h3>El potencial desperdiciado</h3>
-            <p>Tu mejor versión sigue guardada en un disco duro. El verdadero fracaso no es intentarlo y fallar, es dejar que tu mejor material se pudra porque nunca vio la luz.</p>
-          </div>
+      <article class="b-folder folder-accent fade-up">
+        <div class="b-folder__tab">
+          <span class="tab-code">04 // suenos_en_el_disco</span>
+        </div>
+        <div class="b-folder__body">
+          <h3>El potencial desperdiciado</h3>
+          <p>Tu mejor versión sigue guardada en un disco duro. El verdadero fracaso no es intentarlo y fallar, es dejar que tu mejor material se pudra sin ver la luz.</p>
         </div>
       </article>
 
@@ -88,13 +62,20 @@
 </section>
 
 <style>
-  /* Base de la sección: Immersion total en PC */
   .k-problem {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background-color: #020617; /* Deep Midnight Charcoal, unificando colores */
-    padding: 140px 0;
+    /* Solapamos 120px sobre el hero para que los fondos de nubes se mezclen naturalmente */
+    margin-top: -120px; 
+    padding: 180px 0 140px 0;
+    
+    /* TU NUEVO FONDO GENERADO */
+    background-image: url('/assets/bg-limbo.jpeg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -103,82 +84,34 @@
     overflow: hidden;
   }
 
-  /* 1. Transición Seamless (Nubes -> Limbo): Gradiente lineal suave */
-  .k-problem__fade-overlay {
+  /* Gradiente superior invisible que fusiona ambas imágenes celestiales */
+  .k-problem__top-blend {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 180px; /* Sube la zona de desvanecimiento */
-    background: linear-gradient(to bottom, rgba(2, 6, 23, 0) 0%, rgba(2, 6, 23, 1) 100%);
+    height: 220px;
+    background: linear-gradient(to bottom, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0.4) 50%, transparent 100%);
     z-index: 1;
     pointer-events: none;
   }
 
-  /* 2. Innovación Atmosférica (Glow Orbs + Pattern tech sutil) */
-  .k-problem__bg-pattern {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    /* Cuadrícula de puntos estilo tech sutil */
-    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-    background-size: 35px 35px;
-    opacity: 0.5;
-    mask-image: radial-gradient(circle at center, black 10%, transparent 80%);
-    -webkit-mask-image: radial-gradient(circle at center, black 10%, transparent 80%);
-  }
-
-  .k-problem__glow-orbs {
-    position: absolute;
-    inset: 0;
-    z-index: 3;
-    overflow: hidden;
-    pointer-events: none;
-  }
-
-  .glow-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px);
-    opacity: 0.2;
-    animation: orbsDrift 20s infinite alternate ease-in-out;
-  }
-
-  .orb-azure {
-    width: 600px; height: 600px;
-    background: #0ea5e9;
-    top: 10%; left: -100px;
-  }
-
-  .orb-amber {
-    width: 700px; height: 700px;
-    background: #f59e0b; /* Dorado cálido del Hero */
-    bottom: -100px; right: -100px;
-    animation-delay: -10s;
-  }
-
-  @keyframes orbsDrift {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(100px, 150px) scale(1.15); }
-  }
-
-  /* Contenedor Principal Expandido */
   .k-problem__container {
-    max-width: 1600px; /* Expandido para un layout amplio */
+    max-width: 1600px;
     width: 92%;
     margin: 0 auto;
     position: relative;
     z-index: 10;
   }
 
-  /* 3. Encabezado modular a dos columnas (Inspirado en Bilexer) */
+  /* Encabezado a 2 Columnas estilo Bilexer */
   .k-problem__header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     gap: 4rem;
-    margin-bottom: 7rem;
+    margin-bottom: 6rem;
     padding: 0 1rem;
   }
 
@@ -190,7 +123,7 @@
     line-height: 1.1;
     letter-spacing: -0.03em;
     margin: 0;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
   }
 
   .text-gold {
@@ -211,166 +144,127 @@
     line-height: 1.7;
     font-weight: 400;
     margin: 0;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
   }
 
-  /* 4. FILA DE TARJETAS DE CRISTAL (Uniforme y Simétrica) */
+  /* FILA DE CARPETAS DE CRISTAL (4 en Línea) */
   .k-problem__row {
     display: flex;
     flex-direction: row;
     gap: 1.5rem;
     width: 100%;
-    /* No hay desniveles. Layout sólido. */
   }
 
-  /* Diseño de Tarjeta de Cristal (Limbo Dreams) */
-  .glass-card {
+  /* DISEÑO DE LA CARPETA FÍSICA ESTILO BILEXER */
+  .b-folder {
     flex: 1;
-    position: relative;
-    border-radius: 20px;
-    padding: 1px; /* Para el borde brillante de cristal al hover */
-    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
-    overflow: hidden;
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.4s ease;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     cursor: default;
   }
 
-  .glass-card:hover {
-    transform: translateY(-8px) scale(1.01);
-    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+  .b-folder:hover {
+    transform: translateY(-12px);
   }
 
-  .glass-card__content {
-    background: rgba(10, 15, 30, 0.6); /* Fondo ultra oscuro de Bilexer */
-    backdrop-filter: blur(24px); /* Glassmorphism Premium */
+  /* Pestaña superior de la carpeta */
+  .b-folder__tab {
+    width: 55%;
+    padding: 0.7rem 1.2rem;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border-radius: 20px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 3rem 2.5rem; /* Respiro masivo interno */
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-bottom: none;
+    border-radius: 14px 14px 0 0;
     position: relative;
     z-index: 2;
-    transition: background 0.3s ease;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+    transition: background 0.3s ease, border-color 0.3s ease;
   }
 
-  .glass-card:hover .glass-card__content {
-    background: rgba(10, 15, 30, 0.75);
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
-  }
-
-  /* Brillo radial suave en el centro al hover */
-  .glass-card__content::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.06) 0%, transparent 65%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-  }
-
-  .glass-card:hover .glass-card__content::after {
-    opacity: 1;
-  }
-
-  /* Meta data (Spark Icon + Text) */
-  .card-meta {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  /* El "Anillo Spark": el sueño atrapado borroso */
-  .spark-ring {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.25);
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
-  
-  .glass-card:hover .spark-ring {
-    border-color: #ffffff;
-    box-shadow: 0 0 15px rgba(255,255,255,0.4);
-    transform: scale(1.1);
-  }
-
-  /* La miniatura del footage dorado atrapado (data-uri por defecto borrosa) */
-  .spark-ring img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(2px) sepia(1) hue-rotate(15deg); /* Efecto borroso, dorado/sepia */
-    transition: filter 0.3s ease;
-  }
-  
-  .glass-card:hover .spark-ring img {
-    filter: blur(1px) sepia(1) hue-rotate(15deg) brightness(1.2);
-  }
-
-  .meta-text {
+  .tab-code {
     font-family: monospace;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     letter-spacing: 0.5px;
-    color: #64748b;
+    color: #cbd5e1;
     transition: color 0.3s ease;
   }
 
-  .glass-card:hover .meta-text {
+  .b-folder:hover .tab-code {
     color: #ffffff;
   }
 
-  /* Cuerpo */
-  .card-body {
-    flex-grow: 1;
+  /* Cuerpo de la carpeta de cristal */
+  .b-folder__body {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 0 18px 18px 18px; /* Conexión perfecta con el tab */
+    padding: 2.5rem 2rem;
+    margin-top: -1px; /* Solapamiento de 1px imperceptible para unir pestaña y cuerpo */
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    height: 100%;
+    transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
   }
 
-  .card-body h3 {
-    font-size: 1.5rem;
+  .b-folder:hover .b-folder__tab,
+  .b-folder:hover .b-folder__body {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .b-folder:hover .b-folder__body {
+    box-shadow: 0 35px 65px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .b-folder__body h3 {
+    font-size: 1.4rem;
     color: #ffffff;
+    margin-top: 0;
     margin-bottom: 1.2rem;
     font-weight: 600;
+    line-height: 1.25;
     letter-spacing: -0.01em;
   }
 
-  .card-body p {
-    color: #cbd5e1;
+  .b-folder__body p {
+    color: #e2e8f0;
     font-size: 1.05rem;
-    line-height: 1.7;
+    line-height: 1.65;
     margin: 0;
+    font-weight: 400;
   }
 
-  /* === Carpeta Acento (Dorado cálido) === */
-  .accent-card {
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.4) 0%, rgba(245, 158, 11, 0) 100%);
+  /* CARPETA ACENTO DORADO (La cuarta) */
+  .folder-accent .b-folder__tab {
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(245, 158, 11, 0.35);
   }
-
-  .accent-card .glass-card__content::after {
-    background: radial-gradient(circle at center, rgba(245, 158, 11, 0.12) 0%, transparent 65%);
+  .folder-accent .b-folder__body {
+    background: rgba(245, 158, 11, 0.08);
+    border-color: rgba(245, 158, 11, 0.35);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(245, 158, 11, 0.3);
   }
-
-  .accent-card .spark-ring {
-    border-color: rgba(245, 158, 11, 0.4);
-  }
-  
-  .accent-card:hover .spark-ring {
-    border-color: #fcd34d;
-    box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
-  }
-
-  .accent-card .meta-text {
-    color: #b45309;
-  }
-  
-  .accent-card:hover .meta-text {
+  .folder-accent .tab-code {
     color: #fcd34d;
   }
 
-  /* Animaciones de Scroll */
+  .folder-accent:hover .b-folder__tab {
+    background: rgba(245, 158, 11, 0.22);
+    border-color: rgba(245, 158, 11, 0.6);
+  }
+  .folder-accent:hover .b-folder__body {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: rgba(245, 158, 11, 0.6);
+    box-shadow: 0 35px 65px rgba(245, 158, 11, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  /* Animaciones */
   .fade-up {
     opacity: 0;
     transform: translateY(40px);
@@ -381,22 +275,20 @@
     transform: translateY(0);
   }
 
-  /* === ADAPTACIÓN RESPONSIVA (MÓVIL Y TABLET) === */
+  /* RESPONSIVO MÓVIL Y TABLET */
   @media (max-width: 1024px) {
-    /* Header pasa a columna */
     .k-problem__header {
       flex-direction: column;
       gap: 1.5rem;
       text-align: left;
     }
-    
-    /* SCROLL HORIZONTAL CON EL DEDO PARA MÓVILES */
+
+    /* Scroll horizontal táctil con el dedo en móvil */
     .k-problem__row {
-      overflow-x: auto; /* Activa el scroll lateral */
+      overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scroll-snap-type: x mandatory;
-      padding-bottom: 40px; /* Espacio para la sombra */
-      /* Oculta la barra de scroll para que se vea limpio */
+      padding-bottom: 30px;
       scrollbar-width: none; 
       -ms-overflow-style: none;
     }
@@ -404,27 +296,22 @@
       display: none;
     }
 
-    .glass-card {
-      flex: 0 0 85%; /* En móvil cada carpeta ocupa el 85% de la pantalla */
+    .b-folder {
+      flex: 0 0 82%;
       scroll-snap-align: center;
     }
   }
 
   @media (max-width: 768px) {
     .k-problem {
-      padding: 100px 0;
-    }
-    .k-problem__fade-overlay {
-      height: 120px;
+      margin-top: -60px;
+      padding: 120px 0 80px 0;
     }
     .k-problem__title {
       font-size: 2.2rem;
     }
-    .glass-card__content {
-      padding: 2rem 1.5rem; /* Ajuste interno móvil */
-    }
-    .glass-card__content h3 {
-      font-size: 1.3rem;
+    .b-folder__body {
+      padding: 2rem 1.5rem;
     }
   }
 </style>

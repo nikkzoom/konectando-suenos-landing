@@ -4,6 +4,8 @@
     <div class="k-hero__bg-image" id="hero-bg" style="background-image: url('/assets/hero-portal-heaven.jpeg');"></div>
     <div class="k-hero__light-overlay" id="hero-light"></div>
     <div class="k-hero__legibility-overlay"></div>
+    
+    <div class="k-hero__bottom-fade"></div>
   </div>
 
   <div class="k-hero__content">
@@ -66,7 +68,6 @@
 </section>
 
 <style>
-  /* === 1. ESTRUCTURA Y FONDO === */
   .k-hero {
     position: relative;
     width: 100%;
@@ -75,7 +76,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 120px 5% 60px 5%;
+    padding: 120px 5% 80px 5%;
     box-sizing: border-box;
     background-color: #020617;
   }
@@ -101,7 +102,7 @@
   .k-hero__legibility-overlay {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.25) 0%, transparent 50%);
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, transparent 60%);
     z-index: 2;
     pointer-events: none;
   }
@@ -119,7 +120,18 @@
     mix-blend-mode: overlay;
   }
 
-  /* === 2. TEXTO Y BOTONES === */
+  /* MÁSCARA CLAVE: Elimina la línea recta inferior */
+  .k-hero__bottom-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(to bottom, transparent 0%, rgba(2, 6, 23, 0.5) 50%, rgba(2, 6, 23, 1) 100%);
+    z-index: 4;
+    pointer-events: none;
+  }
+
   .k-hero__content {
     position: relative;
     z-index: 10;
@@ -201,7 +213,6 @@
     transform: translateY(-2px);
   }
 
-  /* === 3. DOCK FLOTANTE DE CREADORES === */
   .k-hero__dock-wrapper {
     position: absolute;
     right: 3%;
@@ -214,16 +225,15 @@
     gap: 1rem;
   }
 
-  /* CORRECCIÓN 1: Legibilidad del texto mejorada */
   .k-hero__dock-title {
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: rgba(255, 255, 255, 0.95); /* Color mucho más sólido */
-    font-weight: 600; /* Letra más gruesa */
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
     writing-mode: vertical-rl;
     transform: rotate(180deg);
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8); /* Sombra fuerte para despegarlo del fondo */
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
   }
 
   .k-hero__dock {
@@ -300,19 +310,14 @@
     right: 60px;
   }
 
-  /* === ADAPTACIONES MÓVILES (iOS / Responsive) === */
   @media (max-width: 1024px) {
-    /* CORRECCIÓN 2: Evitar que choquen los elementos convirtiendo el hero en una columna */
     .k-hero {
       flex-direction: column;
     }
 
     .k-hero__dock-wrapper {
-      position: relative; /* Devuelve el dock al flujo normal para que no sobreponga nada */
-      bottom: auto;
-      right: auto;
-      left: auto;
-      top: auto;
+      position: relative;
+      bottom: auto; right: auto; left: auto; top: auto;
       transform: none;
       margin-top: 3rem;
       flex-direction: column;
@@ -329,34 +334,27 @@
       display: block;
     }
 
-    /* CORRECCIÓN 3: Hacer que los clientes sean una sola línea scrolleable */
     .k-hero__dock {
       flex-direction: row;
-      flex-wrap: nowrap; /* Evita que salten a una segunda fila */
-      overflow-x: auto; /* Activa el scroll horizontal */
-      -webkit-overflow-scrolling: touch; /* Scroll suave en móviles */
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       justify-content: flex-start;
       padding: 1rem 1.5rem;
       gap: 1rem;
       width: 100%;
-      /* Ocultar barra de scroll para estética limpia */
       scrollbar-width: none; 
       -ms-overflow-style: none;
     }
-    
+
     .k-hero__dock::-webkit-scrollbar {
       display: none;
     }
 
     .dock-item {
-      flex: 0 0 auto; /* Obliga a los avatares a mantener su tamaño y no encogerse */
+      flex: 0 0 auto;
     }
 
-    .dock-item:hover {
-      transform: scale(1.15) translateY(-5px);
-    }
-
-    /* Ocultamos tooltips en móvil para no interferir con el touch/scroll */
     .dock-item::after {
       display: none;
     }
@@ -364,7 +362,6 @@
 
   @media (max-width: 768px) {
     .k-hero {
-      /* Padding inferior aumentado para que no choque con la botonera de la app en celular */
       padding: 120px 5% 130px 5%; 
     }
 
