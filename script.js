@@ -1,41 +1,44 @@
-async function loadComponent(containerId, componentPath) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
+document.addEventListener("DOMContentLoaded", () => {
 
-  try {
-    // Parámetro anti-caché para ver los cambios en vivo en Vercel inmediatamente
-    const cacheBuster = `?v=${new Date().getTime()}`;
-    const response = await fetch(`${componentPath}${cacheBuster}`);
+    // Paralaje y seguimiento de luz en Hero
+    const heroSection = document.querySelector('.k-hero');
+    const heroBg = document.getElementById('hero-bg');
+    
+    if (heroSection && heroBg) {
+        heroSection.addEventListener('mousemove', (e) => {
+            const rect = heroSection.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
 
-    if (!response.ok) throw new Error(`Error al cargar ${componentPath}`);
+            heroSection.style.setProperty('--mouse-x', `${x}px`);
+            heroSection.style.setProperty('--mouse-y', `${y}px`);
 
-    const htmlContent = await response.text();
-    container.innerHTML = htmlContent;
+            const moveX = (e.clientX - window.innerWidth / 2) * -0.015;
+            const moveY = (e.clientY - window.innerHeight / 2) * -0.015;
+            
+            heroBg.style.transform = `scale(1.05) translate(${moveX}px, ${moveY}px)`;
+        });
 
-    // Ejecutar los scripts internos del componente inyectado
-    const scripts = container.querySelectorAll("script");
-    scripts.forEach((oldScript) => {
-      const newScript = document.createElement("script");
-      Array.from(oldScript.attributes).forEach((attr) =>
-        newScript.setAttribute(attr.name, attr.value)
-      );
-      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-      oldScript.parentNode.replaceChild(newScript, oldScript);
+        heroSection.addEventListener('mouseleave', () => {
+            heroBg.style.transform = 'scale(1) translate(0px, 0px)';
+        });
+    }
+
+    // Scroll suave interno
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
     });
-  } catch (error) {
-    console.error(`[Cargador Modular] Error en ${containerId}:`, error);
-  }
-}
 
-// Cargar el header al iniciar
-document.addEventListener("DOMContentLoaded", () => {
-  loadComponent("header-container", "components/header.html");
-});
-// ... (Mantén la función loadComponent igual) ...
-
-document.addEventListener("DOMContentLoaded", () => {
-  loadComponent("header-container", "components/header.html");
-  loadComponent("hero-container", "components/hero.html");
-  // Añade esta línea:
-  loadComponent("problema-container", "components/problema.html");
 });
