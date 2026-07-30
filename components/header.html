@@ -1,3 +1,12 @@
+<style>
+  body {
+    margin: 0;
+    height: 200vh;
+    /* Un gradiente colorido de prueba para que el cristal haga efecto */
+    background: linear-gradient(135deg, #0f172a 0%, #3b82f6 50%, #020617 100%);
+  }
+</style>
+
 <header id="k-header" class="k-header">
   <div class="k-header__container">
     
@@ -25,16 +34,17 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    z-index: 999; /* Siempre por encima de todo */
-    padding: 1.5rem 0;
-    transition: all 0.4s ease;
+    width: 100%; /* Abarca toda la pantalla */
+    z-index: 999;
+    /* Eliminamos el padding excesivo que lo empujaba hacia abajo */
+    padding: 1rem 0; 
   }
 
   .k-header__container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
+    width: 100%;
+    /* Uso de porcentajes para que respire en los bordes en cualquier monitor */
+    padding: 0 4%; 
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -44,8 +54,6 @@
   .k-header__logo {
     display: flex;
     align-items: center;
-    text-decoration: none;
-    /* Ajusta el ancho según como se vea tu logo exportado */
     width: 160px; 
     transition: transform 0.3s ease;
   }
@@ -54,105 +62,90 @@
     width: 100%;
     height: auto;
     object-fit: contain;
-    /* Un ligero resplandor blanco para que destaque en fondos oscuros */
-    filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.2));
   }
 
-  .k-header__logo:hover {
-    transform: scale(1.05);
-  }
-
-  /* === 3. NAVEGACIÓN CENTRAL (El óvalo Frosted Glass) === */
+  /* === 3. NAVEGACIÓN CENTRAL (Apple Frosted Glass Real) === */
   .k-header__nav-glass {
     display: flex;
     align-items: center;
     gap: 2rem;
-    /* Fondo semi-transparente muy sutil */
-    background: rgba(255, 255, 255, 0.05);
-    /* EL SECRETO DEL CRISTAL DE APPLE */
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    /* Borde fino y brillante */
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 50px;
-    padding: 0.6rem 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    
+    /* El secreto del Glassmorphism premium */
+    background: rgba(255, 255, 255, 0.08); /* Más blanco y sutil */
+    backdrop-filter: blur(24px); /* Desenfoque agresivo estilo iOS */
+    -webkit-backdrop-filter: blur(24px);
+    
+    /* Borde interior para simular el reflejo del cristal */
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-top: 1px solid rgba(255, 255, 255, 0.4); 
+    
+    border-radius: 100px;
+    padding: 0.7rem 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15); /* Sombra suave para despegarlo */
   }
 
   .nav-link {
-    color: #f8fafc; /* Blanco perla */
+    color: #f8fafc;
     text-decoration: none;
     font-family: var(--font-main, 'Inter', sans-serif);
     font-size: 0.95rem;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: color 0.3s ease;
   }
 
   .nav-link:hover {
     color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
   }
 
-  /* === 4. BOTÓN DE CONTACTO (Sólido y Elegante) === */
+  /* === 4. BOTÓN DE CONTACTO (Estilo Pill de Alta Conversión) === */
   .k-header__btn-contact {
-    /* Color blanco sólido para contrastar con el cristal central */
     background: #ffffff; 
-    color: #000000;
+    color: #020617; /* Negro azulado muy elegante */
     text-decoration: none;
     font-family: var(--font-main, 'Inter', sans-serif);
     font-size: 0.95rem;
-    font-weight: 600;
-    padding: 0.6rem 1.5rem;
-    border-radius: 50px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    font-weight: 700;
+    padding: 0.7rem 1.8rem;
+    border-radius: 100px; /* Óvalo perfecto */
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
   }
 
   .k-header__btn-contact:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 25px rgba(255, 255, 255, 0.4);
-    background: #f1f5f9;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
   }
 
-  /* === MÓVIL (Responsivo) === */
+  /* === 5. ADAPTACIÓN A IPHONE (Responsive Premium) === */
   @media (max-width: 768px) {
+    /* En móvil, pegamos más los elementos a los bordes */
     .k-header__container {
-      padding: 0 1rem;
+      padding: 0 5%;
     }
     
     .k-header__logo {
-      width: 120px;
+      width: 130px;
     }
-    
-    /* En móviles muy pequeños, reducimos el padding del cristal para que quepa */
-    .k-header__nav-glass {
-      padding: 0.5rem 1rem;
-      gap: 1rem;
-    }
-    
-    .nav-link, .k-header__btn-contact {
+
+    .k-header__btn-contact {
+      padding: 0.6rem 1.2rem;
       font-size: 0.85rem;
     }
-    
-    .k-header__btn-contact {
-      padding: 0.5rem 1rem;
+
+    /* TRUCO IOS: La navegación se va al fondo de la pantalla como un Dock */
+    .k-header__nav-glass {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: max-content;
+      padding: 0.8rem 2rem;
+      gap: 1.5rem;
+      border-radius: 100px;
+      /* Refuerzo la sombra para que flote bien sobre el contenido inferior */
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
   }
 </style>
-
-<script>
-  // Script opcional para que el header se vuelva un poco más opaco al hacer scroll
-  window.addEventListener('scroll', () => {
-    const header = document.getElementById('k-header');
-    if (window.scrollY > 50) {
-      header.style.background = 'rgba(0, 0, 0, 0.2)'; // Oscurece levemente
-      header.style.backdropFilter = 'blur(10px)';
-      header.style.webkitBackdropFilter = 'blur(10px)';
-    } else {
-      header.style.background = 'transparent';
-      header.style.backdropFilter = 'none';
-      header.style.webkitBackdropFilter = 'none';
-    }
-  });
-</script>
