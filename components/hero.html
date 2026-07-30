@@ -2,25 +2,24 @@
   
   <div class="k-hero__bg-container">
     <div class="k-hero__bg-image" id="hero-bg" style="background-image: url('/assets/hero-portal-heaven.jpeg');"></div>
+    
     <div class="k-hero__light-overlay" id="hero-light"></div>
+    
+    <div class="k-hero__legibility-overlay"></div>
   </div>
 
   <div class="k-hero__content">
-    <span class="k-hero__badge">
-      <span class="badge-dot"></span> EL PORTAL AL ÉXITO CREADOR
-    </span>
-
-    <h1 class="k-hero__title">
+    <h1 class="k-hero__title fade-up-hero">
       Tus sueños no pertenecen al limbo.<br>
       <span class="gold-glow">Llévalos al límite.</span>
     </h1>
 
-    <p class="k-hero__subtitle">
+    <p class="k-hero__subtitle fade-up-hero">
       Transformamos tus horas de grabación en contenido de alto impacto. 
       Estrategia, edición y narrativa audiovisual para creadores y marcas que nacieron para destacar.
     </p>
 
-    <div class="k-hero__actions">
+    <div class="k-hero__actions fade-up-hero">
       <a href="https://wa.me/573207418361?text=Hola%20Konectando%20Sue%C3%B1os,%20vengo%20de%20la%20p%C3%A1gina%20web%20y%20quiero%20llevar%20mis%20sue%C3%B1os%20al%20l%C3%ADmite%20para%20hacerlos%20realidad." 
          target="_blank" class="btn-primary">
         Empieza Tu Viaje
@@ -37,30 +36,37 @@
       
       <div class="dock-item" data-tooltip="Thiago Insua">
         <img src="/assets/cliente-1.png" onerror="this.src='https://ui-avatars.com/api/?name=TI&background=ffffff&color=000000'" alt="Thiago Insua">
+        <div class="item-spark"></div>
       </div>
 
       <div class="dock-item" data-tooltip="Alarcón Jacas">
         <img src="/assets/cliente-2.png" onerror="this.src='https://ui-avatars.com/api/?name=AJ&background=ffffff&color=000000'" alt="Alarcón Jacas">
+        <div class="item-spark"></div>
       </div>
 
       <div class="dock-item" data-tooltip="Freddy Invierte">
         <img src="/assets/cliente-3.png" onerror="this.src='https://ui-avatars.com/api/?name=FI&background=ffffff&color=000000'" alt="Freddy Invierte">
+        <div class="item-spark"></div>
       </div>
 
       <div class="dock-item" data-tooltip="Un Dolce Peccato">
         <img src="/assets/cliente-4.png" onerror="this.src='https://ui-avatars.com/api/?name=DP&background=ffffff&color=000000'" alt="Un Dolce Peccato">
+        <div class="item-spark"></div>
       </div>
 
       <div class="dock-item" data-tooltip="Policías en Acción YT">
         <img src="/assets/cliente-5.png" onerror="this.src='https://ui-avatars.com/api/?name=PA&background=ffffff&color=000000'" alt="Policías en Acción YT">
+        <div class="item-spark"></div>
       </div>
 
       <div class="dock-item" data-tooltip="Triplazo">
         <img src="/assets/cliente-6.png" onerror="this.src='https://ui-avatars.com/api/?name=TZ&background=ffffff&color=000000'" alt="Triplazo">
+        <div class="item-spark"></div>
       </div>
 
       <div class="dock-item" data-tooltip="Elite Fiscal">
         <img src="/assets/cliente-7.png" onerror="this.src='https://ui-avatars.com/api/?name=EF&background=ffffff&color=000000'" alt="Elite Fiscal">
+        <div class="item-spark"></div>
       </div>
 
     </div>
@@ -69,7 +75,12 @@
 </section>
 
 <style>
-  /* === 1. ESTRUCTURA Y FONDO === */
+  /* === variables internas del componente === */
+  .k-hero {
+    --text-shadow-strong: 0 4px 15px rgba(0, 0, 0, 0.8);
+  }
+
+  /* === 1. ESTRUCTURA Y FONDO (MEJORADO) === */
   .k-hero {
     position: relative;
     width: 100%;
@@ -78,9 +89,9 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 120px 5% 60px 5%;
+    padding: 160px 5% 60px 5%; /* Ajuste para header amplio */
     box-sizing: border-box;
-    background-color: #020617; /* Fallback color */
+    background-color: #020617; /* Fallback global dark mode */
   }
 
   .k-hero__bg-container {
@@ -95,23 +106,39 @@
     background-size: cover;
     background-position: center center;
     transition: transform 0.15s ease-out;
-    filter: brightness(0.85) contrast(1.1); /* Ajuste para destacar textos */
+    
+    /* SOLUCIÓN: Eliminamos los filtros agresivos (brightness/contrast) 
+       que 'quemaban' la imagen y la hacían perder calidad. 
+       Dejamos que la imagen raw brille. */
+    filter: none; 
   }
 
-  /* Capa de luz dinámica que reacciona al cursor */
+  /* NUEVO: Capa de contraste oscuro sutil (Solución Legibilidad) */
+  .k-hero__legibility-overlay {
+    position: absolute;
+    inset: 0;
+    /* Un gradiente radial muy suave que oscurece el centro para que el texto resalte */
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 60%);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* Capa de luz dinámica que reacciona al cursor (Mejorado para no 'quemar') */
   .k-hero__light-overlay {
     position: absolute;
     inset: 0;
+    z-index: 3;
     background: radial-gradient(
       900px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-      rgba(255, 255, 255, 0.12), 
+      rgba(255, 255, 255, 0.1), /* Reducida la intensidad */
       transparent 60%
     );
     pointer-events: none;
-    mix-blend-mode: overlay;
+    /* Ajustado el blend mode para que no altere la calidad cromática de la imagen raw */
+    mix-blend-mode: soft-light; 
   }
 
-  /* === 2. TEXTO Y BOTONES === */
+  /* === 2. TEXTO Y BOTONES (MEJORADO Legibilidad) === */
   .k-hero__content {
     position: relative;
     z-index: 10;
@@ -123,41 +150,15 @@
     gap: 1.8rem;
   }
 
-  .k-hero__badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.5rem 1.4rem;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 100px;
-    color: #ffffff;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  }
-
-  .badge-dot {
-    width: 8px;
-    height: 8px;
-    background-color: #f59e0b;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #f59e0b;
-  }
-
   .k-hero__title {
-    font-family: var(--font-main, 'Inter', sans-serif);
     font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 800;
     line-height: 1.1;
     color: #ffffff;
     margin: 0;
     letter-spacing: -0.02em;
-    text-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    /* Sombra de texto reforzada para legibilidad */
+    text-shadow: var(--text-shadow-strong), 0 15px 40px rgba(0, 0, 0, 0.6);
   }
 
   .gold-glow {
@@ -165,18 +166,19 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+    text-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
   }
 
   .k-hero__subtitle {
-    font-family: var(--font-main, 'Inter', sans-serif);
     font-size: clamp(1.1rem, 1.8vw, 1.25rem);
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.95);
+    /* SOLUCIÓN Legibilidad: Texto ligeramente más oscuro (gris perla) 
+       y sombra fuerte */
+    color: #e2e8f0; 
     font-weight: 400;
     max-width: 680px;
     margin: 0;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    text-shadow: var(--text-shadow-strong);
   }
 
   .k-hero__actions {
@@ -221,7 +223,7 @@
     transform: translateY(-2px);
   }
 
-  /* === 3. DOCK FLOTANTE DE CLIENTES === */
+  /* === 3. DOCK FLOTANTE DE CLIENTES (MEJORADO: "La Chispa") === */
   .k-hero__dock-wrapper {
     position: absolute;
     right: 3%;
@@ -232,6 +234,13 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    /* Nueva chispa: flotación sutil constante del dock entero */
+    animation: dockFloat 6s ease-in-out infinite;
+  }
+
+  @keyframes dockFloat {
+    0%, 100% { transform: translateY(-50%) translateX(0px); }
+    50% { transform: translateY(-47%) translateX(5px); }
   }
 
   .k-hero__dock-title {
@@ -264,9 +273,10 @@
     height: 50px;
     border-radius: 50%;
     overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    /* Chispa: borde inicial más sutil y ámbar */
+    border: 2px solid rgba(245, 158, 11, 0.15); 
     cursor: pointer;
-    background: #000;
+    background: #000; /* Fondo negro para los logos en transparencia */
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
@@ -276,23 +286,39 @@
     object-fit: cover;
   }
 
+  /* La Chispa Interna (Spark overlay) */
+  .item-spark {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    box-shadow: inset 0 0 15px rgba(245, 158, 11, 0); /* Ámbar apagado */
+    transition: box-shadow 0.3s ease;
+    pointer-events: none;
+  }
+
+  /* Chispa Activa al Hover */
   .dock-item:hover {
-    transform: scale(1.25) translateX(-10px);
-    border-color: #ffffff;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+    transform: scale(1.3) translateX(-12px); /* Un poco más de movimiento */
+    border-color: #ffffff; /* Borde blanco nítido */
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.5), 0 0 10px rgba(245, 158, 11, 0.3); /* Resplandor mixto blanco/ámbar */
     z-index: 2;
   }
 
-  /* Tooltip flotante */
+  .dock-item:hover .item-spark {
+    /* Chispa interna que se activa */
+    box-shadow: inset 0 0 15px rgba(245, 158, 11, 0.4);
+  }
+
+  /* Tooltip flotante (Mejorado contraste) */
   .dock-item::after {
     content: attr(data-tooltip);
     position: absolute;
     right: 70px;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(10, 10, 15, 0.9);
+    background: rgba(10, 10, 15, 0.95); /* Más oscuro */
     color: #ffffff;
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1.2rem;
     border-radius: 8px;
     font-size: 0.85rem;
     font-weight: 500;
@@ -301,7 +327,8 @@
     pointer-events: none;
     transition: all 0.3s ease;
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
   }
 
   .dock-item:hover::after {
@@ -309,92 +336,67 @@
     right: 65px;
   }
 
-  /* === RESPONSIVO === */
-  @media (max-width: 1024px) {
-    /* Mueve el dock abajo en tablets y móviles para no tapar el texto */
+  /* ========================================================
+   ADAPTACIONES RESPONSIVAS
+======================================================== */
+@media (max-width: 1024px) {
     .k-hero__dock-wrapper {
-      position: relative;
-      right: auto;
-      top: auto;
-      transform: none;
-      margin-top: 3rem;
-      align-items: center;
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        margin-top: 3rem;
+        align-items: center;
+        /* Apagamos la flotación en móvil para que no se mareen */
+        animation: none; 
     }
 
     .k-hero__dock-title {
-      writing-mode: horizontal-tb;
-      transform: none;
-      margin-bottom: 1rem;
+        writing-mode: horizontal-tb;
+        transform: none;
+        margin-bottom: 1rem;
     }
 
     .k-hero__dock {
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 1rem 1.5rem;
-      gap: 0.8rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 1rem 1.5rem;
+        gap: 0.8rem;
+        border-radius: 100px;
     }
 
     .dock-item:hover {
-      transform: scale(1.2) translateY(-8px);
+        transform: scale(1.2) translateY(-8px) translateX(0);
     }
 
     .dock-item::after {
-      right: auto;
-      top: -45px;
-      left: 50%;
-      transform: translateX(-50%);
+        right: auto;
+        top: -45px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .dock-item:hover::after {
-      top: -50px;
+        top: -50px;
     }
-  }
+}
 
-  @media (max-width: 600px) {
+@media (max-width: 600px) {
     .k-hero__actions {
-      flex-direction: column;
-      width: 100%;
+        flex-direction: column;
+        width: 100%;
     }
 
     .btn-primary, .btn-secondary {
-      width: 100%;
-      text-align: center;
-      box-sizing: border-box;
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
     }
     
     .dock-item {
-      width: 44px;
-      height: 44px;
+        width: 44px;
+        height: 44px;
     }
-  }
+}
 </style>
-
-<script>
-  (function() {
-    const heroSection = document.querySelector('.k-hero');
-    const heroBg = document.getElementById('hero-bg');
-    
-    if(!heroSection || !heroBg) return;
-
-    // Efecto de paralaje y luz dinámica suave
-    heroSection.addEventListener('mousemove', (e) => {
-      const rect = heroSection.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      heroSection.style.setProperty('--mouse-x', `${x}px`);
-      heroSection.style.setProperty('--mouse-y', `${y}px`);
-
-      // Movimiento invertido muy sutil
-      const moveX = (e.clientX - window.innerWidth / 2) * -0.015;
-      const moveY = (e.clientY - window.innerHeight / 2) * -0.015;
-      
-      heroBg.style.transform = `scale(1.05) translate(${moveX}px, ${moveY}px)`;
-    });
-
-    heroSection.addEventListener('mouseleave', () => {
-      heroBg.style.transform = 'scale(1) translate(0px, 0px)';
-    });
-  })();
-</script>
