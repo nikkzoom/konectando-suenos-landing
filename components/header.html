@@ -1,263 +1,158 @@
-<header id="c-header">
-  <div class="c-header__inner">
+<header id="k-header" class="k-header">
+  <div class="k-header__container">
     
-    <div class="c-header__left">
-      <a href="#" class="c-header__logo">
-        Konectando<span>Sueños</span>
-      </a>
-      
-      <nav class="c-header__nav">
-        <a href="#inicio" class="c-header__link">Inicio</a>
-        <a href="#portafolio" class="c-header__link">Portafolio</a>
-      </nav>
-    </div>
+    <a href="#inicio" class="k-header__logo">
+      <img src="/assets/logo-konectando-suenos-final-filled-white.png" alt="Konectando Sueños Logo">
+    </a>
 
-    <div class="c-header__right">
-      <a href="https://wa.me/573207418361?text=Hola%20Konectando%20Sue%C3%B1os,%20quiero%20conectar%20mi%20sue%C3%B1o%20y%20empezar%20a%20publicar%20contenido." target="_blank" class="c-header__cta">
-        Conecta tu sueño
-      </a>
-
-      <button class="c-header__toggle" id="c-header-toggle" aria-label="Menú">
-        <span class="bar bar1"></span>
-        <span class="bar bar2"></span>
-        <span class="bar bar3"></span>
-      </button>
-    </div>
-
-  </div>
-
-  <div class="c-header__mobile" id="c-header-mobile">
-    <nav class="c-header__mobile-nav">
-      <a href="#inicio" class="c-header__mobile-link">Inicio</a>
-      <a href="#portafolio" class="c-header__mobile-link">Portafolio</a>
-      <a href="https://wa.me/573207418361?text=Hola%20Konectando%20Sue%C3%B1os,%20quiero%20conectar%20mi%20sue%C3%B1o%20y%20empezar%20a%20publicar%20contenido." target="_blank" class="c-header__mobile-cta">
-        Conecta tu sueño
-      </a>
+    <nav class="k-header__nav-glass">
+      <a href="#inicio" class="nav-link">Inicio</a>
+      <a href="#portafolio" class="nav-link">Portafolio</a>
     </nav>
+
+    <a href="https://wa.me/573207418361?text=Hola%20Konectando%20Sue%C3%B1os,%20vengo%20de%20la%20p%C3%A1gina%20web%20y%20quiero%20llevar%20mis%20sue%C3%B1os%20al%20l%C3%ADmite%20para%20hacerlos%20realidad." 
+       target="_blank" 
+       class="k-header__btn-contact">
+      Contacto
+    </a>
+
   </div>
 </header>
 
 <style>
-  /* === ANIMACIONES GLOBALES DEL HEADER === */
-  @keyframes slideDownFade {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* === SCOPING CSS === */
-  #c-header {
-    width: 100%;
-    height: var(--header-height);
-    /* INICIALMENTE TRANSPARENTE */
-    background-color: transparent; 
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-bottom: 1px solid transparent; /* Sin borde inicial */
+  /* === 1. CONTENEDOR DEL HEADER === */
+  .k-header {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 9999;
-    animation: slideDownFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    /* Transición suave cuando se añade la clase de scroll */
-    transition: background-color 0.4s ease, backdrop-filter 0.4s ease, border-bottom 0.4s ease, box-shadow 0.4s ease;
-  }
-
-  /* CLASE DINÁMICA: Se activa al hacer scroll */
-  #c-header.is-scrolled {
-    background-color: rgba(5, 7, 10, 0.85); /* Regresa el negro abismal transparente */
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border-subtle);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  }
-
-  #c-header .c-header__inner {
     width: 100%;
-    height: 100%;
-    padding: 0 4vw; 
+    z-index: 999; /* Siempre por encima de todo */
+    padding: 1.5rem 0;
+    transition: all 0.4s ease;
+  }
+
+  .k-header__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  /* --- Lado Izquierdo --- */
-  #c-header .c-header__left { display: flex; align-items: center; gap: 3.5rem; }
-
-  #c-header .c-header__logo {
-    font-family: var(--font-main);
-    font-weight: 800;
-    font-size: 1.3rem;
-    color: var(--text-primary);
-    letter-spacing: -0.5px;
+  /* === 2. LOGO === */
+  .k-header__logo {
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    text-decoration: none;
+    /* Ajusta el ancho según como se vea tu logo exportado */
+    width: 160px; 
     transition: transform 0.3s ease;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Sombra sutil para leerse bien sin fondo */
   }
-
-  #c-header .c-header__logo:hover { transform: scale(1.02); }
-  #c-header .c-header__logo span { font-family: var(--font-mono); font-weight: 400; font-size: 1.1rem; color: var(--text-secondary); }
-
-  #c-header .c-header__nav { display: flex; gap: 2.5rem; }
-
-  #c-header .c-header__link {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--text-primary); /* Más blanco para resaltar sin fondo */
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    position: relative;
-    padding: 0.5rem 0;
-    transition: color 0.3s ease;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    opacity: 0.8;
-  }
-
-  #c-header .c-header__link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
+  
+  .k-header__logo img {
     width: 100%;
-    height: 2px;
-    background-color: var(--accent-gold);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+    height: auto;
+    object-fit: contain;
+    /* Un ligero resplandor blanco para que destaque en fondos oscuros */
+    filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.2));
   }
 
-  #c-header .c-header__link:hover { opacity: 1; }
-  #c-header .c-header__link:hover::after { transform: scaleX(1); transform-origin: left; }
-
-  /* --- Lado Derecho (CTA) --- */
-  #c-header .c-header__cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.65rem 1.8rem;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--bg-main);
-    background-color: var(--accent-gold);
-    border-radius: 6px;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  .k-header__logo:hover {
+    transform: scale(1.05);
   }
 
-  #c-header .c-header__cta:hover {
-    background-color: #d97706; /* Dorado un poco más oscuro en hover */
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 10px 25px rgba(245, 158, 11, 0.25);
-  }
-
-  /* --- Menú Móvil --- */
-  #c-header .c-header__toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 28px;
-    height: 20px;
-    z-index: 10000;
-  }
-
-  #c-header .c-header__toggle .bar {
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: var(--text-primary);
-    border-radius: 2px;
-    transition: transform 0.4s ease, opacity 0.4s ease, background-color 0.4s ease;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-  }
-
-  #c-header .c-header__toggle.is-active .bar1 { transform: translateY(9px) rotate(45deg); background-color: var(--accent-gold); box-shadow: none; }
-  #c-header .c-header__toggle.is-active .bar2 { opacity: 0; transform: translateX(10px); }
-  #c-header .c-header__toggle.is-active .bar3 { transform: translateY(-9px) rotate(-45deg); background-color: var(--accent-gold); box-shadow: none; }
-
-  /* --- Desplegable Móvil --- */
-  #c-header .c-header__mobile {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(5, 7, 10, 0.98);
+  /* === 3. NAVEGACIÓN CENTRAL (El óvalo Frosted Glass) === */
+  .k-header__nav-glass {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-20px);
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 9998;
+    gap: 2rem;
+    /* Fondo semi-transparente muy sutil */
+    background: rgba(255, 255, 255, 0.05);
+    /* EL SECRETO DEL CRISTAL DE APPLE */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    /* Borde fino y brillante */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    padding: 0.6rem 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   }
 
-  #c-header .c-header__mobile.is-active { opacity: 1; visibility: visible; transform: translateY(0); }
-  #c-header .c-header__mobile-nav { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
-  
-  #c-header .c-header__mobile-link {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    transition: color 0.3s ease, transform 0.3s ease;
-  }
-  
-  #c-header .c-header__mobile-link:hover { color: var(--accent-gold); transform: scale(1.05); }
-  
-  #c-header .c-header__mobile-cta {
-    margin-top: 1rem;
-    padding: 1rem 2.5rem;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--bg-main);
-    background-color: var(--accent-gold);
-    border-radius: 8px;
-    text-transform: uppercase;
+  .nav-link {
+    color: #f8fafc; /* Blanco perla */
+    text-decoration: none;
+    font-family: var(--font-main, 'Inter', sans-serif);
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
   }
 
-  @media (max-width: 900px) {
-    #c-header .c-header__nav, #c-header .c-header__cta { display: none; }
-    #c-header .c-header__toggle { display: flex; }
+  .nav-link:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+
+  /* === 4. BOTÓN DE CONTACTO (Sólido y Elegante) === */
+  .k-header__btn-contact {
+    /* Color blanco sólido para contrastar con el cristal central */
+    background: #ffffff; 
+    color: #000000;
+    text-decoration: none;
+    font-family: var(--font-main, 'Inter', sans-serif);
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .k-header__btn-contact:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 25px rgba(255, 255, 255, 0.4);
+    background: #f1f5f9;
+  }
+
+  /* === MÓVIL (Responsivo) === */
+  @media (max-width: 768px) {
+    .k-header__container {
+      padding: 0 1rem;
+    }
+    
+    .k-header__logo {
+      width: 120px;
+    }
+    
+    /* En móviles muy pequeños, reducimos el padding del cristal para que quepa */
+    .k-header__nav-glass {
+      padding: 0.5rem 1rem;
+      gap: 1rem;
+    }
+    
+    .nav-link, .k-header__btn-contact {
+      font-size: 0.85rem;
+    }
+    
+    .k-header__btn-contact {
+      padding: 0.5rem 1rem;
+    }
   }
 </style>
 
 <script>
-  /* === LÓGICA DEL COMPONENTE === */
-  (function () {
-    const header = document.getElementById("c-header");
-    const toggle = document.getElementById("c-header-toggle");
-    const mobileMenu = document.getElementById("c-header-mobile");
-    const mobileLinks = document.querySelectorAll("#c-header .c-header__mobile-link");
-
-    if (!header || !toggle || !mobileMenu) return;
-
-    // 1. Efecto Scroll: Transparente arriba, oscuro al bajar
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
-        header.classList.add("is-scrolled");
-      } else {
-        header.classList.remove("is-scrolled");
-      }
-    }, { passive: true });
-
-    // 2. Menú Móvil
-    toggle.addEventListener("click", () => {
-      toggle.classList.toggle("is-active");
-      mobileMenu.classList.toggle("is-active");
-      document.body.style.overflow = mobileMenu.classList.contains("is-active") ? "hidden" : "";
-    });
-
-    mobileLinks.forEach(link => {
-      link.addEventListener("click", () => {
-        toggle.classList.remove("is-active");
-        mobileMenu.classList.remove("is-active");
-        document.body.style.overflow = "";
-      });
-    });
-  })();
+  // Script opcional para que el header se vuelva un poco más opaco al hacer scroll
+  window.addEventListener('scroll', () => {
+    const header = document.getElementById('k-header');
+    if (window.scrollY > 50) {
+      header.style.background = 'rgba(0, 0, 0, 0.2)'; // Oscurece levemente
+      header.style.backdropFilter = 'blur(10px)';
+      header.style.webkitBackdropFilter = 'blur(10px)';
+    } else {
+      header.style.background = 'transparent';
+      header.style.backdropFilter = 'none';
+      header.style.webkitBackdropFilter = 'none';
+    }
+  });
 </script>
