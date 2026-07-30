@@ -62,15 +62,14 @@
 </section>
 
 <style>
-  .k-problem {
+.k-problem {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    /* Solapamos 120px sobre el hero para que los fondos de nubes se mezclen naturalmente */
-    margin-top: -120px; 
+    /* Subimos la sección por debajo del Hero para aprovechar la transparencia */
+    margin-top: -150px; 
     padding: 180px 0 140px 0;
     
-    /* TU NUEVO FONDO GENERADO */
     background-image: url('/assets/bg-limbo.jpeg');
     background-size: cover;
     background-position: center top;
@@ -80,7 +79,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 10;
+    
+    /* Z-index menor para que se deslice por debajo del fundido del Hero */
+    z-index: 10; 
     overflow: hidden;
   }
 

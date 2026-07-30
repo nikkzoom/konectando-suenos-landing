@@ -134,13 +134,17 @@ img {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    /* Aumentamos el padding top de 120px a 160px para bajar el texto 
-       y alejarlo del header de cristal */
-    padding: 160px 5% 60px 5%;
+    padding: 120px 5% 80px 5%;
     box-sizing: border-box;
-    background-color: var(--bg-dark);
-}
-
+    background-color: transparent; /* Debe ser transparente para que la máscara funcione */
+    
+    /* MÁSCARA CLAVE: Difumina el borde inferior (calado suave) */
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    
+    /* Aseguramos que el Hero esté por encima de la sección problema */
+    z-index: 20; 
+  }
 .k-hero__bg-container {
     position: absolute;
     inset: -25px;
