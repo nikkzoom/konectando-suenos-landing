@@ -1,37 +1,42 @@
 document.addEventListener("DOMContentLoaded", async () => {
 
-    // 1. CARGADOR DE COMPONENTES MODULARES
+    // 1. Función para cargar componentes HTML dinámicamente
     async function loadComponent(id, url) {
         try {
             const response = await fetch(url);
-            if (!response.ok) throw new Error(`No se pudo cargar ${url}`);
+            if (!response.ok) {
+                throw new Error(`Error ${response.status}: No se pudo cargar ${url}`);
+            }
             const html = await response.text();
-            document.getElementById(id).innerHTML = html;
+            const container = document.getElementById(id);
+            if (container) {
+                container.innerHTML = html;
+            }
         } catch (error) {
             console.error("Error cargando componente:", error);
         }
     }
 
-    // 2. CARGAMOS EL HEADER Y EL HERO DESDE TU CARPETA
+    // 2. Cargar todos los componentes de la carpeta components/
     await loadComponent("header-container", "components/header.html");
     await loadComponent("hero-container", "components/hero.html");
     await loadComponent("problem-container", "components/problem.html");
 
-    // 3. INICIALIZAMOS LA LÓGICA VISUAL (Una vez que ya cargaron en pantalla)
-    initHeroLogic();
+    // 3. Inicializar la interactividad una vez inyectados los HTML
+    initHeroInteractive();
+    initScrollAnimations();
     initSmoothScroll();
-
 });
 
-/* --- FUNCIONES DE INTERACTIVIDAD --- */
-
-function initHeroLogic() {
+/* --- LÓGICA INTERACTIVA DEL HERO --- */
+function initHeroInteractive() {
     const heroSection = document.querySelector('.k-hero');
     const heroBg = document.getElementById('hero-bg');
     
     if (heroSection && heroBg) {
-        // Efecto de luz dinámica y paralaje siguiendo el cursor
         heroSection.addEventListener('mousemove', (e) => {
+            if (window.innerWidth <= 768) return; 
+
             const rect = heroSection.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
@@ -41,19 +46,36 @@ function initHeroLogic() {
 
             const moveX = (e.clientX - window.innerWidth / 2) * -0.015;
             const moveY = (e.clientY - window.innerHeight / 2) * -0.015;
-            
             heroBg.style.transform = `scale(1.05) translate(${moveX}px, ${moveY}px)`;
         });
 
-        // Vuelve a su lugar al salir
         heroSection.addEventListener('mouseleave', () => {
             heroBg.style.transform = 'scale(1) translate(0px, 0px)';
         });
     }
 }
 
+/* --- ANIMACIÓN DE ENTRADA AL HACER SCROLL (.fade-up) --- */
+function initScrollAnimations() {
+    const animateElements = document.querySelectorAll('.fade-up');
+    
+    if (animateElements.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        animateElements.forEach(el => observer.observe(el));
+    }
+}
+
+/* --- SCROLL SUAVE PARA ENLACES (#) --- */
 function initSmoothScroll() {
-    // Scroll suave para enlaces internos
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
