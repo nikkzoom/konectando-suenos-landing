@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // 2. CARGAMOS EL HEADER Y EL HERO DESDE TU CARPETA
     await loadComponent("header-container", "components/header.html");
     await loadComponent("hero-container", "components/hero.html");
+    await loadComponent("problem-container", "components/problem.html");
 
     // 3. INICIALIZAMOS LA LÓGICA VISUAL (Una vez que ya cargaron en pantalla)
     initHeroLogic();
