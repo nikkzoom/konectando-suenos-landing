@@ -1,12 +1,3 @@
-<style>
-  body {
-    margin: 0;
-    height: 200vh;
-    /* Un gradiente colorido de prueba para que el cristal haga efecto */
-    background: linear-gradient(135deg, #0f172a 0%, #3b82f6 50%, #020617 100%);
-  }
-</style>
-
 <header id="k-header" class="k-header">
   <div class="k-header__container">
     
@@ -34,15 +25,14 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%; /* Abarca toda la pantalla */
+    width: 100%; 
     z-index: 999;
-    /* Eliminamos el padding excesivo que lo empujaba hacia abajo */
-    padding: 1rem 0; 
+    /* Reducido para que quede bien pegado al techo de la pantalla */
+    padding: 0.5rem 0; 
   }
 
   .k-header__container {
     width: 100%;
-    /* Uso de porcentajes para que respire en los bordes en cualquier monitor */
     padding: 0 4%; 
     box-sizing: border-box;
     display: flex;
@@ -64,24 +54,26 @@
     object-fit: contain;
   }
 
-  /* === 3. NAVEGACIÓN CENTRAL (Apple Frosted Glass Real) === */
+  .k-header__logo:hover {
+    transform: scale(1.02);
+  }
+
+  /* === 3. NAVEGACIÓN CENTRAL (Apple Frosted Glass) === */
   .k-header__nav-glass {
     display: flex;
     align-items: center;
     gap: 2rem;
     
-    /* El secreto del Glassmorphism premium */
-    background: rgba(255, 255, 255, 0.08); /* Más blanco y sutil */
-    backdrop-filter: blur(24px); /* Desenfoque agresivo estilo iOS */
+    background: rgba(255, 255, 255, 0.08); 
+    backdrop-filter: blur(24px); 
     -webkit-backdrop-filter: blur(24px);
     
-    /* Borde interior para simular el reflejo del cristal */
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-top: 1px solid rgba(255, 255, 255, 0.4); 
     
     border-radius: 100px;
-    padding: 0.7rem 2.5rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15); /* Sombra suave para despegarlo */
+    padding: 0.6rem 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15); 
   }
 
   .nav-link {
@@ -99,16 +91,16 @@
     text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
   }
 
-  /* === 4. BOTÓN DE CONTACTO (Estilo Pill de Alta Conversión) === */
+  /* === 4. BOTÓN DE CONTACTO === */
   .k-header__btn-contact {
     background: #ffffff; 
-    color: #020617; /* Negro azulado muy elegante */
+    color: #020617; 
     text-decoration: none;
     font-family: var(--font-main, 'Inter', sans-serif);
     font-size: 0.95rem;
     font-weight: 700;
-    padding: 0.7rem 1.8rem;
-    border-radius: 100px; /* Óvalo perfecto */
+    padding: 0.6rem 1.8rem;
+    border-radius: 100px; 
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
   }
@@ -118,9 +110,8 @@
     box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
   }
 
-  /* === 5. ADAPTACIÓN A IPHONE (Responsive Premium) === */
+  /* === 5. ADAPTACIÓN A IPHONE === */
   @media (max-width: 768px) {
-    /* En móvil, pegamos más los elementos a los bordes */
     .k-header__container {
       padding: 0 5%;
     }
@@ -130,11 +121,11 @@
     }
 
     .k-header__btn-contact {
-      padding: 0.6rem 1.2rem;
+      padding: 0.5rem 1.2rem;
       font-size: 0.85rem;
     }
 
-    /* TRUCO IOS: La navegación se va al fondo de la pantalla como un Dock */
+    /* Navegación como Dock inferior en móviles */
     .k-header__nav-glass {
       position: fixed;
       bottom: 2rem;
@@ -144,7 +135,6 @@
       padding: 0.8rem 2rem;
       gap: 1.5rem;
       border-radius: 100px;
-      /* Refuerzo la sombra para que flote bien sobre el contenido inferior */
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
   }
