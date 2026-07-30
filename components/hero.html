@@ -2,24 +2,22 @@
   
   <div class="k-hero__bg-container">
     <div class="k-hero__bg-image" id="hero-bg" style="background-image: url('/assets/hero-portal-heaven.jpeg');"></div>
-    
     <div class="k-hero__light-overlay" id="hero-light"></div>
-    
     <div class="k-hero__legibility-overlay"></div>
   </div>
 
   <div class="k-hero__content">
-    <h1 class="k-hero__title fade-up-hero">
+    <h1 class="k-hero__title">
       Tus sueños no pertenecen al limbo.<br>
       <span class="gold-glow">Llévalos al límite.</span>
     </h1>
 
-    <p class="k-hero__subtitle fade-up-hero">
+    <p class="k-hero__subtitle">
       Transformamos tus horas de grabación en contenido de alto impacto. 
       Estrategia, edición y narrativa audiovisual para creadores y marcas que nacieron para destacar.
     </p>
 
-    <div class="k-hero__actions fade-up-hero">
+    <div class="k-hero__actions">
       <a href="https://wa.me/573207418361?text=Hola%20Konectando%20Sue%C3%B1os,%20vengo%20de%20la%20p%C3%A1gina%20web%20y%20quiero%20llevar%20mis%20sue%C3%B1os%20al%20l%C3%ADmite%20para%20hacerlos%20realidad." 
          target="_blank" class="btn-primary">
         Empieza Tu Viaje
@@ -32,55 +30,43 @@
 
   <aside class="k-hero__dock-wrapper">
     <div class="k-hero__dock-title">Creadores Konectados</div>
+    
     <div class="k-hero__dock">
-      
       <div class="dock-item" data-tooltip="Thiago Insua">
         <img src="/assets/cliente-1.png" onerror="this.src='https://ui-avatars.com/api/?name=TI&background=ffffff&color=000000'" alt="Thiago Insua">
         <div class="item-spark"></div>
       </div>
-
       <div class="dock-item" data-tooltip="Alarcón Jacas">
         <img src="/assets/cliente-2.png" onerror="this.src='https://ui-avatars.com/api/?name=AJ&background=ffffff&color=000000'" alt="Alarcón Jacas">
         <div class="item-spark"></div>
       </div>
-
       <div class="dock-item" data-tooltip="Freddy Invierte">
         <img src="/assets/cliente-3.png" onerror="this.src='https://ui-avatars.com/api/?name=FI&background=ffffff&color=000000'" alt="Freddy Invierte">
         <div class="item-spark"></div>
       </div>
-
       <div class="dock-item" data-tooltip="Un Dolce Peccato">
         <img src="/assets/cliente-4.png" onerror="this.src='https://ui-avatars.com/api/?name=DP&background=ffffff&color=000000'" alt="Un Dolce Peccato">
         <div class="item-spark"></div>
       </div>
-
       <div class="dock-item" data-tooltip="Policías en Acción YT">
         <img src="/assets/cliente-5.png" onerror="this.src='https://ui-avatars.com/api/?name=PA&background=ffffff&color=000000'" alt="Policías en Acción YT">
         <div class="item-spark"></div>
       </div>
-
       <div class="dock-item" data-tooltip="Triplazo">
         <img src="/assets/cliente-6.png" onerror="this.src='https://ui-avatars.com/api/?name=TZ&background=ffffff&color=000000'" alt="Triplazo">
         <div class="item-spark"></div>
       </div>
-
       <div class="dock-item" data-tooltip="Elite Fiscal">
         <img src="/assets/cliente-7.png" onerror="this.src='https://ui-avatars.com/api/?name=EF&background=ffffff&color=000000'" alt="Elite Fiscal">
         <div class="item-spark"></div>
       </div>
-
     </div>
   </aside>
 
 </section>
 
 <style>
-  /* === variables internas del componente === */
-  .k-hero {
-    --text-shadow-strong: 0 4px 15px rgba(0, 0, 0, 0.8);
-  }
-
-  /* === 1. ESTRUCTURA Y FONDO (MEJORADO) === */
+  /* === 1. ESTRUCTURA Y FONDO === */
   .k-hero {
     position: relative;
     width: 100%;
@@ -89,14 +75,14 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 160px 5% 60px 5%; /* Ajuste para header amplio */
+    padding: 120px 5% 60px 5%;
     box-sizing: border-box;
-    background-color: #020617; /* Fallback global dark mode */
+    background-color: #020617;
   }
 
   .k-hero__bg-container {
     position: absolute;
-    inset: -25px; /* Extra espacio para paralaje fluido */
+    inset: -30px; /* Margen extra para el movimiento sin cortar bordes */
     z-index: 1;
   }
 
@@ -105,40 +91,40 @@
     height: 100%;
     background-size: cover;
     background-position: center center;
-    transition: transform 0.15s ease-out;
-    
-    /* SOLUCIÓN: Eliminamos los filtros agresivos (brightness/contrast) 
-       que 'quemaban' la imagen y la hacían perder calidad. 
-       Dejamos que la imagen raw brille. */
+    /* Suaviza el movimiento del mouse */
+    transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+    /* Elimina cualquier filtro que degrade la calidad */
     filter: none; 
+    /* Truco para forzar renderizado de alta calidad en navegadores WebKit */
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform;
   }
 
-  /* NUEVO: Capa de contraste oscuro sutil (Solución Legibilidad) */
+  /* Capa para asegurar que el texto blanco se lea, sin oscurecer toda la imagen */
   .k-hero__legibility-overlay {
     position: absolute;
     inset: 0;
-    /* Un gradiente radial muy suave que oscurece el centro para que el texto resalte */
-    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 60%);
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.25) 0%, transparent 50%);
     z-index: 2;
     pointer-events: none;
   }
 
-  /* Capa de luz dinámica que reacciona al cursor (Mejorado para no 'quemar') */
+  /* El resplandor dinámico que sigue al ratón (devuelto) */
   .k-hero__light-overlay {
     position: absolute;
     inset: 0;
     z-index: 3;
     background: radial-gradient(
-      900px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
-      rgba(255, 255, 255, 0.1), /* Reducida la intensidad */
-      transparent 60%
+      800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+      rgba(255, 255, 255, 0.15), 
+      transparent 50%
     );
     pointer-events: none;
-    /* Ajustado el blend mode para que no altere la calidad cromática de la imagen raw */
-    mix-blend-mode: soft-light; 
+    mix-blend-mode: overlay; /* Vuelve a dar ese toque mágico sin quemar */
   }
 
-  /* === 2. TEXTO Y BOTONES (MEJORADO Legibilidad) === */
+  /* === 2. TEXTO Y BOTONES === */
   .k-hero__content {
     position: relative;
     z-index: 10;
@@ -147,7 +133,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.8rem;
+    gap: 1.5rem;
   }
 
   .k-hero__title {
@@ -157,8 +143,8 @@
     color: #ffffff;
     margin: 0;
     letter-spacing: -0.02em;
-    /* Sombra de texto reforzada para legibilidad */
-    text-shadow: var(--text-shadow-strong), 0 15px 40px rgba(0, 0, 0, 0.6);
+    /* Sombra refinada: difuminada, no pesada */
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); 
   }
 
   .gold-glow {
@@ -166,19 +152,17 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+    text-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
   }
 
   .k-hero__subtitle {
     font-size: clamp(1.1rem, 1.8vw, 1.25rem);
     line-height: 1.6;
-    /* SOLUCIÓN Legibilidad: Texto ligeramente más oscuro (gris perla) 
-       y sombra fuerte */
-    color: #e2e8f0; 
+    color: rgba(255, 255, 255, 0.95);
     font-weight: 400;
     max-width: 680px;
     margin: 0;
-    text-shadow: var(--text-shadow-strong);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   }
 
   .k-hero__actions {
@@ -195,20 +179,20 @@
     font-weight: 700;
     font-size: 1rem;
     text-decoration: none;
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
   }
 
   .btn-primary:hover {
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 10px 35px rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
   }
 
   .btn-secondary {
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffffff;
     padding: 1rem 2.5rem;
     border-radius: 100px;
@@ -219,11 +203,11 @@
   }
 
   .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
   }
 
-  /* === 3. DOCK FLOTANTE DE CLIENTES (MEJORADO: "La Chispa") === */
+  /* === 3. DOCK FLOTANTE DE CREADORES === */
   .k-hero__dock-wrapper {
     position: absolute;
     right: 3%;
@@ -231,27 +215,19 @@
     transform: translateY(-50%);
     z-index: 20;
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* Coloca el título al lado del dock */
     align-items: center;
     gap: 1rem;
-    /* Nueva chispa: flotación sutil constante del dock entero */
-    animation: dockFloat 6s ease-in-out infinite;
-  }
-
-  @keyframes dockFloat {
-    0%, 100% { transform: translateY(-50%) translateX(0px); }
-    50% { transform: translateY(-47%) translateX(5px); }
   }
 
   .k-hero__dock-title {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.6);
     writing-mode: vertical-rl;
     transform: rotate(180deg);
-    margin-bottom: 0.5rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    text-shadow: none; /* Limpio */
   }
 
   .k-hero__dock {
@@ -260,23 +236,21 @@
     gap: 1rem;
     padding: 1.2rem 0.8rem;
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 100px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
   }
 
   .dock-item {
     position: relative;
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     overflow: hidden;
-    /* Chispa: borde inicial más sutil y ámbar */
-    border: 2px solid rgba(245, 158, 11, 0.15); 
+    border: 2px solid rgba(255, 255, 255, 0.2);
     cursor: pointer;
-    background: #000; /* Fondo negro para los logos en transparencia */
+    background: #000;
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
@@ -286,117 +260,151 @@
     object-fit: cover;
   }
 
-  /* La Chispa Interna (Spark overlay) */
   .item-spark {
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    box-shadow: inset 0 0 15px rgba(245, 158, 11, 0); /* Ámbar apagado */
+    box-shadow: inset 0 0 15px rgba(245, 158, 11, 0);
     transition: box-shadow 0.3s ease;
     pointer-events: none;
   }
 
-  /* Chispa Activa al Hover */
   .dock-item:hover {
-    transform: scale(1.3) translateX(-12px); /* Un poco más de movimiento */
-    border-color: #ffffff; /* Borde blanco nítido */
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.5), 0 0 10px rgba(245, 158, 11, 0.3); /* Resplandor mixto blanco/ámbar */
+    transform: scale(1.2) translateX(-8px);
+    border-color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
     z-index: 2;
   }
 
   .dock-item:hover .item-spark {
-    /* Chispa interna que se activa */
-    box-shadow: inset 0 0 15px rgba(245, 158, 11, 0.4);
+    box-shadow: inset 0 0 10px rgba(245, 158, 11, 0.5);
   }
 
-  /* Tooltip flotante (Mejorado contraste) */
   .dock-item::after {
     content: attr(data-tooltip);
     position: absolute;
-    right: 70px;
+    right: 65px;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(10, 10, 15, 0.95); /* Más oscuro */
+    background: rgba(10, 10, 15, 0.9);
     color: #ffffff;
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
-    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
     font-weight: 500;
     white-space: nowrap;
     opacity: 0;
     pointer-events: none;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.15);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255,255,255,0.1);
   }
 
   .dock-item:hover::after {
     opacity: 1;
-    right: 65px;
+    right: 60px;
   }
 
-  /* ========================================================
-   ADAPTACIONES RESPONSIVAS
-======================================================== */
-@media (max-width: 1024px) {
+  /* === ADAPTACIONES MÓVILES (iOS / Responsive) === */
+  @media (max-width: 1024px) {
+    /* En tablets, el dock pasa a la parte inferior horizontal */
     .k-hero__dock-wrapper {
-        position: relative;
-        right: auto;
-        top: auto;
-        transform: none;
-        margin-top: 3rem;
-        align-items: center;
-        /* Apagamos la flotación en móvil para que no se mareen */
-        animation: none; 
+      position: absolute;
+      bottom: 5%;
+      right: auto;
+      left: 50%;
+      top: auto;
+      transform: translateX(-50%);
+      flex-direction: column;
+      width: 90%;
     }
 
     .k-hero__dock-title {
-        writing-mode: horizontal-tb;
-        transform: none;
-        margin-bottom: 1rem;
+      writing-mode: horizontal-tb;
+      transform: none;
+      margin-bottom: 0.5rem;
     }
 
     .k-hero__dock {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 1rem 1.5rem;
-        gap: 0.8rem;
-        border-radius: 100px;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0.8rem 1.2rem;
     }
 
     .dock-item:hover {
-        transform: scale(1.2) translateY(-8px) translateX(0);
+      transform: scale(1.15) translateY(-5px);
     }
 
     .dock-item::after {
-        right: auto;
-        top: -45px;
-        left: 50%;
-        transform: translateX(-50%);
+      right: auto;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .dock-item:hover::after {
-        top: -50px;
+      top: -45px;
     }
-}
+  }
 
-@media (max-width: 600px) {
+  @media (max-width: 768px) {
+    .k-hero {
+      padding: 100px 5% 140px 5%; /* Espacio extra abajo para el dock móvil */
+    }
+
+    .k-hero__title {
+      font-size: 2.2rem; /* Ajuste tipográfico móvil */
+    }
+
+    .k-hero__subtitle {
+      font-size: 1rem;
+    }
+
     .k-hero__actions {
-        flex-direction: column;
-        width: 100%;
+      flex-direction: column;
+      width: 100%;
+      gap: 0.8rem;
     }
 
     .btn-primary, .btn-secondary {
-        width: 100%;
-        text-align: center;
-        box-sizing: border-box;
+      width: 100%;
+      box-sizing: border-box;
     }
-    
-    .dock-item {
-        width: 44px;
-        height: 44px;
+
+    /* Ocultamos la luz dinámica en móvil por rendimiento y usabilidad */
+    .k-hero__light-overlay {
+      display: none; 
     }
-}
+  }
 </style>
+
+<script>
+  (function initHeroInteractive() {
+    const heroSection = document.querySelector('.k-hero');
+    const heroBg = document.getElementById('hero-bg');
+    
+    if (heroSection && heroBg) {
+      heroSection.addEventListener('mousemove', (e) => {
+        // Ignorar interacciones en pantallas táctiles pequeñas
+        if (window.innerWidth <= 768) return; 
+
+        const rect = heroSection.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Actualiza el centro del gradiente de luz radial
+        heroSection.style.setProperty('--mouse-x', `${x}px`);
+        heroSection.style.setProperty('--mouse-y', `${y}px`);
+
+        // Movimiento sutil de la imagen para efecto 3D
+        const moveX = (e.clientX - window.innerWidth / 2) * -0.015;
+        const moveY = (e.clientY - window.innerHeight / 2) * -0.015;
+        heroBg.style.transform = `scale(1.05) translate(${moveX}px, ${moveY}px)`;
+      });
+
+      heroSection.addEventListener('mouseleave', () => {
+        heroBg.style.transform = 'scale(1) translate(0px, 0px)';
+      });
+    }
+  })();
+</script>
