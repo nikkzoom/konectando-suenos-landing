@@ -94,39 +94,35 @@
   /* =================================================================
      BASE DE LA SECCIÓN EXACTAMENTE COMO LA DEJASTE
   ================================================================= */
-  .k-problem {
+.k-problem {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    margin-top: -120px; 
-    padding: 180px 0 140px 0;
+    background-color: #020617; /* Sincronizado con Deep Navy Charcoal */
     
-    background-image: url('/assets/bg-limbo.jpeg');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
+    /* Solapamos la sección por debajo del Hero fundido para que los fondos se mezclen */
+    margin-top: -150px; 
+    padding: 200px 0 140px 0;
     
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 10;
+    
+    /* Z-index menor para que se deslice por debajo del fundido del Hero */
+    z-index: 10; 
     overflow: hidden;
-  /* ... (tus otros estilos se mantienen igual) ... */
-    z-index: 20; 
-
-    /* ESTO ES LO NUEVO: Borra el borde recto y lo difumina hacia abajo */
-    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 88%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 0%, black 88%, transparent 100%);
   }
 
+  /* Gradiente superior invisible que fusiona ambas imágenes celestiales */
   .k-problem__top-blend {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 220px;
-    background: linear-gradient(to bottom, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0.4) 50%, transparent 100%);
+    height: 220px; /* Un degradado largo para que sea muy natural */
+    /* Empieza en el color exacto del Limbo y baja a transparente */
+    background: linear-gradient(to bottom, #020617 0%, rgba(2, 6, 23, 0.8) 40%, transparent 100%);
     z-index: 1;
     pointer-events: none;
   }

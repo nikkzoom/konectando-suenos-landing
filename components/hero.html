@@ -68,7 +68,7 @@
 </section>
 
 <style>
-  .k-hero {
+.k-hero {
     position: relative;
     width: 100%;
     min-height: 100vh;
@@ -78,9 +78,14 @@
     overflow: hidden;
     padding: 120px 5% 80px 5%;
     box-sizing: border-box;
-    background-color: #020617;
+    background-color: transparent; /* IMPORTANTE: Transparente para la máscara */
+    
+    /* MÁSCARA CLAVE: Borra el borde inferior y lo difumina hacia abajo (calado suave) */
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 85%, transparent 100%);
+    
+    z-index: 20; 
   }
-
   .k-hero__bg-container {
     position: absolute;
     inset: -30px; 
