@@ -1,16 +1,6 @@
 <section id="problema" class="k-problem">
   
-  <div class="k-problem__atmos-container">
-    <div class="k-problem__bg-image" style="background-image: url('/assets/bg-limbo.jpeg');"></div>
-    <div class="k-problem__top-blend"></div>
-    
-    <div class="k-problem__bg-pattern"></div>
-    
-    <div class="k-problem__glow-orbs">
-      <div class="glow-orb orb-deep-blue"></div>
-      <div class="glow-orb orb-caotic-gold"></div>
-    </div>
-  </div>
+  <div class="k-problem__top-blend"></div>
 
   <div class="k-problem__container">
     
@@ -30,13 +20,12 @@
       
       <article class="b-folder fade-up">
         <div class="b-folder__tab">
-          <div class="os-dots"><span></span><span></span><span></span></div>
-          <span class="b-tab-text">01 // horas_perdidas</span>
+          <span class="tab-code">01 // horas_perdidas</span>
         </div>
         <div class="b-folder__body">
           <div class="card-meta">
             <div class="spark-ring">
-              <img src="https://via.placeholder.com/24x24/10151e/f59e0b?text=⏳" alt="spark placeholder">
+              <img src="https://via.placeholder.com/24x24/10151e/f59e0b?text=⏳" alt="spark">
             </div>
           </div>
           <div class="b-body-text">
@@ -48,13 +37,12 @@
 
       <article class="b-folder fade-up">
         <div class="b-folder__tab">
-          <div class="os-dots"><span></span><span></span><span></span></div>
-          <span class="b-tab-text">02 // algoritmo_invisible</span>
+          <span class="tab-code">02 // algoritmo_invisible</span>
         </div>
         <div class="b-folder__body">
           <div class="card-meta">
             <div class="spark-ring">
-              <img src="https://via.placeholder.com/24x24/10151e/f59e0b?text=📈" alt="spark placeholder">
+              <img src="https://via.placeholder.com/24x24/10151e/f59e0b?text=📈" alt="spark">
             </div>
           </div>
           <div class="b-body-text">
@@ -66,13 +54,12 @@
 
       <article class="b-folder fade-up">
         <div class="b-folder__tab">
-          <div class="os-dots"><span></span><span></span><span></span></div>
-          <span class="b-tab-text">03 // sin_constancia</span>
+          <span class="tab-code">03 // sin_constancia</span>
         </div>
         <div class="b-folder__body">
           <div class="card-meta">
             <div class="spark-ring">
-              <img src="https://via.placeholder.com/24x24/10151e/f59e0b?text=🔄" alt="spark placeholder">
+              <img src="https://via.placeholder.com/24x24/10151e/f59e0b?text=🔄" alt="spark">
             </div>
           </div>
           <div class="b-body-text">
@@ -84,33 +71,41 @@
 
       <article class="b-folder folder-accent fade-up">
         <div class="b-folder__tab">
-          <div class="os-dots"><span></span><span></span><span></span></div>
-          <span class="b-tab-text">04 // suenos_en_el_disco</span>
+          <span class="tab-code">04 // suenos_en_el_disco</span>
         </div>
         <div class="b-folder__body">
           <div class="card-meta">
             <div class="spark-ring">
-              <img src="https://via.placeholder.com/24x24/10151e/fcd34d?text=☁️" alt="spark placeholder">
+              <img src="https://via.placeholder.com/24x24/10151e/fcd34d?text=☁️" alt="spark">
             </div>
           </div>
           <div class="b-body-text">
             <h3>El potencial desperdiciado</h3>
-            <p>Tu mejor versión sigue guardada en un disco duro. El verdadero fracaso no es intentarlo y fallar, es dejar que tu mejor material se pudra porque nunca vio la luz.</p>
+            <p>Tu mejor versión sigue guardada en un disco duro. El verdadero fracaso no es intentarlo y fallar, es dejar que tu mejor material se pudra sin ver la luz.</p>
           </div>
         </div>
       </article>
 
-    </div> </div>
+    </div>
+  </div>
 </section>
 
 <style>
-  /* Base de la sección: Sincronización de fondo y solapamiento */
+  /* =================================================================
+     BASE DE LA SECCIÓN EXACTAMENTE COMO LA DEJASTE
+  ================================================================= */
   .k-problem {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background-color: transparent; /* Fondo determinado por el contenedor atmos */
-    padding: 140px 0;
+    margin-top: -120px; 
+    padding: 180px 0 140px 0;
+    
+    background-image: url('/assets/bg-limbo.jpeg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -119,99 +114,32 @@
     overflow: hidden;
   }
 
-  /* Contenedor del fondo atmosférico cinematográfico recuperado */
-  .k-problem__atmos-container {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-  }
-
-  .k-problem__bg-image {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    opacity: 0.9;
-    z-index: 1;
-  }
-
-  /* 1. Transición Seamless con el Hero (Máscara de calado suave sobre el fondo generado) */
   .k-problem__top-blend {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 180px;
-    background: linear-gradient(to bottom, rgba(2, 6, 23, 0) 0%, rgba(2, 6, 23, 1) 100%);
-    z-index: 2;
+    height: 220px;
+    background: linear-gradient(to bottom, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0.4) 50%, transparent 100%);
+    z-index: 1;
     pointer-events: none;
   }
 
-  /* 2. Pattern Atmosférico Sutil */
-  .k-problem__bg-pattern {
-    position: absolute;
-    inset: 0;
-    z-index: 3;
-    /* Cuadrícula de puntos estilo tech sutil */
-    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-    background-size: 35px 35px;
-    opacity: 0.5;
-    mask-image: radial-gradient(circle at center, black 10%, transparent 80%);
-    -webkit-mask-image: radial-gradient(circle at center, black 10%, transparent 80%);
-  }
-
-  .k-problem__glow-orbs {
-    position: absolute;
-    inset: 0;
-    z-index: 4;
-    overflow: hidden;
-    pointer-events: none;
-  }
-
-  .glow-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px);
-    opacity: 0.2;
-    animation: orbsDriftProblemAtmos 20s infinite alternate ease-in-out;
-  }
-
-  .orb-deep-blue {
-    width: 600px; height: 600px;
-    background: #0ea5e9;
-    top: 10%; left: -100px;
-  }
-
-  .orb-caotic-gold {
-    width: 700px; height: 700px;
-    background: rgba(245, 158, 11, 0.3); /* Caos/Atrapado */
-    bottom: -100px; right: -100px;
-    animation-delay: -10s;
-  }
-
-  @keyframes orbsDriftProblemAtmos {
-    0% { transform: translate(0, 0) scale(1); }
-    100% { transform: translate(100px, 150px) scale(1.15); }
-  }
-
-  /* Contenedor Principal Expandido */
   .k-problem__container {
-    max-width: 1650px; /* Aumentado para un layout amplio */
+    max-width: 1600px;
     width: 92%;
     margin: 0 auto;
     position: relative;
     z-index: 10;
   }
 
-  /* 3. Encabezado modular Bilexer (Inspirado en la referencia) */
   .k-problem__header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     gap: 4rem;
-    margin-bottom: 7rem;
+    margin-bottom: 6rem;
     padding: 0 1rem;
   }
 
@@ -223,7 +151,7 @@
     line-height: 1.1;
     letter-spacing: -0.03em;
     margin: 0;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
   }
 
   .text-gold {
@@ -244,58 +172,52 @@
     line-height: 1.7;
     font-weight: 400;
     margin: 0;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
   }
 
-  /* 4. FILA DE CARPETAS DE CRISTAL FÍSICAS (Una sola línea expansiva) */
   .k-problem__row {
     display: flex;
     flex-direction: row;
     gap: 1.5rem;
     width: 100%;
-    align-items: stretch; /* Mismo alto */
   }
 
-  /* DISEÑO DE LA CARPETA FÍSICA ESTILO BILEXER (Geometry Master) */
+  /* =================================================================
+     CARPETAS MEJORADAS VISUALMENTE (Pestaña lateral, hover, 1 línea)
+  ================================================================= */
   .b-folder {
     flex: 1;
-    min-width: 280px; /* Evita que se aplasten en pantallas pequeñas */
+    min-width: 260px;
     display: flex;
     flex-direction: column;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.25));
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.4s ease;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     cursor: default;
     position: relative;
-    /* Efecto holográfico del mouse encapsulado */
     --b-mouse-x: 50%;
     --b-mouse-y: 50%;
   }
 
   .b-folder:hover {
     transform: translateY(-12px);
-    filter: drop-shadow(0 30px 50px rgba(0,0,0,0.4));
     z-index: 10;
   }
 
-  /* La Pestaña Física Separada (Tab) */
+  /* Pestaña: A la derecha, bordes limpios */
   .b-folder__tab {
-    width: 60%; /* Pestaña ancha de Bilexer */
-    align-self: flex-end; /* Pestaña en la esquina superior DERECHA de la carpeta */
+    width: 60%;
+    align-self: flex-end; /* Pestaña a la derecha como la referencia */
     padding: 0.8rem 1.4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-bottom: none;
-    border-radius: 16px 16px 0 0; /* Radio premium de Bilexer */
+    border-radius: 14px 14px 0 0;
     position: relative;
     z-index: 2;
     transition: background 0.3s ease, border-color 0.3s ease;
   }
 
-  /* El resplandor que sigue al mouse (Borde de pestaña) */
   .b-folder__tab::before {
     content: '';
     position: absolute;
@@ -308,32 +230,14 @@
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: 1;
-    border-radius: 16px 16px 0 0;
+    border-radius: 14px 14px 0 0;
   }
-  
+
   .b-folder:hover .b-folder__tab::before {
     opacity: 1;
   }
 
-  /* Botones OS */
-  .os-dots {
-    display: flex;
-    gap: 6px;
-    z-index: 2;
-    position: relative;
-  }
-  .os-dots span {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(100, 116, 139, 0.4);
-    transition: background 0.3s ease;
-  }
-  .b-folder:hover .os-dots span:nth-child(1) { background: #ef4444; }
-  .b-folder:hover .os-dots span:nth-child(2) { background: #eab308; }
-  .b-folder:hover .os-dots span:nth-child(3) { background: #22c55e; }
-
-  .b-tab-text {
+  .tab-code {
     font-family: monospace;
     font-size: 0.8rem;
     letter-spacing: 0.5px;
@@ -341,24 +245,25 @@
     transition: color 0.3s ease;
     position: relative;
     z-index: 2;
+    white-space: nowrap; 
   }
 
-  .b-folder:hover .b-tab-text {
+  .b-folder:hover .tab-code {
     color: #ffffff;
   }
 
-  /* Cuerpo de la Carpeta de Cristal */
+  /* Cuerpo de la carpeta: Encaja perfecto con la pestaña a la derecha */
   .b-folder__body {
     background: rgba(255, 255, 255, 0.06);
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 18px 0 18px 18px; /* Conexión perfecta: Esquina superior DER recta */
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 18px 0 18px 18px; /* Conexión perfecta */
     padding: 2.5rem 2rem;
-    margin-top: -1px; /* Solapamiento de 1px imperceptible para unir pestaña y cuerpo */
+    margin-top: -1px; 
     position: relative;
     z-index: 1;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     height: 100%;
     transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
     
@@ -367,7 +272,6 @@
     gap: 1.5rem;
   }
 
-  /* El resplandor holográfico interno que sigue al mouse */
   .b-folder__body::before {
     content: '';
     position: absolute;
@@ -383,17 +287,22 @@
     border-radius: 18px 0 18px 18px;
     z-index: 1;
   }
-  
+
   .b-folder:hover .b-folder__body::before {
     opacity: 1;
   }
 
+  .b-folder:hover .b-folder__tab,
   .b-folder:hover .b-folder__body {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.4);
   }
 
-  /* Meta data (Spark Icon) */
+  .b-folder:hover .b-folder__body {
+    box-shadow: 0 35px 65px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  /* Spark Icon */
   .card-meta {
     display: flex;
     align-items: center;
@@ -402,7 +311,6 @@
     z-index: 2;
   }
 
-  /* El "Anillo Spark": el sueño atrapado borroso */
   .spark-ring {
     width: 24px;
     height: 24px;
@@ -423,7 +331,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: blur(1.5px) sepia(1) hue-rotate(15deg); /* Efecto borroso, dorado/sepia */
+    filter: blur(1.5px) sepia(1) hue-rotate(15deg);
     transition: filter 0.3s ease;
   }
   
@@ -431,7 +339,7 @@
     filter: blur(0.5px) sepia(1) hue-rotate(15deg) brightness(1.2);
   }
 
-  /* Cuerpo */
+  /* Textos del Cuerpo */
   .b-body-text {
     flex-grow: 1;
     position: relative;
@@ -446,8 +354,7 @@
     font-weight: 600;
     line-height: 1.25;
     letter-spacing: -0.01em;
-    
-    /* CORRECCIÓN CLAVE: Títulos en una sola línea con elipsis */
+    /* TITULOS FORZADOS A UNA SOLA LÍNEA */
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
@@ -462,13 +369,37 @@
   }
 
   /* CARPETA ACENTO DORADO (La cuarta) */
-  .folder-accent .b-folder__tab,
-  .folder-accent .b-folder__body {
+  .folder-accent .b-folder__tab {
     background: rgba(245, 158, 11, 0.12);
     border-color: rgba(245, 158, 11, 0.35);
   }
+  .folder-accent .b-folder__body {
+    background: rgba(245, 158, 11, 0.08);
+    border-color: rgba(245, 158, 11, 0.35);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(245, 158, 11, 0.3);
+  }
+  .folder-accent .tab-code {
+    color: #fcd34d;
+  }
 
-  /* El resplandor ámbar al hover en la acento */
+  .folder-accent:hover .b-folder__tab {
+    background: rgba(245, 158, 11, 0.22);
+    border-color: rgba(245, 158, 11, 0.6);
+  }
+  .folder-accent:hover .b-folder__body {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: rgba(245, 158, 11, 0.6);
+    box-shadow: 0 35px 65px rgba(245, 158, 11, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+  
+  .folder-accent .b-folder__tab::before {
+    border-radius: 14px 14px 0 0;
+    background: radial-gradient(
+      600px circle at var(--b-mouse-x) var(--b-mouse-y), 
+      rgba(245, 158, 11, 0.6), 
+      transparent 40%
+    );
+  }
   .folder-accent:hover .b-folder__body::before {
     background: radial-gradient(
       800px circle at var(--b-mouse-x) var(--b-mouse-y), 
@@ -476,45 +407,14 @@
       transparent 65%
     );
   }
-
-  /* Borde ámbar que sigue al ratón en la acento */
-  .folder-accent::before {
-    background: radial-gradient(
-      600px circle at var(--b-mouse-x) var(--b-mouse-y), 
-      rgba(245, 158, 11, 0.6), 
-      transparent 40%
-    );
-  }
-
-  .folder-accent .b-folder__tab::before {
-    border-radius: 16px 16px 0 0;
-    background: radial-gradient(
-      600px circle at var(--b-mouse-x) var(--b-mouse-y), 
-      rgba(245, 158, 11, 0.6), 
-      transparent 40%
-    );
-  }
-
-  .folder-accent:hover .b-folder__tab,
-  .folder-accent:hover .b-folder__body {
-    background: rgba(245, 158, 11, 0.22);
-    border-color: rgba(245, 158, 11, 0.6);
-  }
-
-  .folder-accent .tab-code {
-    color: #fcd34d;
-  }
   
-  .folder-accent .spark-ring {
-    border-color: rgba(245, 158, 11, 0.4);
-  }
-  
+  .folder-accent .spark-ring { border-color: rgba(245, 158, 11, 0.4); }
   .folder-accent:hover .spark-ring {
     border-color: #fcd34d;
     box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
   }
 
-  /* Animaciones de Scroll */
+  /* Animaciones */
   .fade-up {
     opacity: 0;
     transform: translateY(40px);
@@ -527,27 +427,17 @@
 
   /* RESPONSIVO MÓVIL Y TABLET */
   @media (max-width: 1024px) {
-    .k-problem__container {
-      max-width: 100%;
-    }
-    
     .k-problem__header {
       flex-direction: column;
       gap: 1.5rem;
       text-align: left;
     }
-    
-    /* Scroll horizontal táctil con el dedo en móvil */
+
     .k-problem__row {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scroll-snap-type: x mandatory;
-      padding: 0 1rem 40px 1rem;
-      gap: 1rem;
-      width: calc(100% + 2rem);
-      margin-left: -1rem;
-      
-      /* Oculta la barra de scroll para que se vea limpio */
+      padding-bottom: 30px;
       scrollbar-width: none; 
       -ms-overflow-style: none;
     }
@@ -556,19 +446,18 @@
     }
 
     .b-folder {
-      flex: 0 0 85%; /* En móvil cada carpeta ocupa el 85% de la pantalla */
+      flex: 0 0 82%;
       scroll-snap-align: center;
-      min-width: 280px;
     }
-    
     .b-folder__tab {
-      width: 70%; /* Un poco más ancha en móvil */
+      width: 70%;
     }
   }
 
   @media (max-width: 768px) {
     .k-problem {
-      padding: 100px 0;
+      margin-top: -60px;
+      padding: 120px 0 80px 0;
     }
     .k-problem__title {
       font-size: 2.2rem;
@@ -580,26 +469,19 @@
 </style>
 
 <script>
-  (function initProblemHolographicGlassWithAtmosBg() {
-    // Busca las carpetas cada medio segundo hasta que carguen en el DOM
-    const checkProblemExistAtmos = setInterval(function() {
+  (function initProblemInteractive() {
+    const checkProblemExist = setInterval(function() {
       const foldersProblem = document.querySelectorAll('.b-folder');
       if (foldersProblem.length > 0) {
-        clearInterval(checkProblemExistAtmos);
-        
+        clearInterval(checkProblemExist);
         foldersProblem.forEach(folder => {
           folder.addEventListener('mousemove', e => {
-            // Ignorar interacciones en pantallas táctiles pequeñas
             if (window.innerWidth <= 1024) return; 
-
-            const rectProblem = folder.getBoundingClientRect();
-            // Calcula la posición exacta del ratón dentro de la tarjeta
-            const xProblem = e.clientX - rectProblem.left;
-            const yProblem = e.clientY - rectProblem.top;
-            
-            // Pasa las variables al CSS (prefijo -b- para el problem)
-            folder.style.setProperty('--b-mouse-x', `${xProblem}px`);
-            folder.style.setProperty('--b-mouse-y', `${yProblem}px`);
+            const rect = folder.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            folder.style.setProperty('--b-mouse-x', `${x}px`);
+            folder.style.setProperty('--b-mouse-y', `${y}px`);
           });
         });
       }
