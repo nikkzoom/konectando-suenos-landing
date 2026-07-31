@@ -99,7 +99,12 @@
     position: relative;
     width: 100%;
     min-height: 100vh;
-    padding: 140px 0 250px 0; /* AQUÍ ESTÁ EL CAMBIO: 250px al final */
+    
+    /* LA MAGIA QUE BORRÉ POR ERROR: Vuelve a meterse debajo del Hero */
+    margin-top: -150px; 
+    
+    /* 250px arriba para empujar el texto, 250px abajo para recibir a la Solución */
+    padding: 250px 0 250px 0; 
     
     background-color: #020617;
     background-image: url('/assets/bg-limbo.jpeg');
