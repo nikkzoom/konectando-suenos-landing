@@ -90,6 +90,9 @@
     background-position: center top;
     background-repeat: no-repeat;
     z-index: 1;
+    /* LA MAGIA QUE FALTABA: Difumina el borde duro superior para cruzarse con el problema */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 250px, black 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 250px, black 100%);
   }
 
   .k-solution__top-fade {

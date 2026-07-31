@@ -122,9 +122,9 @@
     background-position: center top;
     background-repeat: no-repeat;
     z-index: -1;
-    /* Se desvanece al final para mezclarse con la Solución */
-    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%);
+    /* Difumina exactamente los últimos 250px de la imagen hacia abajo */
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black calc(100% - 250px), transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black calc(100% - 250px), transparent 100%);
   }
   .k-problem__bg-image {
     position: absolute;
