@@ -2,6 +2,12 @@
   
   <div class="k-problem__top-blend"></div>
 
+  <div class="k-problem__bg-pattern"></div>
+  <div class="k-problem__glow-orbs">
+    <div class="glow-orb orb-deep-blue"></div>
+    <div class="glow-orb orb-caotic-gold"></div>
+  </div>
+
   <div class="k-problem__container">
     
     <div class="k-problem__header fade-up">
@@ -20,41 +26,69 @@
       
       <article class="b-folder fade-up">
         <div class="b-folder__tab">
-          <span class="tab-code">01 // horas_perdidas</span>
+          <span class="b-tab-text">01 // horas_perdidas</span>
         </div>
         <div class="b-folder__body">
-          <h3>La trampa de la edición infinita</h3>
-          <p>Grabas durante 5 horas para obtener 60 segundos de video. El agotamiento de editar tú mismo devora la energía que deberías invertir en crear.</p>
+          <div class="card-meta">
+            <div class="spark-ring">
+              <img src="https://via.placeholder.com/24x24/10151e/f59e0b?text=⏳" alt="spark placeholder">
+            </div>
+          </div>
+          <div class="b-body-text">
+            <h3>La trampa de la edición infinita</h3>
+            <p>Grabas durante 5 horas para obtener 60 segundos de video. El agotamiento de editar tú mismo devora la energía que deberías invertir en crear.</p>
+          </div>
         </div>
       </article>
 
       <article class="b-folder fade-up">
         <div class="b-folder__tab">
-          <span class="tab-code">02 // algoritmo_invisible</span>
+          <span class="b-tab-text">02 // algoritmo_invisible</span>
         </div>
         <div class="b-folder__body">
-          <h3>Contenido que nadie ve</h3>
-          <p>Tu mensaje es increíble, pero si editas sin entender de narrativa y retención, perderás a tu audiencia en los primeros 3 segundos vitales. El algoritmo no perdona.</p>
+          <div class="card-meta">
+            <div class="spark-ring">
+              <img src="https://via.placeholder.com/24x24/10151e/f59e0b?text=📈" alt="spark placeholder">
+            </div>
+          </div>
+          <div class="b-body-text">
+            <h3>Contenido que nadie ve</h3>
+            <p>Tu mensaje es increíble, pero si editas sin entender de narrativa y retención, perderás a tu audiencia en los primeros 3 segundos vitales. El algoritmo no perdona.</p>
+          </div>
         </div>
       </article>
 
       <article class="b-folder fade-up">
         <div class="b-folder__tab">
-          <span class="tab-code">03 // sin_constancia</span>
+          <span class="b-tab-text">03 // sin_constancia</span>
         </div>
         <div class="b-folder__body">
-          <h3>El ciclo del burnout</h3>
-          <p>Publicar un video genial... y desaparecer durante semanas. La falta de un sistema de postproducción predecible y delegable te arrastra a la inconsistencia.</p>
+          <div class="card-meta">
+            <div class="spark-ring">
+              <img src="https://via.placeholder.com/24x24/10151e/f59e0b?text=🔄" alt="spark placeholder">
+            </div>
+          </div>
+          <div class="b-body-text">
+            <h3>El ciclo del burnout</h3>
+            <p>Publicar un video genial... y desaparecer durante semanas. La falta de un sistema de postproducción predecible y delegable te arrastra a la inconsistencia.</p>
+          </div>
         </div>
       </article>
 
       <article class="b-folder folder-accent fade-up">
         <div class="b-folder__tab">
-          <span class="tab-code">04 // suenos_en_el_disco</span>
+          <span class="b-tab-text">04 // suenos_en_el_disco</span>
         </div>
         <div class="b-folder__body">
-          <h3>El potencial desperdiciado</h3>
-          <p>Tu mejor versión sigue guardada en un disco duro. El verdadero fracaso no es intentarlo y fallar, es dejar que tu mejor material se pudra sin ver la luz.</p>
+          <div class="card-meta">
+            <div class="spark-ring">
+              <img src="https://via.placeholder.com/24x24/10151e/fcd34d?text=☁️" alt="spark placeholder">
+            </div>
+          </div>
+          <div class="b-body-text">
+            <h3>El potencial desperdiciado</h3>
+            <p>Tu mejor versión sigue guardada en un disco duro. El verdadero fracaso no es intentarlo y fallar, es dejar que tu mejor material se pudra porque nunca vio la luz.</p>
+          </div>
         </div>
       </article>
 
@@ -62,57 +96,97 @@
 </section>
 
 <style>
-.k-problem {
+  /* Base de la sección: Sincronización de fondo y solapamiento */
+  .k-problem {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    /* Subimos la sección por debajo del Hero para aprovechar la transparencia */
-    margin-top: -150px; 
-    padding: 180px 0 140px 0;
-    
-    background-image: url('/assets/bg-limbo.jpeg');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    
+    background-color: #020617; /* Sincronizado con Deep Navy Charcoal */
+    padding: 140px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-    /* Z-index menor para que se deslice por debajo del fundido del Hero */
-    z-index: 10; 
+    z-index: 10;
     overflow: hidden;
   }
 
-  /* Gradiente superior invisible que fusiona ambas imágenes celestiales */
+  /* 1. Transición Seamless con el Hero */
   .k-problem__top-blend {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 220px;
-    background: linear-gradient(to bottom, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0.4) 50%, transparent 100%);
+    height: 180px;
+    background: linear-gradient(to bottom, rgba(2, 6, 23, 0) 0%, rgba(2, 6, 23, 1) 100%);
     z-index: 1;
     pointer-events: none;
   }
 
+  /* 2. Pattern Atmosférico Sutil */
+  .k-problem__bg-pattern {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    /* Cuadrícula de puntos estilo tech sutil */
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 35px 35px;
+    opacity: 0.5;
+    mask-image: radial-gradient(circle at center, black 10%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at center, black 10%, transparent 80%);
+  }
+
+  .k-problem__glow-orbs {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.2;
+    animation: orbsDriftProblem 20s infinite alternate ease-in-out;
+  }
+
+  .orb-deep-blue {
+    width: 600px; height: 600px;
+    background: #0ea5e9;
+    top: 10%; left: -100px;
+  }
+
+  .orb-caotic-gold {
+    width: 700px; height: 700px;
+    background: rgba(245, 158, 11, 0.3); /* Caos/Atrapado */
+    bottom: -100px; right: -100px;
+    animation-delay: -10s;
+  }
+
+  @keyframes orbsDriftProblem {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(100px, 150px) scale(1.15); }
+  }
+
+  /* Contenedor Principal Expandido */
   .k-problem__container {
-    max-width: 1600px;
+    max-width: 1650px; /* Aumentado para dar aire horizontal y evitar wrapping */
     width: 92%;
     margin: 0 auto;
     position: relative;
     z-index: 10;
   }
 
-  /* Encabezado a 2 Columnas estilo Bilexer */
+  /* 3. Encabezado modular Bilexer */
   .k-problem__header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     gap: 4rem;
-    margin-bottom: 6rem;
+    margin-bottom: 7rem;
     padding: 0 1rem;
   }
 
@@ -124,7 +198,7 @@
     line-height: 1.1;
     letter-spacing: -0.03em;
     margin: 0;
-    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    text-shadow: 0 10px 30px rgba(0,0,0,0.4);
   }
 
   .text-gold {
@@ -145,85 +219,180 @@
     line-height: 1.7;
     font-weight: 400;
     margin: 0;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
   }
 
-  /* FILA DE CARPETAS DE CRISTAL (4 en Línea) */
+  /* 4. FILA DE CARPETAS DE CRISTAL FÍSICAS (Una sola línea expansiva) */
   .k-problem__row {
     display: flex;
     flex-direction: row;
     gap: 1.5rem;
     width: 100%;
+    align-items: stretch; /* Mismo alto */
   }
 
-  /* DISEÑO DE LA CARPETA FÍSICA ESTILO BILEXER */
+  /* DISEÑO DE LA CARPETA FÍSICA ESTILO BILEXER (Geometry Master) */
   .b-folder {
     flex: 1;
-    min-width: 260px;
+    min-width: 280px; /* Evita que se aplasten en pantallas pequeñas */
     display: flex;
     flex-direction: column;
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.25));
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.4s ease;
     cursor: default;
+    position: relative;
+    /* Efecto holográfico del mouse encapsulado */
+    --b-mouse-x: 50%;
+    --b-mouse-y: 50%;
   }
 
   .b-folder:hover {
     transform: translateY(-12px);
+    filter: drop-shadow(0 30px 50px rgba(0,0,0,0.4));
+    z-index: 10;
   }
 
-  /* Pestaña superior de la carpeta */
+  /* La Pestaña Física Separada (Tab) */
   .b-folder__tab {
-    width: 55%;
-    padding: 0.7rem 1.2rem;
+    width: 60%; /* Pestaña ancha de Bilexer */
+    align-self: flex-end; /* Pestaña en la esquina superior DERECHA de la carpeta */
+    padding: 0.8rem 1.4rem;
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-bottom: none;
-    border-radius: 14px 14px 0 0;
+    border-radius: 16px 16px 0 0; /* Radio premium de Bilexer */
     position: relative;
     z-index: 2;
     transition: background 0.3s ease, border-color 0.3s ease;
   }
 
-  .tab-code {
+  /* El resplandor que sigue al mouse (Borde de pestaña) */
+  .b-folder__tab::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      600px circle at var(--b-mouse-x) var(--b-mouse-y), 
+      rgba(255, 255, 255, 0.3), 
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+    border-radius: 16px 16px 0 0;
+  }
+  
+  .b-folder:hover .b-folder__tab::before {
+    opacity: 1;
+  }
+
+  .b-tab-text {
     font-family: monospace;
     font-size: 0.8rem;
     letter-spacing: 0.5px;
     color: #cbd5e1;
     transition: color 0.3s ease;
+    position: relative;
+    z-index: 2;
   }
 
-  .b-folder:hover .tab-code {
+  .b-folder:hover .b-tab-text {
     color: #ffffff;
   }
 
-  /* Cuerpo de la carpeta de cristal */
+  /* Cuerpo de la Carpeta de Cristal */
   .b-folder__body {
     background: rgba(255, 255, 255, 0.06);
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 0 18px 18px 18px; /* Conexión perfecta con el tab */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 18px 0 18px 18px; /* Conexión perfecta: Esquina superior DER recta */
     padding: 2.5rem 2rem;
     margin-top: -1px; /* Solapamiento de 1px imperceptible para unir pestaña y cuerpo */
     position: relative;
     z-index: 1;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
     height: 100%;
     transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
 
-  .b-folder:hover .b-folder__tab,
+  /* El resplandor holográfico interno que sigue al mouse */
+  .b-folder__body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      800px circle at var(--b-mouse-x) var(--b-mouse-y), 
+      rgba(255, 255, 255, 0.06) 0%, 
+      transparent 65%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    border-radius: 18px 0 18px 18px;
+    z-index: 1;
+  }
+  
+  .b-folder:hover .b-folder__body::before {
+    opacity: 1;
+  }
+
   .b-folder:hover .b-folder__body {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
   }
 
-  .b-folder:hover .b-folder__body {
-    box-shadow: 0 35px 65px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  /* Meta data (Spark Icon) */
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    z-index: 2;
   }
 
-  .b-folder__body h3 {
+  /* El "Anillo Spark": el sueño atrapado borroso */
+  .spark-ring {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.25);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .b-folder:hover .spark-ring {
+    border-color: #ffffff;
+    box-shadow: 0 0 15px rgba(255,255,255,0.4);
+    transform: scale(1.1);
+  }
+
+  .spark-ring img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(1.5px) sepia(1) hue-rotate(15deg); /* Efecto borroso, dorado/sepia */
+    transition: filter 0.3s ease;
+  }
+  
+  .b-folder:hover .spark-ring img {
+    filter: blur(0.5px) sepia(1) hue-rotate(15deg) brightness(1.2);
+  }
+
+  /* Cuerpo */
+  .b-body-text {
+    flex-grow: 1;
+    position: relative;
+    z-index: 2;
+  }
+
+  .b-body-text h3 {
     font-size: 1.4rem;
     color: #ffffff;
     margin-top: 0;
@@ -231,9 +400,14 @@
     font-weight: 600;
     line-height: 1.25;
     letter-spacing: -0.01em;
+    
+    /* CORRECCIÓN CLAVE: Títulos en una sola línea con elipsis */
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  .b-folder__body p {
+  .b-body-text p {
     color: #e2e8f0;
     font-size: 1.05rem;
     line-height: 1.65;
@@ -242,30 +416,59 @@
   }
 
   /* CARPETA ACENTO DORADO (La cuarta) */
-  .folder-accent .b-folder__tab {
+  .folder-accent .b-folder__tab,
+  .folder-accent .b-folder__body {
     background: rgba(245, 158, 11, 0.12);
     border-color: rgba(245, 158, 11, 0.35);
   }
-  .folder-accent .b-folder__body {
-    background: rgba(245, 158, 11, 0.08);
-    border-color: rgba(245, 158, 11, 0.35);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(245, 158, 11, 0.3);
-  }
-  .folder-accent .tab-code {
-    color: #fcd34d;
+
+  /* El resplandor ámbar al hover en la acento */
+  .folder-accent:hover .b-folder__body::before {
+    background: radial-gradient(
+      800px circle at var(--b-mouse-x) var(--b-mouse-y), 
+      rgba(245, 158, 11, 0.12) 0%, 
+      transparent 65%
+    );
   }
 
-  .folder-accent:hover .b-folder__tab {
+  /* Borde ámbar que sigue al ratón en la acento */
+  .folder-accent::before {
+    background: radial-gradient(
+      600px circle at var(--b-mouse-x) var(--b-mouse-y), 
+      rgba(245, 158, 11, 0.6), 
+      transparent 40%
+    );
+  }
+
+  .folder-accent .b-folder__tab::before {
+    border-radius: 16px 16px 0 0;
+    background: radial-gradient(
+      600px circle at var(--b-mouse-x) var(--b-mouse-y), 
+      rgba(245, 158, 11, 0.6), 
+      transparent 40%
+    );
+  }
+
+  .folder-accent:hover .b-folder__tab,
+  .folder-accent:hover .b-folder__body {
     background: rgba(245, 158, 11, 0.22);
     border-color: rgba(245, 158, 11, 0.6);
   }
-  .folder-accent:hover .b-folder__body {
-    background: rgba(245, 158, 11, 0.15);
-    border-color: rgba(245, 158, 11, 0.6);
-    box-shadow: 0 35px 65px rgba(245, 158, 11, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+
+  .folder-accent .tab-code {
+    color: #fcd34d;
+  }
+  
+  .folder-accent .spark-ring {
+    border-color: rgba(245, 158, 11, 0.4);
+  }
+  
+  .folder-accent:hover .spark-ring {
+    border-color: #fcd34d;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
   }
 
-  /* Animaciones */
+  /* Animaciones de Scroll */
   .fade-up {
     opacity: 0;
     transform: translateY(40px);
@@ -278,18 +481,27 @@
 
   /* RESPONSIVO MÓVIL Y TABLET */
   @media (max-width: 1024px) {
+    .k-problem__container {
+      max-width: 100%;
+    }
+    
     .k-problem__header {
       flex-direction: column;
       gap: 1.5rem;
       text-align: left;
     }
-
+    
     /* Scroll horizontal táctil con el dedo en móvil */
     .k-problem__row {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scroll-snap-type: x mandatory;
-      padding-bottom: 30px;
+      padding: 0 1rem 40px 1rem;
+      gap: 1rem;
+      width: calc(100% + 2rem);
+      margin-left: -1rem;
+      
+      /* Oculta la barra de scroll para que se vea limpio */
       scrollbar-width: none; 
       -ms-overflow-style: none;
     }
@@ -298,15 +510,19 @@
     }
 
     .b-folder {
-      flex: 0 0 82%;
+      flex: 0 0 85%; /* En móvil cada carpeta ocupa el 85% de la pantalla */
       scroll-snap-align: center;
+      min-width: 280px;
+    }
+    
+    .b-folder__tab {
+      width: 70%; /* Un poco más ancha en móvil */
     }
   }
 
   @media (max-width: 768px) {
     .k-problem {
-      margin-top: -60px;
-      padding: 120px 0 80px 0;
+      padding: 100px 0;
     }
     .k-problem__title {
       font-size: 2.2rem;
@@ -316,3 +532,31 @@
     }
   }
 </style>
+
+<script>
+  (function initProblemHolographicGlass() {
+    // Busca las carpetas cada medio segundo hasta que carguen en el DOM
+    const checkProblemExist = setInterval(function() {
+      const folders = document.querySelectorAll('.b-folder');
+      if (folders.length > 0) {
+        clearInterval(checkProblemExist);
+        
+        folders.forEach(folder => {
+          folder.addEventListener('mousemove', e => {
+            // Ignorar interacciones en pantallas táctiles pequeñas
+            if (window.innerWidth <= 1024) return; 
+
+            const rect = folder.getBoundingClientRect();
+            // Calcula la posición exacta del ratón dentro de la tarjeta
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Pasa las variables al CSS (prefijo -b- para el problem)
+            folder.style.setProperty('--b-mouse-x', `${x}px`);
+            folder.style.setProperty('--b-mouse-y', `${y}px`);
+          });
+        });
+      }
+    }, 100); 
+  })();
+</script>
