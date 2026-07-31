@@ -42,7 +42,7 @@
           <div class="bento-text">
             <div class="bento-badge bento-badge--gold">Postproducción</div>
             <h3>Edición Cinematográfica</h3>
-            <p>Cortes precisos, sound design inmersivo que eriza la piel y corrección de color profesional. Transformamos un video grabado en tu cuarto en una pieza audiovisual que proyecta autoridad absoluta.</p>
+            <p>Cortes precisos, sound design inmersivo que eriza la piel y corrección de color profesional. Transformamos un video en una pieza que proyecta autoridad absoluta.</p>
           </div>
         </div>
       </article>
@@ -97,8 +97,8 @@
 
   /* CONTENEDOR Y TEXTOS */
   .k-solution__container {
-    max-width: 1400px;
-    width: 90%;
+    max-width: 1500px;
+    width: 92%;
     margin: 0 auto;
     position: relative;
     z-index: 10;
@@ -107,7 +107,7 @@
   .k-solution__header {
     text-align: center;
     max-width: 800px;
-    margin: 0 auto 4rem auto;
+    margin: 0 auto 3rem auto; /* Margen inferior reducido para ahorrar espacio vertical */
   }
 
   .k-solution__title {
@@ -136,22 +136,22 @@
   }
 
   /* ========================================================
-     NUEVO: BENTO BOX INTERACTIVO
+     BENTO BOX: AHORA 3 COLUMNAS HORIZONTALES PARA PC
   ======================================================== */
   .k-solution__bento {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Dos columnas en PC */
-    grid-template-rows: auto auto;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+    grid-template-rows: auto;
     gap: 1.5rem;
     width: 100%;
-    max-width: 1100px;
+    max-width: 1400px; /* Abarca más horizontalmente */
     margin: 0 auto;
   }
 
-  /* Ubicación en el Grid */
+  /* Todas ocupan 1 sola fila en PC */
   .bento-1 { grid-column: 1; grid-row: 1; }
-  .bento-2 { grid-column: 2; grid-row: 1 / span 2; } /* Esta ocupa dos filas, es más alta */
-  .bento-3 { grid-column: 1; grid-row: 2; }
+  .bento-2 { grid-column: 2; grid-row: 1; } 
+  .bento-3 { grid-column: 3; grid-row: 1; }
 
   /* La Tarjeta de Cristal */
   .bento-card {
@@ -174,7 +174,7 @@
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
-  /* Spotlight (La luz que sigue al ratón, impulsada por JS) */
+  /* Spotlight (La luz que sigue al ratón) */
   .bento-card__glow {
     position: absolute;
     inset: 0;
@@ -204,18 +204,19 @@
 
   /* Contenido interno */
   .bento-card__content {
-    padding: 2.5rem;
+    padding: 2rem; /* Reducido un poco para que quepa perfecto en la pantalla vertical */
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
     position: relative;
     z-index: 2;
     width: 100%;
+    height: 100%;
   }
 
-  /* Animaciones Visuales Internas (Para que no se vea aburrido) */
+  /* Altura visual controlada para no pasarse de la pantalla */
   .bento-visual {
-    height: 100px;
+    height: 140px;
     background: rgba(255, 255, 255, 0.03);
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -225,8 +226,7 @@
     overflow: hidden;
   }
   .bento-visual--tall {
-    flex-grow: 1; /* En la tarjeta alta, esto ocupa el espacio sobrante */
-    min-height: 200px;
+    height: 160px; /* Solo un poco más alta visualmente para destacar la del centro */
   }
 
   /* Textos de la tarjeta */
@@ -324,18 +324,21 @@
   .fade-up.is-visible { opacity: 1; transform: translateY(0); }
 
   /* ========================================================
-     RESPONSIVO (En móvil, apiladas pero TODAS se leen)
+     RESPONSIVO (En móvil, apiladas verticalmente, INTACTAS)
   ======================================================== */
   @media (max-width: 1024px) {
     .k-solution__bento {
-      grid-template-columns: 1fr; /* Una sola columna */
+      grid-template-columns: 1fr; /* Una sola columna para tablets y móviles */
     }
     .bento-1, .bento-2, .bento-3 {
       grid-column: 1;
       grid-row: auto;
     }
+    .bento-visual {
+      height: 120px;
+    }
     .bento-visual--tall {
-      min-height: 150px;
+      height: 150px;
     }
   }
 
@@ -357,7 +360,7 @@
         clearInterval(checkBento);
         
         cards.forEach(card => {
-          // El brillo mágico que sigue el ratón (efecto Apple)
+          // El brillo mágico que sigue el ratón
           card.addEventListener('mousemove', e => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left;
