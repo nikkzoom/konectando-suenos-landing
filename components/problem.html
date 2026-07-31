@@ -100,21 +100,31 @@
     position: relative;
     width: 100%;
     min-height: 100vh;
-    margin-top: 0; /* CERO MÁRGENES NEGATIVOS */
-    padding: 140px 0; 
-    
-    background-color: #020617; /* El color clave del puente */
-    background-image: url('/assets/bg-limbo.jpeg');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    
+    /* EL TRUCO: Tira la sección hacia arriba para meterse DEBAJO del Hero */
+    margin-top: -200px; 
+    padding: 300px 0 140px 0; /* Empuja el contenido hacia abajo para que no se monte */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 10;
-    overflow: hidden;
+    z-index: 10; /* Queda debajo del Hero (20) */
+    background-color: transparent;
+  }
+
+  /* EL FONDO DEL PROBLEMA AISLADO */
+  .k-problem::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: #020617;
+    background-image: url('/assets/bg-limbo.jpeg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    z-index: -1;
+    /* Se desvanece al final para mezclarse con la Solución */
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%);
   }
   .k-problem__bg-image {
     position: absolute;

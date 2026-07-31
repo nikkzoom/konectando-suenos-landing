@@ -76,19 +76,19 @@
     overflow: hidden;
     padding: 120px 5% 80px 5%;
     box-sizing: border-box;
-    background-color: #020617; /* Base oscura perfecta que conectará con el problema */
+    /* IMPORTANTE: Debe ser transparente para que se vea el fondo de abajo */
+    background-color: transparent; 
     z-index: 20; 
   }
-  
+
   .k-hero__bg-container {
     position: absolute;
     inset: -30px; 
     z-index: 1;
-    /* ESTA ES LA SOLUCIÓN AL MANCHÓN: La imagen se vuelve transparente suavemente, revelando el #020617 de fondo de forma limpia */
-    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
+    /* LA MÁSCARA CLAVE: Hace que la imagen dorada se desvanezca en la parte inferior */
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 75%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 75%, transparent 100%);
   }
-
   /* ELIMINAMOS LA CLASE .k-hero__bottom-fade POR COMPLETO */
 
   .k-hero__bg-image {

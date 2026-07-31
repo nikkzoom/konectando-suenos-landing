@@ -72,13 +72,14 @@
     position: relative;
     width: 100%;
     min-height: 100vh;
-    margin-top: 0; /* CERO MÁRGENES NEGATIVOS. Esto arregla el solapamiento */
-    padding: 160px 0; /* Espacio limpio para respirar */
+    /* Se mete DEBAJO de la sección del Problema */
+    margin-top: -200px;
+    padding: 300px 0 120px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 10; 
+    z-index: 5; /* Queda debajo del Problema (10) */
   }
 
   .k-solution__bg-image {
@@ -89,7 +90,6 @@
     background-position: center top;
     background-repeat: no-repeat;
     z-index: 1;
-    /* ELIMINAMOS EL MASK-IMAGE DE AQUÍ */
   }
 
   .k-solution__top-fade {
