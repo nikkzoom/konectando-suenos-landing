@@ -80,11 +80,53 @@ function initBentoInteractive() {
 }
 
 /* --- LÓGICA INTERACTIVA DEL PORTAFOLIO (Museo & Reproductor) --- */
+/* --- LÓGICA INTERACTIVA DEL PORTAFOLIO (Carrusel 3D y Modal) --- */
 function initPortfolioInteractive() {
-    const posters = document.querySelectorAll('.museum-poster');
+    const cards = document.querySelectorAll('.vision-card');
+    const prevBtn = document.getElementById('visionPrev');
+    const nextBtn = document.getElementById('visionNext');
+    let currentIndex = 0;
+
+    // Función para calcular posiciones 3D
+    function updateCarousel() {
+        cards.forEach((card, index) => {
+            // Limpiamos clases
+            card.classList.remove('active', 'prev', 'next', 'hidden-left', 'hidden-right');
+
+            if (index === currentIndex) {
+                card.classList.add('active');
+            } else if (index === currentIndex - 1) {
+                card.classList.add('prev');
+            } else if (index === currentIndex + 1) {
+                card.classList.add('next');
+            } else if (index < currentIndex - 1) {
+                card.classList.add('hidden-left');
+            } else if (index > currentIndex + 1) {
+                card.classList.add('hidden-right');
+            }
+        });
+    }
+
+    // Navegación con botones
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < cards.length - 1) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+    }
+
+    // Modal
     const modal = document.getElementById('portfolioModal');
-    
-    if (posters.length > 0 && modal) {
+    if (cards.length > 0 && modal) {
         const modalCloseBtn = document.getElementById('modalCloseBtn');
         const modalCloseBg = document.getElementById('modalCloseBg');
         const modalTitle = document.getElementById('modalTitle');
@@ -92,26 +134,32 @@ function initPortfolioInteractive() {
         const modalStory = document.getElementById('modalStory');
         const modalVideo = document.getElementById('modalVideo');
 
-        // Abrir Modal
-        posters.forEach(poster => {
-            poster.addEventListener('click', () => {
-                modalTitle.textContent = poster.getAttribute('data-client');
-                modalRole.textContent = poster.getAttribute('data-role');
-                modalStory.textContent = poster.getAttribute('data-story');
-                modalVideo.src = poster.getAttribute('data-video');
+        cards.forEach((card, index) => {
+            card.addEventListener('click', () => {
+                // Si la tarjeta no es la central, al hacer click gira hacia ella
+                if (index !== currentIndex) {
+                    currentIndex = index;
+                    updateCarousel();
+                    return;
+                }
+
+                // Si ya está en el centro, abre el modal
+                modalTitle.textContent = card.getAttribute('data-client');
+                modalRole.textContent = card.getAttribute('data-role');
+                modalStory.textContent = card.getAttribute('data-story');
+                modalVideo.src = card.getAttribute('data-video');
                 modalVideo.play();
                 
                 modal.classList.add('is-active');
-                document.body.style.overflow = 'hidden'; // Evitar scroll del fondo
+                document.body.style.overflow = 'hidden'; 
             });
         });
 
-        // Cerrar Modal
         const closeModal = () => {
             modal.classList.remove('is-active');
             modalVideo.pause();
-            modalVideo.src = ""; // Limpiar el video para ahorrar rendimiento
-            document.body.style.overflow = ''; // Restaurar scroll
+            modalVideo.src = ""; 
+            document.body.style.overflow = ''; 
         };
 
         if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
