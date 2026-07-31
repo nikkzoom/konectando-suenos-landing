@@ -112,6 +112,12 @@
     align-items: center;
     z-index: 10;
     overflow: hidden;
+  /* ... (tus otros estilos se mantienen igual) ... */
+    z-index: 20; 
+
+    /* ESTO ES LO NUEVO: Borra el borde recto y lo difumina hacia abajo */
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 88%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 88%, transparent 100%);
   }
 
   .k-problem__top-blend {
