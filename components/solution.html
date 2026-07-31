@@ -1,7 +1,6 @@
 <section id="solucion" class="k-solution">
   
   <div class="k-solution__bg-image"></div>
-  <div class="k-solution__bg-image"></div>
   
   <div class="k-solution__container">
     
@@ -10,55 +9,59 @@
         Tu contenido, <span class="text-gold">elevado a nivel cine.</span>
       </h2>
       <p class="k-solution__subtitle">
-        No somos solo "editores de video". Creamos el sistema completo para que tú solo tengas que encender la cámara y nosotros nos encarguemos de hacerte viral.
+        No somos solo "editores de video". Creamos el ecosistema completo para que tú solo tengas que encender la cámara y nosotros nos encarguemos de hacerte viral.
       </p>
     </div>
 
-    <div class="k-solution__accordion fade-up">
+    <div class="k-solution__bento">
       
-      <article class="acc-panel">
-        <div class="acc-panel__bg"></div>
-        <div class="acc-panel__content">
-          <div class="acc-panel__icon">1</div>
-          <div class="acc-panel__text">
-            <h3 class="acc-title">El Gancho y la Estrategia</h3>
-            <p class="acc-desc">
-              Sabemos qué hace que la gente se quede. Diseñamos los primeros 3 segundos de tu video para atrapar la atención de inmediato, y estructuramos el guion para que se enamoren de tu contenido hasta el final.
-            </p>
-            <span class="acc-action">Dejar de ser ignorado ✦</span>
+      <article class="bento-card bento-1 fade-up" style="transition-delay: 0.1s;">
+        <div class="bento-card__glow"></div>
+        <div class="bento-card__content">
+          <div class="bento-visual">
+            <div class="visual-target">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="bento-text">
+            <div class="bento-badge">Estrategia</div>
+            <h3>El Gancho Perfecto</h3>
+            <p>Diseñamos los primeros 3 segundos de tu video con psicología de retención para atrapar la atención y detener el scroll de inmediato.</p>
           </div>
         </div>
-        <div class="acc-panel__collapsed-title">01 // Estrategia</div>
       </article>
 
-      <article class="acc-panel active">
-        <div class="acc-panel__bg acc-panel__bg--gold"></div>
-        <div class="acc-panel__content">
-          <div class="acc-panel__icon gold-icon">2</div>
-          <div class="acc-panel__text">
-            <h3 class="acc-title">Edición que Atrapa</h3>
-            <p class="acc-desc">
-              Cortes precisos, música que eriza la piel, efectos de sonido inmersivos y corrección de color. Transformamos un video grabado en tu cuarto en una experiencia visual que proyecta pura autoridad.
-            </p>
-            <span class="acc-action">Elevar mi calidad ✦</span>
+      <article class="bento-card bento-2 bento-card--accent fade-up" style="transition-delay: 0.2s;">
+        <div class="bento-card__glow"></div>
+        <div class="bento-card__content">
+          <div class="bento-visual bento-visual--tall">
+            <div class="visual-wave">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="bento-text">
+            <div class="bento-badge bento-badge--gold">Postproducción</div>
+            <h3>Edición Cinematográfica</h3>
+            <p>Cortes precisos, sound design inmersivo que eriza la piel y corrección de color profesional. Transformamos un video grabado en tu cuarto en una pieza audiovisual que proyecta autoridad absoluta.</p>
           </div>
         </div>
-        <div class="acc-panel__collapsed-title">02 // Edición</div>
       </article>
 
-      <article class="acc-panel">
-        <div class="acc-panel__bg"></div>
-        <div class="acc-panel__content">
-          <div class="acc-panel__icon">3</div>
-          <div class="acc-panel__text">
-            <h3 class="acc-title">Omnipresencia Digital</h3>
-            <p class="acc-desc">
-              Graba una sola vez. Nosotros exprimimos ese material y lo adaptamos en formato vertical y horizontal para que domines YouTube, TikTok, Instagram Reels y Facebook al mismo tiempo sin esfuerzo extra.
-            </p>
-            <span class="acc-action">Multiplicar mi alcance ✦</span>
+      <article class="bento-card bento-3 fade-up" style="transition-delay: 0.3s;">
+        <div class="bento-card__glow"></div>
+        <div class="bento-card__content">
+          <div class="bento-visual">
+            <div class="visual-orbit">
+              <div class="orbit-center"></div>
+              <div class="orbit-ring"></div>
+            </div>
+          </div>
+          <div class="bento-text">
+            <div class="bento-badge">Distribución</div>
+            <h3>Omnipresencia</h3>
+            <p>Graba una sola vez. Nosotros exprimimos tu material para YouTube, TikTok, e Instagram Reels. Domina todas las plataformas sin esfuerzo extra.</p>
           </div>
         </div>
-        <div class="acc-panel__collapsed-title">03 // Distribución</div>
       </article>
 
     </div>
@@ -66,17 +69,18 @@
 </section>
 
 <style>
+  /* FONDOS (NO SE TOCARON PARA MANTENER LA TRANSICIÓN PERFECTA) */
   .k-solution {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    margin-top: -250px; /* Sube y se monta sobre el problema */
-    padding: 250px 0 150px 0; /* Empuja el texto para que no choque */
+    margin-top: -250px; 
+    padding: 250px 0 150px 0; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 20; /* IMPORTANTE: Mayor al problema (10) para estar por encima */
+    z-index: 20; 
   }
 
   .k-solution__bg-image {
@@ -87,22 +91,11 @@
     background-position: center top;
     background-repeat: no-repeat;
     z-index: 1;
-    /* ESTA MÁSCARA HACE EL FUNDIDO PERFECTO SOBRE LAS NUBES OSCURAS */
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 250px, black 100%);
     mask-image: linear-gradient(to bottom, transparent 0%, black 250px, black 100%);
   }
 
-  .k-solution__top-fade {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 250px;
-    /* Recibe el azul oscuro del Problema y lo desvanece para revelar el Amanecer */
-    background: linear-gradient(to bottom, #020617 0%, transparent 100%);
-    z-index: 2;
-    pointer-events: none;
-  }
+  /* CONTENEDOR Y TEXTOS */
   .k-solution__container {
     max-width: 1400px;
     width: 90%;
@@ -111,7 +104,6 @@
     z-index: 10;
   }
 
-  /* ENCABEZADO */
   .k-solution__header {
     text-align: center;
     max-width: 800px;
@@ -137,233 +129,241 @@
 
   .k-solution__subtitle {
     font-size: clamp(1.1rem, 1.4vw, 1.25rem);
-    color: #cbd5e1; /* Gris más claro para leer fácil */
+    color: #cbd5e1;
     line-height: 1.6;
     margin: 0;
     text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
   }
 
   /* ========================================================
-     EL ACORDEÓN INTERACTIVO (LA MAGIA)
+     NUEVO: BENTO BOX INTERACTIVO
   ======================================================== */
-  .k-solution__accordion {
-    display: flex;
+  .k-solution__bento {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas en PC */
+    grid-template-rows: auto auto;
     gap: 1.5rem;
     width: 100%;
-    height: 500px; /* Altura fija para el efecto de expansión */
+    max-width: 1100px;
+    margin: 0 auto;
   }
 
-  /* El Panel (La Tarjeta) */
-  .acc-panel {
-    position: relative;
+  /* Ubicación en el Grid */
+  .bento-1 { grid-column: 1; grid-row: 1; }
+  .bento-2 { grid-column: 2; grid-row: 1 / span 2; } /* Esta ocupa dos filas, es más alta */
+  .bento-3 { grid-column: 1; grid-row: 2; }
+
+  /* La Tarjeta de Cristal */
+  .bento-card {
+    background: rgba(10, 15, 30, 0.5);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 24px;
+    position: relative;
     overflow: hidden;
-    cursor: pointer;
-    /* Flex fluido para la expansión */
-    flex: 1; 
-    transition: flex 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: rgba(10, 15, 30, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    cursor: default;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+    display: flex;
   }
 
-  /* Cuando se le pasa el mouse, crece ocupando más espacio */
-  .acc-panel:hover, .acc-panel.active {
-    flex: 3;
-    background: rgba(10, 15, 30, 0.8);
-    border-color: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+  /* Hover Principal: Flota y brilla */
+  .bento-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
-  /* Efecto de luz interna en el panel */
-  .acc-panel__bg {
+  /* Spotlight (La luz que sigue al ratón, impulsada por JS) */
+  .bento-card__glow {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.1), transparent 60%);
+    background: radial-gradient(
+      600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+      rgba(255, 255, 255, 0.08), 
+      transparent 40%
+    );
     opacity: 0;
-    transition: opacity 0.6s ease;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
   }
-  .acc-panel:hover .acc-panel__bg, .acc-panel.active .acc-panel__bg {
-    opacity: 1;
+  .bento-card:hover .bento-card__glow { opacity: 1; }
+
+  .bento-card--accent:hover {
+    border-color: rgba(245, 158, 11, 0.4);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(245, 158, 11, 0.3);
   }
-  .acc-panel__bg--gold {
-    background: radial-gradient(circle at 50% 100%, rgba(245, 158, 11, 0.2), transparent 60%);
+  .bento-card--accent .bento-card__glow {
+    background: radial-gradient(
+      600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+      rgba(245, 158, 11, 0.12), 
+      transparent 40%
+    );
   }
 
-  /* Contenido dentro del panel */
-  .acc-panel__content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+  /* Contenido interno */
+  .bento-card__content {
     padding: 2.5rem;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    /* Prevenir que el texto se apriete feo al estar pequeño */
-    min-width: 400px; 
-    pointer-events: none;
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+    width: 100%;
   }
 
-  /* Mostrar contenido solo al expandir */
-  .acc-panel:hover .acc-panel__content, .acc-panel.active .acc-panel__content {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  .acc-panel__icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+  /* Animaciones Visuales Internas (Para que no se vea aburrido) */
+  .bento-visual {
+    height: 100px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: #ffffff;
-  }
-  .gold-icon {
-    color: #fcd34d;
-    background: rgba(245, 158, 11, 0.2);
-    border-color: rgba(245, 158, 11, 0.5);
-  }
-
-  .acc-title {
-    font-size: 1.8rem;
-    color: #ffffff;
-    margin: 0 0 1rem 0;
-    line-height: 1.1;
-  }
-
-  .acc-desc {
-    color: #cbd5e1;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    margin: 0 0 1.5rem 0;
-    /* Limitar el texto a 4 líneas si la pantalla es pequeña */
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
     overflow: hidden;
   }
+  .bento-visual--tall {
+    flex-grow: 1; /* En la tarjeta alta, esto ocupa el espacio sobrante */
+    min-height: 200px;
+  }
 
-  .acc-action {
-    color: #f59e0b;
-    font-weight: 600;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+  /* Textos de la tarjeta */
+  .bento-badge {
+    font-size: 0.75rem;
     text-transform: uppercase;
-  }
-
-  /* Título visible cuando el panel está contraído (Texto rotado) */
-  .acc-panel__collapsed-title {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%) rotate(-90deg);
-    transform-origin: left bottom;
-    font-family: monospace;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 1.1rem;
     letter-spacing: 2px;
-    white-space: nowrap;
-    transition: opacity 0.3s ease;
+    color: #94a3b8;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.4rem 0.8rem;
+    border-radius: 100px;
+    display: inline-block;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .bento-badge--gold {
+    color: #fcd34d;
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.3);
   }
 
-  /* Ocultar el título rotado cuando se expande */
-  .acc-panel:hover .acc-panel__collapsed-title, .acc-panel.active .acc-panel__collapsed-title {
-    opacity: 0;
+  .bento-text h3 {
+    font-size: 1.6rem;
+    color: #ffffff;
+    margin: 0 0 1rem 0;
+    font-weight: 700;
   }
 
-  /* Animación general */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
-  .fade-up.is-visible {
-    opacity: 1;
-    transform: translateY(0);
+  .bento-text p {
+    color: #cbd5e1;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
   }
 
   /* ========================================================
-     RESPONSIVO (En móvil, el acordeón se vuelve vertical)
+     MINI ANIMACIONES CSS (Gráficos abstractos)
+  ======================================================== */
+  /* Target (Estrategia) */
+  .visual-target {
+    position: relative;
+    width: 60px; height: 60px;
+  }
+  .visual-target span {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .visual-target span:nth-child(1) { width: 100%; height: 100%; border-style: dashed; animation: spin 10s linear infinite; }
+  .visual-target span:nth-child(2) { width: 60%; height: 60%; border-color: rgba(255,255,255,0.4); }
+  .visual-target span:nth-child(3) { width: 20%; height: 20%; background: #ffffff; }
+  @keyframes spin { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+
+  /* Ondas (Edición) */
+  .visual-wave {
+    display: flex; gap: 4px; align-items: center;
+  }
+  .visual-wave span {
+    width: 6px; height: 10px;
+    background: #f59e0b;
+    border-radius: 100px;
+    animation: wave 1s ease-in-out infinite alternate;
+  }
+  .visual-wave span:nth-child(1) { animation-delay: 0.1s; }
+  .visual-wave span:nth-child(2) { animation-delay: 0.3s; }
+  .visual-wave span:nth-child(3) { animation-delay: 0.0s; }
+  .visual-wave span:nth-child(4) { animation-delay: 0.4s; }
+  .visual-wave span:nth-child(5) { animation-delay: 0.2s; }
+  .visual-wave span:nth-child(6) { animation-delay: 0.5s; }
+  .visual-wave span:nth-child(7) { animation-delay: 0.1s; }
+  @keyframes wave { 0% { height: 10px; opacity: 0.4; } 100% { height: 60px; opacity: 1; box-shadow: 0 0 10px #f59e0b; } }
+
+  /* Orbit (Distribución) */
+  .visual-orbit {
+    position: relative; width: 80px; height: 80px;
+  }
+  .orbit-center {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 20px; height: 20px; background: #ffffff; border-radius: 50%;
+  }
+  .orbit-ring {
+    position: absolute; inset: 0;
+    border: 1px dashed rgba(255,255,255,0.3);
+    border-radius: 50%;
+    animation: pulseRing 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  @keyframes pulseRing {
+    0% { transform: scale(0.5); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+
+  /* Intro Animation */
+  .fade-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+  .fade-up.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* ========================================================
+     RESPONSIVO (En móvil, apiladas pero TODAS se leen)
   ======================================================== */
   @media (max-width: 1024px) {
-    .k-solution__accordion {
-      flex-direction: column;
-      height: auto; /* Ya no es fijo, crece verticalmente */
-      gap: 1rem;
+    .k-solution__bento {
+      grid-template-columns: 1fr; /* Una sola columna */
     }
-    
-    .acc-panel {
-      height: 100px; /* Altura contraída en móvil */
+    .bento-1, .bento-2, .bento-3 {
+      grid-column: 1;
+      grid-row: auto;
     }
-
-    .acc-panel:hover, .acc-panel.active {
-      height: 380px; /* Altura expandida en móvil */
-      flex: none; /* Quitamos flex-grow horizontal */
-    }
-
-    .acc-panel__content {
-      min-width: 100%;
-      padding: 2rem;
-    }
-
-    .acc-panel__collapsed-title {
-      transform: translateY(-50%);
-      top: 50%;
-      left: 2rem;
-      bottom: auto;
-    }
-
-    .acc-title {
-      font-size: 1.5rem;
+    .bento-visual--tall {
+      min-height: 150px;
     }
   }
 
   @media (max-width: 768px) {
     .k-solution {
-      padding: 100px 0 80px 0;
-      margin-top: -80px;
+      padding: 150px 0 100px 0; /* Ajuste limpio para móvil */
     }
-    .k-solution__title {
-      font-size: 2.2rem;
-    }
-    .acc-panel:hover, .acc-panel.active {
-      height: 420px; /* Más espacio para leer en celular */
-    }
+    .k-solution__title { font-size: 2.2rem; }
+    .bento-card__content { padding: 2rem; }
+    .bento-text h3 { font-size: 1.4rem; }
   }
 </style>
 
 <script>
-  (function initSolutionAccordion() {
-    const checkAccordion = setInterval(() => {
-      const panels = document.querySelectorAll('.acc-panel');
-      if (panels.length > 0) {
-        clearInterval(checkAccordion);
+  (function initSolutionBento() {
+    const checkBento = setInterval(() => {
+      const cards = document.querySelectorAll('.bento-card');
+      if (cards.length > 0) {
+        clearInterval(checkBento);
         
-        panels.forEach(panel => {
-          // Evento de hover en PC
-          panel.addEventListener('mouseenter', () => {
-            // Quitamos la clase 'active' de todos
-            panels.forEach(p => p.classList.remove('active'));
-            // Se la ponemos solo al que tiene el mouse
-            panel.classList.add('active');
-          });
-
-          // En móvil, el click activa el panel
-          panel.addEventListener('click', () => {
-            panels.forEach(p => p.classList.remove('active'));
-            panel.classList.add('active');
+        cards.forEach(card => {
+          // El brillo mágico que sigue el ratón (efecto Apple)
+          card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
           });
         });
       }
