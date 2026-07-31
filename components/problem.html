@@ -1,7 +1,6 @@
 <section id="problema" class="k-problem">
   
-  <div class="k-problem__top-fade"></div>
-  <div class="k-problem__top-blend"></div>
+  <div class="k-problem__bg-image"></div>
 
   <div class="k-problem__container">
     
@@ -19,73 +18,45 @@
 
     <div class="k-problem__row">
       
-      <article class="b-folder fade-up">
-        <div class="b-folder__tab">
-          <span class="tab-code">01 // horas_perdidas</span>
-        </div>
-        <div class="b-folder__body">
-          <div class="card-meta">
-            <div class="spark-ring">
-              <img src="https://via.placeholder.com/24x24/10151e/f59e0b?text=⏳" alt="spark">
-            </div>
+      <div class="k-folder-wrapper fade-up" style="transition-delay: 0.1s;">
+        <article class="k-folder">
+          <div class="k-folder__tab"></div>
+          <div class="k-folder__body">
+            <h3 class="k-folder__title">La trampa de la edición infinita</h3>
+            <p class="k-folder__desc">Grabas durante 5 horas para obtener 60 segundos de video. El agotamiento de editar tú mismo devora la energía que deberías invertir en crear.</p>
           </div>
-          <div class="b-body-text">
-            <h3>La trampa de la edición infinita</h3>
-            <p>Grabas durante 5 horas para obtener 60 segundos de video. El agotamiento de editar tú mismo devora la energía que deberías invertir en crear.</p>
-          </div>
-        </div>
-      </article>
+        </article>
+      </div>
 
-      <article class="b-folder fade-up">
-        <div class="b-folder__tab">
-          <span class="tab-code">02 // algoritmo_invisible</span>
-        </div>
-        <div class="b-folder__body">
-          <div class="card-meta">
-            <div class="spark-ring">
-              <img src="https://via.placeholder.com/24x24/10151e/f59e0b?text=📈" alt="spark">
-            </div>
+      <div class="k-folder-wrapper fade-up" style="transition-delay: 0.2s;">
+        <article class="k-folder">
+          <div class="k-folder__tab"></div>
+          <div class="k-folder__body">
+            <h3 class="k-folder__title">Contenido que nadie ve</h3>
+            <p class="k-folder__desc">Tu mensaje es increíble, pero si editas sin entender de narrativa y retención, perderás a tu audiencia en los primeros 3 segundos vitales. El algoritmo no perdona.</p>
           </div>
-          <div class="b-body-text">
-            <h3>Contenido que nadie ve</h3>
-            <p>Tu mensaje es increíble, pero si editas sin entender de narrativa y retención, perderás a tu audiencia en los primeros 3 segundos vitales. El algoritmo no perdona.</p>
-          </div>
-        </div>
-      </article>
+        </article>
+      </div>
 
-      <article class="b-folder fade-up">
-        <div class="b-folder__tab">
-          <span class="tab-code">03 // sin_constancia</span>
-        </div>
-        <div class="b-folder__body">
-          <div class="card-meta">
-            <div class="spark-ring">
-              <img src="https://via.placeholder.com/24x24/10151e/f59e0b?text=🔄" alt="spark">
-            </div>
+      <div class="k-folder-wrapper fade-up" style="transition-delay: 0.3s;">
+        <article class="k-folder">
+          <div class="k-folder__tab"></div>
+          <div class="k-folder__body">
+            <h3 class="k-folder__title">El ciclo del burnout</h3>
+            <p class="k-folder__desc">Publicar un video genial... y desaparecer durante semanas. La falta de un sistema de postproducción predecible y delegable te arrastra a la inconsistencia.</p>
           </div>
-          <div class="b-body-text">
-            <h3>El ciclo del burnout</h3>
-            <p>Publicar un video genial... y desaparecer durante semanas. La falta de un sistema de postproducción predecible y delegable te arrastra a la inconsistencia.</p>
-          </div>
-        </div>
-      </article>
+        </article>
+      </div>
 
-      <article class="b-folder folder-accent fade-up">
-        <div class="b-folder__tab">
-          <span class="tab-code">04 // suenos_en_el_disco</span>
-        </div>
-        <div class="b-folder__body">
-          <div class="card-meta">
-            <div class="spark-ring">
-              <img src="https://via.placeholder.com/24x24/10151e/fcd34d?text=☁️" alt="spark">
-            </div>
+      <div class="k-folder-wrapper fade-up" style="transition-delay: 0.4s;">
+        <article class="k-folder folder-accent">
+          <div class="k-folder__tab"></div>
+          <div class="k-folder__body">
+            <h3 class="k-folder__title">El potencial desperdiciado</h3>
+            <p class="k-folder__desc">Tu mejor versión sigue guardada en un disco duro. El verdadero fracaso no es intentarlo y fallar, es dejar que tu mejor material se pudra sin ver la luz.</p>
           </div>
-          <div class="b-body-text">
-            <h3>El potencial desperdiciado</h3>
-            <p>Tu mejor versión sigue guardada en un disco duro. El verdadero fracaso no es intentarlo y fallar, es dejar que tu mejor material se pudra sin ver la luz.</p>
-          </div>
-        </div>
-      </article>
+        </article>
+      </div>
 
     </div>
   </div>
@@ -93,25 +64,14 @@
 
 <style>
   /* =================================================================
-     BASE DE LA SECCIÓN EXACTAMENTE COMO LA DEJASTE
+     SECCIÓN PRINCIPAL Y FONDO CON MÁSCARA (TRANSICIONES FLUIDAS)
   ================================================================= */
   .k-problem {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    
-    /* LA MAGIA QUE BORRÉ POR ERROR: Vuelve a meterse debajo del Hero */
     margin-top: -150px; 
-    
-    /* 250px arriba para empujar el texto, 250px abajo para recibir a la Solución */
     padding: 250px 0 250px 0; 
-    
-    background-color: #020617;
-    background-image: url('/assets/bg-limbo.jpeg');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -120,21 +80,7 @@
     overflow: hidden;
   }
 
-  /* EL FONDO DEL PROBLEMA AISLADO */
-  .k-problem::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-color: #020617;
-    background-image: url('/assets/bg-limbo.jpeg');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    z-index: -1;
-    /* Difumina exactamente los últimos 250px de la imagen hacia abajo */
-    -webkit-mask-image: linear-gradient(to bottom, black 0%, black calc(100% - 250px), transparent 100%);
-    mask-image: linear-gradient(to bottom, black 0%, black calc(100% - 250px), transparent 100%);
-  }
+  /* Capa de fondo limpia: difumina 200px arriba (Hero) y 250px abajo (Solución) */
   .k-problem__bg-image {
     position: absolute;
     inset: 0;
@@ -144,40 +90,13 @@
     background-position: center top;
     background-repeat: no-repeat;
     z-index: 1;
-    /* Difumina la imagen 200px arriba (conecta con Hero) y 200px abajo (conecta con Solución) */
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 200px, black calc(100% - 200px), transparent 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 200px, black calc(100% - 200px), transparent 100%);
-  }
-/* Funde la parte de arriba con el Hero */
-
-
-  .k-problem__top-fade {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 250px;
-    /* Recibe el azul oscuro del Hero y lo desvanece para mostrar bg-limbo */
-    background: linear-gradient(to bottom, #020617 0%, transparent 100%);
-    z-index: 1;
     pointer-events: none;
-  }
-
-  /* Gradiente superior invisible que fusiona ambas imágenes celestiales */
-  .k-problem__top-blend {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 220px; /* Un degradado largo para que sea muy natural */
-    /* Empieza en el color exacto del Limbo y baja a transparente */
-    background: linear-gradient(to bottom, #020617 0%, rgba(2, 6, 23, 0.8) 40%, transparent 100%);
-    z-index: 1;
-    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 200px, black calc(100% - 250px), transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 200px, black calc(100% - 250px), transparent 100%);
   }
 
   .k-problem__container {
-    max-width: 1600px;
+    max-width: 1550px;
     width: 92%;
     margin: 0 auto;
     position: relative;
@@ -190,7 +109,7 @@
     justify-content: space-between;
     align-items: flex-start;
     gap: 4rem;
-    margin-bottom: 6rem;
+    margin-bottom: 5rem;
     padding: 0 1rem;
   }
 
@@ -226,243 +145,130 @@
     text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
   }
 
-  .k-problem__row {
-    display: flex;
-    flex-direction: row;
-    gap: 1.5rem;
-    width: 100%;
-  }
-
   /* =================================================================
-     CARPETAS MEJORADAS VISUALMENTE (Pestaña lateral, hover, 1 línea)
+     DISEÑO DE CARPETAS DE CRISTAL ASIMÉTRICAS
   ================================================================= */
-  .b-folder {
-    flex: 1;
-    min-width: 260px;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-    cursor: default;
-    position: relative;
-    --b-mouse-x: 50%;
-    --b-mouse-y: 50%;
+  .k-problem__row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    align-items: start; 
+    padding-bottom: 3rem; 
   }
 
-  .b-folder:hover {
-    transform: translateY(-12px);
+  .k-folder-wrapper {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    transition: z-index 0s;
+  }
+  
+  .k-folder-wrapper:hover {
     z-index: 10;
   }
 
-  /* Pestaña: A la derecha, bordes limpios */
-  .b-folder__tab {
-    width: 60%;
-    align-self: flex-end; /* Pestaña a la derecha como la referencia */
-    padding: 0.8rem 1.4rem;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+  /* Desfase en zigzag para PC */
+  .k-folder-wrapper:nth-child(1) { margin-top: 0px; }
+  .k-folder-wrapper:nth-child(2) { margin-top: 40px; }
+  .k-folder-wrapper:nth-child(3) { margin-top: -15px; }
+  .k-folder-wrapper:nth-child(4) { margin-top: 25px; }
+
+  .k-folder {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    cursor: default;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+    will-change: transform;
+  }
+
+  .k-folder:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .k-folder__tab {
+    width: 45%;
+    height: 22px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-bottom: none;
-    border-radius: 14px 14px 0 0;
+    border-radius: 12px 12px 0 0;
     position: relative;
     z-index: 2;
-    transition: background 0.3s ease, border-color 0.3s ease;
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1);
+    transition: background 0.4s ease;
   }
 
-  .b-folder__tab::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      600px circle at var(--b-mouse-x) var(--b-mouse-y), 
-      rgba(255, 255, 255, 0.3), 
-      transparent 40%
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 1;
-    border-radius: 14px 14px 0 0;
-  }
-
-  .b-folder:hover .b-folder__tab::before {
-    opacity: 1;
-  }
-
-  .tab-code {
-    font-family: monospace;
-    font-size: 0.8rem;
-    letter-spacing: 0.5px;
-    color: #cbd5e1;
-    transition: color 0.3s ease;
-    position: relative;
-    z-index: 2;
-    white-space: nowrap; 
-  }
-
-  .b-folder:hover .tab-code {
-    color: #ffffff;
-  }
-
-  /* Cuerpo de la carpeta: Encaja perfecto con la pestaña a la derecha */
-  .b-folder__body {
-    background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 18px 0 18px 18px; /* Conexión perfecta */
-    padding: 2.5rem 2rem;
+  .k-folder__body {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0 16px 16px 16px; 
+    padding: 2.2rem 1.8rem;
     margin-top: -1px; 
     position: relative;
     z-index: 1;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1), 0 15px 35px rgba(0, 0, 0, 0.2);
     height: 100%;
-    transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-    
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+    transition: background 0.4s ease, border-color 0.4s ease;
   }
 
-  .b-folder__body::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      800px circle at var(--b-mouse-x) var(--b-mouse-y), 
-      rgba(255, 255, 255, 0.06) 0%, 
-      transparent 65%
-    );
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-    border-radius: 18px 0 18px 18px;
-    z-index: 1;
+  .k-folder:hover .k-folder__tab {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 100%);
+    border-color: rgba(255, 255, 255, 0.35);
   }
 
-  .b-folder:hover .b-folder__body::before {
-    opacity: 1;
+  .k-folder:hover .k-folder__body {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+    border-color: rgba(255, 255, 255, 0.35);
   }
 
-  .b-folder:hover .b-folder__tab,
-  .b-folder:hover .b-folder__body {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.4);
-  }
-
-  .b-folder:hover .b-folder__body {
-    box-shadow: 0 35px 65px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  }
-
-  /* Spark Icon */
-  .card-meta {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    position: relative;
-    z-index: 2;
-  }
-
-  .spark-ring {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.25);
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
-  
-  .b-folder:hover .spark-ring {
-    border-color: #ffffff;
-    box-shadow: 0 0 15px rgba(255,255,255,0.4);
-    transform: scale(1.1);
-  }
-
-  .spark-ring img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(1.5px) sepia(1) hue-rotate(15deg);
-    transition: filter 0.3s ease;
-  }
-  
-  .b-folder:hover .spark-ring img {
-    filter: blur(0.5px) sepia(1) hue-rotate(15deg) brightness(1.2);
-  }
-
-  /* Textos del Cuerpo */
-  .b-body-text {
-    flex-grow: 1;
-    position: relative;
-    z-index: 2;
-  }
-
-  .b-body-text h3 {
-    font-size: 1.4rem;
+  .k-folder__title {
+    font-size: 1.35rem;
     color: #ffffff;
     margin-top: 0;
-    margin-bottom: 1.2rem;
-    font-weight: 600;
+    margin-bottom: 1rem;
+    font-weight: 700;
     line-height: 1.25;
     letter-spacing: -0.01em;
-    /* TITULOS FORZADOS A UNA SOLA LÍNEA */
-    white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
-  .b-body-text p {
-    color: #e2e8f0;
+  .k-folder__desc {
+    color: #cbd5e1;
     font-size: 1.05rem;
-    line-height: 1.65;
+    line-height: 1.6;
     margin: 0;
     font-weight: 400;
   }
 
-  /* CARPETA ACENTO DORADO (La cuarta) */
-  .folder-accent .b-folder__tab {
-    background: rgba(245, 158, 11, 0.12);
-    border-color: rgba(245, 158, 11, 0.35);
-  }
-  .folder-accent .b-folder__body {
-    background: rgba(245, 158, 11, 0.08);
-    border-color: rgba(245, 158, 11, 0.35);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(245, 158, 11, 0.3);
-  }
-  .folder-accent .tab-code {
-    color: #fcd34d;
+  /* Carpeta Dorado */
+  .folder-accent .k-folder__tab {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.05) 100%);
+    border-color: rgba(245, 158, 11, 0.3);
   }
 
-  .folder-accent:hover .b-folder__tab {
-    background: rgba(245, 158, 11, 0.22);
-    border-color: rgba(245, 158, 11, 0.6);
+  .folder-accent .k-folder__body {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(245, 158, 11, 0.02) 100%);
+    border-color: rgba(245, 158, 11, 0.3);
   }
-  .folder-accent:hover .b-folder__body {
-    background: rgba(245, 158, 11, 0.15);
-    border-color: rgba(245, 158, 11, 0.6);
-    box-shadow: 0 35px 65px rgba(245, 158, 11, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+
+  .folder-accent:hover .k-folder__tab {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(245, 158, 11, 0.1) 100%);
+    border-color: rgba(245, 158, 11, 0.5);
   }
-  
-  .folder-accent .b-folder__tab::before {
-    border-radius: 14px 14px 0 0;
-    background: radial-gradient(
-      600px circle at var(--b-mouse-x) var(--b-mouse-y), 
-      rgba(245, 158, 11, 0.6), 
-      transparent 40%
-    );
+
+  .folder-accent:hover .k-folder__body {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(245, 158, 11, 0.04) 100%);
+    border-color: rgba(245, 158, 11, 0.5);
   }
-  .folder-accent:hover .b-folder__body::before {
-    background: radial-gradient(
-      800px circle at var(--b-mouse-x) var(--b-mouse-y), 
-      rgba(245, 158, 11, 0.12) 0%, 
-      transparent 65%
-    );
-  }
-  
-  .folder-accent .spark-ring { border-color: rgba(245, 158, 11, 0.4); }
-  .folder-accent:hover .spark-ring {
-    border-color: #fcd34d;
-    box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+
+  .folder-accent .k-folder__title {
+    color: #fcd34d;
   }
 
   /* Animaciones */
@@ -471,6 +277,7 @@
     transform: translateY(40px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
+
   .fade-up.is-visible {
     opacity: 1;
     transform: translateY(0);
@@ -485,57 +292,47 @@
     }
 
     .k-problem__row {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scroll-snap-type: x mandatory;
-      padding-bottom: 30px;
-      scrollbar-width: none; 
-      -ms-overflow-style: none;
-    }
-    .k-problem__row::-webkit-scrollbar {
-      display: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
     }
 
-    .b-folder {
-      flex: 0 0 82%;
-      scroll-snap-align: center;
+    .k-folder-wrapper:nth-child(n) {
+      margin-top: 0;
     }
-    .b-folder__tab {
-      width: 70%;
+
+    .k-folder-wrapper {
+      width: 85%; 
+    }
+
+    .k-folder-wrapper:nth-child(odd) {
+      align-self: flex-start;
+    }
+
+    .k-folder-wrapper:nth-child(even) {
+      align-self: flex-end;
     }
   }
 
   @media (max-width: 768px) {
     .k-problem {
-      margin-top: -60px;
-      padding: 120px 0 80px 0;
+      padding: 120px 0 250px 0;
     }
+
     .k-problem__title {
       font-size: 2.2rem;
     }
-    .b-folder__body {
-      padding: 2rem 1.5rem;
+
+    .k-folder-wrapper {
+      width: 95%; 
+    }
+
+    .k-folder__body {
+      padding: 1.8rem 1.5rem;
+    }
+
+    .k-folder__title {
+      font-size: 1.25rem;
     }
   }
 </style>
-
-<script>
-  (function initProblemInteractive() {
-    const checkProblemExist = setInterval(function() {
-      const foldersProblem = document.querySelectorAll('.b-folder');
-      if (foldersProblem.length > 0) {
-        clearInterval(checkProblemExist);
-        foldersProblem.forEach(folder => {
-          folder.addEventListener('mousemove', e => {
-            if (window.innerWidth <= 1024) return; 
-            const rect = folder.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            folder.style.setProperty('--b-mouse-x', `${x}px`);
-            folder.style.setProperty('--b-mouse-y', `${y}px`);
-          });
-        });
-      }
-    }, 100); 
-  })();
-</script>
