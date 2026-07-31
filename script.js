@@ -17,17 +17,24 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
-// Cargar componentes
+    // 2. Cargar componentes en orden estricto (Esperamos que cada uno termine)
     await loadComponent("header-container", "components/header.html");
     await loadComponent("hero-container", "components/hero.html");
     await loadComponent("problem-container", "components/problem.html");
-    await loadComponent("solution-container", "components/solution.html"); // 👈 AGREGAR ESTA LÍNEA
+    await loadComponent("solution-container", "components/solution.html");
+    await loadComponent("portfolio-container", "components/portfolio.html"); // 👈 NUEVA LÍNEA AÑADIDA
 
-    // 3. Inicializar la interactividad una vez inyectados los HTML
+    // 3. Inicializar la interactividad UNA VEZ inyectados todos los HTML
     initHeroInteractive();
+    initBentoInteractive();     // 👈 NUEVO: Lógica del Bento Box
+    initPortfolioInteractive(); // 👈 NUEVO: Lógica del Modal del Museo
     initScrollAnimations();
     initSmoothScroll();
 });
+
+/* =======================================================
+   LÓGICAS INTERACTIVAS (Definidas abajo)
+======================================================= */
 
 /* --- LÓGICA INTERACTIVA DEL HERO --- */
 function initHeroInteractive() {
@@ -53,6 +60,62 @@ function initHeroInteractive() {
         heroSection.addEventListener('mouseleave', () => {
             heroBg.style.transform = 'scale(1) translate(0px, 0px)';
         });
+    }
+}
+
+/* --- LÓGICA INTERACTIVA DE LA SOLUCIÓN (Bento Spotlight) --- */
+function initBentoInteractive() {
+    const bentoCards = document.querySelectorAll('.bento-card');
+    if (bentoCards.length > 0) {
+        bentoCards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    }
+}
+
+/* --- LÓGICA INTERACTIVA DEL PORTAFOLIO (Museo & Reproductor) --- */
+function initPortfolioInteractive() {
+    const posters = document.querySelectorAll('.museum-poster');
+    const modal = document.getElementById('portfolioModal');
+    
+    if (posters.length > 0 && modal) {
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+        const modalCloseBg = document.getElementById('modalCloseBg');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalRole = document.getElementById('modalRole');
+        const modalStory = document.getElementById('modalStory');
+        const modalVideo = document.getElementById('modalVideo');
+
+        // Abrir Modal
+        posters.forEach(poster => {
+            poster.addEventListener('click', () => {
+                modalTitle.textContent = poster.getAttribute('data-client');
+                modalRole.textContent = poster.getAttribute('data-role');
+                modalStory.textContent = poster.getAttribute('data-story');
+                modalVideo.src = poster.getAttribute('data-video');
+                modalVideo.play();
+                
+                modal.classList.add('is-active');
+                document.body.style.overflow = 'hidden'; // Evitar scroll del fondo
+            });
+        });
+
+        // Cerrar Modal
+        const closeModal = () => {
+            modal.classList.remove('is-active');
+            modalVideo.pause();
+            modalVideo.src = ""; // Limpiar el video para ahorrar rendimiento
+            document.body.style.overflow = ''; // Restaurar scroll
+        };
+
+        if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+        if (modalCloseBg) modalCloseBg.addEventListener('click', closeModal);
     }
 }
 
