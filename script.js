@@ -17,10 +17,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     }
 
-    // 2. Cargar todos los componentes de la carpeta components/
+// Cargar componentes
     await loadComponent("header-container", "components/header.html");
     await loadComponent("hero-container", "components/hero.html");
     await loadComponent("problem-container", "components/problem.html");
+    await loadComponent("solution-container", "components/solution.html"); // 👈 AGREGAR ESTA LÍNEA
 
     // 3. Inicializar la interactividad una vez inyectados los HTML
     initHeroInteractive();
