@@ -1,9 +1,5 @@
 <section id="problema" class="k-problem">
   
-  <div class="k-problem__top-fade"></div>
-  <div class="k-problem__top-blend"></div>
-  <div class="k-problem__bg-image"></div>
-
   <div class="k-problem__container">
     
     <div class="k-problem__header fade-up">
@@ -66,74 +62,31 @@
 
 <style>
   /* =================================================================
-     FONDOS Y MÁSCARAS EXACTAMENTE COMO LAS DEJASTE (NO SE TOCAN)
+     EL FONDO SEGURO QUE LOGRÓ LA TRANSICIÓN PERFECTA
   ================================================================= */
   .k-problem {
     position: relative;
     width: 100%;
     min-height: 100vh;
+    
+    /* El solape con el Hero (Intacto) */
     margin-top: -150px; 
+    
+    /* El espacio interior: 250px arriba (texto), 250px abajo (para que la solución se funda sin chocar) */
     padding: 250px 0 250px 0; 
+    
     background-color: #020617;
     background-image: url('/assets/bg-limbo.jpeg');
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 10;
     overflow: hidden;
-  }
-
-  .k-problem::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-color: #020617;
-    background-image: url('/assets/bg-limbo.jpeg');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    z-index: -1;
-    -webkit-mask-image: linear-gradient(to bottom, black 0%, black calc(100% - 250px), transparent 100%);
-    mask-image: linear-gradient(to bottom, black 0%, black calc(100% - 250px), transparent 100%);
-  }
-
-  .k-problem__bg-image {
-    position: absolute;
-    inset: 0;
-    background-color: #020617;
-    background-image: url('/assets/bg-limbo.jpeg');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    z-index: 1;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 200px, black calc(100% - 200px), transparent 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 200px, black calc(100% - 200px), transparent 100%);
-  }
-
-  .k-problem__top-fade {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 250px;
-    background: linear-gradient(to bottom, #020617 0%, transparent 100%);
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  .k-problem__top-blend {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 220px;
-    background: linear-gradient(to bottom, #020617 0%, rgba(2, 6, 23, 0.8) 40%, transparent 100%);
-    z-index: 1;
-    pointer-events: none;
   }
 
   .k-problem__container {
@@ -189,17 +142,14 @@
   /* =================================================================
      NUEVO DISEÑO DE CARPETAS (GLASSMORPHISM PURO Y ASIMÉTRICO)
   ================================================================= */
-  
-  /* Layout Grid para alinear y desfasar */
   .k-problem__row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
-    align-items: start; /* Permite que cada wrapper controle su altura/desfase */
-    padding-bottom: 3rem; /* Espacio extra para el hover */
+    align-items: start; 
+    padding-bottom: 3rem; 
   }
 
-  /* Los wrappers controlan el desfase vertical tipo "zigzag" en PC */
   .k-folder-wrapper {
     width: 100%;
     position: relative;
@@ -211,12 +161,12 @@
     z-index: 10;
   }
 
+  /* Desfase en zigzag para PC */
   .k-folder-wrapper:nth-child(1) { margin-top: 0px; }
   .k-folder-wrapper:nth-child(2) { margin-top: 40px; }
   .k-folder-wrapper:nth-child(3) { margin-top: -15px; }
   .k-folder-wrapper:nth-child(4) { margin-top: 25px; }
 
-  /* La Carpeta (El Cristal Animado) */
   .k-folder {
     display: flex;
     flex-direction: column;
@@ -232,7 +182,6 @@
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
   }
 
-  /* La Pestaña de la Carpeta (Top-Left como la referencia) */
   .k-folder__tab {
     width: 45%;
     height: 22px;
@@ -248,16 +197,14 @@
     transition: background 0.4s ease;
   }
 
-  /* El Cuerpo Principal */
   .k-folder__body {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    /* Esquina superior izquierda en 0 para que empalme perfecto con la pestaña */
     border-radius: 0 16px 16px 16px; 
     padding: 2.2rem 1.8rem;
-    margin-top: -1px; /* Une la pestaña y el cuerpo sin fisuras */
+    margin-top: -1px; 
     position: relative;
     z-index: 1;
     box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1), 0 15px 35px rgba(0, 0, 0, 0.2);
@@ -265,7 +212,6 @@
     transition: background 0.4s ease, border-color 0.4s ease;
   }
 
-  /* Brillo adicional al hacer hover */
   .k-folder:hover .k-folder__tab {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 100%);
     border-color: rgba(255, 255, 255, 0.35);
@@ -275,7 +221,6 @@
     border-color: rgba(255, 255, 255, 0.35);
   }
 
-  /* Textos al estilo minimalista */
   .k-folder__title {
     font-size: 1.35rem;
     color: #ffffff;
@@ -294,7 +239,7 @@
     font-weight: 400;
   }
 
-  /* CARPETA 4: Acento Dorado sutil */
+  /* Carpeta Dorado */
   .folder-accent .k-folder__tab {
     background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.05) 100%);
     border-color: rgba(245, 158, 11, 0.3);
@@ -315,7 +260,7 @@
     color: #fcd34d;
   }
 
-  /* Animación de entrada general */
+  /* Animación */
   .fade-up {
     opacity: 0;
     transform: translateY(40px);
@@ -326,39 +271,27 @@
     transform: translateY(0);
   }
 
-  /* =================================================================
-     RESPONSIVO (MÓVIL: Layout Vertical en Zigzag / Izquierda-Derecha)
-  ================================================================= */
+  /* RESPONSIVO */
   @media (max-width: 1024px) {
     .k-problem__header {
       flex-direction: column;
       gap: 1.5rem;
       text-align: left;
     }
-
-    /* Convertimos el Grid en una columna flexible */
     .k-problem__row {
       display: flex;
       flex-direction: column;
       gap: 2rem;
     }
-
-    /* Anulamos los desfases de PC */
     .k-folder-wrapper:nth-child(n) {
       margin-top: 0;
     }
-
-    /* Ajuste de ancho y alineación Zigzag en Móvil/Tablet */
     .k-folder-wrapper {
-      width: 85%; /* No ocupa todo el ancho, permite el zigzag */
+      width: 85%; 
     }
-    
-    /* Impares a la izquierda */
     .k-folder-wrapper:nth-child(odd) {
       align-self: flex-start;
     }
-    
-    /* Pares a la derecha */
     .k-folder-wrapper:nth-child(even) {
       align-self: flex-end;
     }
@@ -366,17 +299,15 @@
 
   @media (max-width: 768px) {
     .k-problem {
-      padding: 120px 0 160px 0;
+      /* EN MÓVIL TAMBIÉN DEJAMOS LOS 250px DE ABAJO INTACTOS */
+      padding: 120px 0 250px 0;
     }
     .k-problem__title {
       font-size: 2.2rem;
     }
-    
-    /* En pantallas muy pequeñas, aumentamos un poco el ancho para que el texto respire */
     .k-folder-wrapper {
       width: 95%; 
     }
-    
     .k-folder__body {
       padding: 1.8rem 1.5rem;
     }
