@@ -91,8 +91,9 @@
     background-position: center top;
     background-repeat: no-repeat;
     z-index: 1;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 250px, black 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 250px, black 100%);
+    /* EL CAMBIO MAGICO: Añadimos 'transparent 100%' al final para que los últimos 200px se difuminen */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 250px, black calc(100% - 200px), transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 250px, black calc(100% - 200px), transparent 100%);
   }
 
   /* CONTENEDOR Y TEXTOS */
