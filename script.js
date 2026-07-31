@@ -79,7 +79,7 @@ function initBentoInteractive() {
     }
 }
 
-/* --- LÓGICA INTERACTIVA DEL PORTAFOLIO (Coverflow de 5 tarjetas y Hover) --- */
+/* --- LÓGICA INTERACTIVA DEL PORTAFOLIO (Coverflow y Reproductor Espacial con Playlist) --- */
 function initPortfolioInteractive() {
     const cards = document.querySelectorAll('.vision-card');
     const prevBtn = document.getElementById('visionPrev'); 
@@ -88,31 +88,28 @@ function initPortfolioInteractive() {
     let currentIndex = 0;
     const total = cards.length;
 
+    // Lógica del Carrusel (Mantenida intacta)
     function updateCarousel() {
         cards.forEach((card, index) => {
-            // Limpiamos todas las clases
             card.classList.remove('active', 'prev', 'next', 'prev-2', 'next-2', 'hidden');
-            
-            // Lógica circular para 5 posiciones
             let dist = (index - currentIndex + total) % total;
 
             if (dist === 0) {
-                card.classList.add('active'); // Centro
+                card.classList.add('active'); 
             } else if (dist === 1) {
-                card.classList.add('next'); // Derecha 1
+                card.classList.add('next'); 
             } else if (dist === 2) {
-                card.classList.add('next-2'); // Derecha 2
+                card.classList.add('next-2'); 
             } else if (dist === total - 1) {
-                card.classList.add('prev'); // Izquierda 1
+                card.classList.add('prev'); 
             } else if (dist === total - 2) {
-                card.classList.add('prev-2'); // Izquierda 2
+                card.classList.add('prev-2'); 
             } else {
-                card.classList.add('hidden'); // Ocultar si hay más de 5
+                card.classList.add('hidden'); 
             }
         });
     }
 
-    // Funciones de navegación
     function slideNext() {
         currentIndex = (currentIndex + 1) % total;
         updateCarousel();
@@ -128,10 +125,8 @@ function initPortfolioInteractive() {
         nextBtn.addEventListener('click', slideNext);
     }
 
-    // INTERACTIVIDAD NATURAL: Pasar el mouse trae la tarjeta al frente
+    // Interactividad Hover 
     cards.forEach((card, index) => {
-        
-        // Efecto Hover en PC
         card.addEventListener('mouseenter', () => {
             if (window.innerWidth > 1024) {
                 if (index !== currentIndex) {
@@ -141,39 +136,79 @@ function initPortfolioInteractive() {
             }
         });
 
-        // Efecto Click
         card.addEventListener('click', () => {
             if (index === currentIndex) {
-                // Si ya está en el centro, abre el reproductor
                 openModal(card);
             } else if (window.innerWidth <= 1024) {
-                // En móvil, el clic la trae al frente
                 currentIndex = index;
                 updateCarousel();
             }
         });
     });
 
-    // Lógica del Modal (Reproductor)
+    // 👈 NUEVO: Lógica del Modal Espacial y la Playlist
     const modal = document.getElementById('portfolioModal');
     
     function openModal(cardElement) {
         if (!modal) return;
+        
         const modalTitle = document.getElementById('modalTitle');
         const modalRole = document.getElementById('modalRole');
         const modalStory = document.getElementById('modalStory');
         const modalVideo = document.getElementById('modalVideo');
+        const playlistContainer = document.getElementById('modalPlaylist');
 
+        // Inyectar datos básicos
         modalTitle.textContent = cardElement.getAttribute('data-client');
         modalRole.textContent = cardElement.getAttribute('data-role');
         modalStory.textContent = cardElement.getAttribute('data-story');
-        modalVideo.src = cardElement.getAttribute('data-video');
-        modalVideo.play();
         
+        // 👈 MAGIA DE LA PLAYLIST: Parseamos el JSON de los videos
+        const playlistDataRaw = cardElement.getAttribute('data-playlist');
+        playlistContainer.innerHTML = ''; // Limpiar playlist anterior
+        
+        if (playlistDataRaw) {
+            try {
+                const playlistArray = JSON.parse(playlistDataRaw);
+                
+                playlistArray.forEach((videoItem, i) => {
+                    // Creamos el botón
+                    const btn = document.createElement('button');
+                    // Si es el primero, le ponemos la clase active
+                    btn.className = i === 0 ? 'playlist-btn active' : 'playlist-btn';
+                    btn.innerHTML = `<span class="icon-play">▶</span> <span class="video-title">${videoItem.title}</span>`;
+                    
+                    // Al hacer clic en un video de la playlist
+                    btn.addEventListener('click', () => {
+                        // 1. Quitar 'active' a todos los botones
+                        document.querySelectorAll('.playlist-btn').forEach(b => b.classList.remove('active'));
+                        // 2. Poner 'active' al botón clicado
+                        btn.classList.add('active');
+                        // 3. Cambiar video y reproducir
+                        modalVideo.src = videoItem.url;
+                        modalVideo.play();
+                    });
+                    
+                    playlistContainer.appendChild(btn);
+                });
+
+                // Cargar automáticamente el primer video de la lista
+                if (playlistArray.length > 0) {
+                    modalVideo.src = playlistArray[0].url;
+                    modalVideo.play();
+                }
+
+            } catch (error) {
+                console.error("Error al leer la playlist del cliente", error);
+            }
+        }
+        
+        // Mostrar Modal
         modal.classList.add('is-active');
         document.body.style.overflow = 'hidden'; 
     }
 
+    // Lógica para cerrar el Modal
     if (modal) {
         const modalCloseBtn = document.getElementById('modalCloseBtn');
         const modalCloseBg = document.getElementById('modalCloseBg');
@@ -182,7 +217,7 @@ function initPortfolioInteractive() {
         const closeModal = () => {
             modal.classList.remove('is-active');
             modalVideo.pause();
-            modalVideo.src = ""; 
+            modalVideo.src = ""; // Detiene el consumo de datos
             document.body.style.overflow = ''; 
         };
 
@@ -190,7 +225,7 @@ function initPortfolioInteractive() {
         if (modalCloseBg) modalCloseBg.addEventListener('click', closeModal);
     }
 
-    // Inicializar carrusel
+    // Inicializar carrusel en pantalla al arrancar
     updateCarousel();
 }
 /* --- ANIMACIÓN DE ENTRADA AL HACER SCROLL (.fade-up) --- */
