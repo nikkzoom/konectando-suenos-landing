@@ -1,7 +1,6 @@
 <section id="problema" class="k-problem">
   
   <div class="k-problem__top-fade"></div>
-  <div class="k-problem__bottom-fade"></div>
   <div class="k-problem__top-blend"></div>
 
   <div class="k-problem__container">
@@ -100,15 +99,20 @@
     position: relative;
     width: 100%;
     min-height: 100vh;
-    /* EL TRUCO: Tira la sección hacia arriba para meterse DEBAJO del Hero */
-    margin-top: -200px; 
-    padding: 300px 0 140px 0; /* Empuja el contenido hacia abajo para que no se monte */
+    padding: 140px 0 250px 0; /* AQUÍ ESTÁ EL CAMBIO: 250px al final */
+    
+    background-color: #020617;
+    background-image: url('/assets/bg-limbo.jpeg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 10; /* Queda debajo del Hero (20) */
-    background-color: transparent;
+    z-index: 10;
+    overflow: hidden;
   }
 
   /* EL FONDO DEL PROBLEMA AISLADO */
@@ -150,18 +154,6 @@
     height: 250px;
     /* Recibe el azul oscuro del Hero y lo desvanece para mostrar bg-limbo */
     background: linear-gradient(to bottom, #020617 0%, transparent 100%);
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  .k-problem__bottom-fade {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 250px;
-    /* Oculta el fondo bg-limbo llevándolo al azul oscuro al final */
-    background: linear-gradient(to bottom, transparent 0%, #020617 100%);
     z-index: 1;
     pointer-events: none;
   }

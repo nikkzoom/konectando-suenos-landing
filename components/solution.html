@@ -1,8 +1,6 @@
 <section id="solucion" class="k-solution">
   
   <div class="k-solution__bg-image"></div>
-  <div class="k-solution__top-fade"></div>
-  
   <div class="k-solution__bg-image"></div>
   
   <div class="k-solution__container">
@@ -72,14 +70,13 @@
     position: relative;
     width: 100%;
     min-height: 100vh;
-    /* Se mete DEBAJO de la sección del Problema */
-    margin-top: -200px;
-    padding: 300px 0 120px 0;
+    margin-top: -250px; /* Sube y se monta sobre el problema */
+    padding: 250px 0 150px 0; /* Empuja el texto para que no choque */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 5; /* Queda debajo del Problema (10) */
+    z-index: 20; /* IMPORTANTE: Mayor al problema (10) para estar por encima */
   }
 
   .k-solution__bg-image {
@@ -90,7 +87,7 @@
     background-position: center top;
     background-repeat: no-repeat;
     z-index: 1;
-    /* LA MAGIA QUE FALTABA: Difumina el borde duro superior para cruzarse con el problema */
+    /* ESTA MÁSCARA HACE EL FUNDIDO PERFECTO SOBRE LAS NUBES OSCURAS */
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 250px, black 100%);
     mask-image: linear-gradient(to bottom, transparent 0%, black 250px, black 100%);
   }
