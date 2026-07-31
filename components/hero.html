@@ -4,9 +4,7 @@
     <div class="k-hero__bg-image" id="hero-bg" style="background-image: url('/assets/hero-portal-heaven.jpeg');"></div>
     <div class="k-hero__light-overlay" id="hero-light"></div>
     <div class="k-hero__legibility-overlay"></div>
-    
-    <div class="k-hero__bottom-fade"></div>
-  </div>
+    </div>
 
   <div class="k-hero__content">
     <h1 class="k-hero__title">
@@ -64,11 +62,11 @@
       </div>
     </div>
   </aside>
-<div class="k-hero__bottom-fade"></div>
+
 </section>
 
 <style>
- .k-hero {
+  .k-hero {
     position: relative;
     width: 100%;
     min-height: 100vh;
@@ -78,26 +76,20 @@
     overflow: hidden;
     padding: 120px 5% 80px 5%;
     box-sizing: border-box;
-    background-color: #020617; /* Base oscura */
+    background-color: #020617; /* Base oscura perfecta que conectará con el problema */
     z-index: 20; 
   }
+  
   .k-hero__bg-container {
     position: absolute;
     inset: -30px; 
     z-index: 1;
-    /* ELIMINAMOS EL MASK-IMAGE DE AQUÍ */
+    /* ESTA ES LA SOLUCIÓN AL MANCHÓN: La imagen se vuelve transparente suavemente, revelando el #020617 de fondo de forma limpia */
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
   }
 
-  .k-hero__bottom-fade {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 250px; /* Más alto para que la transición sea natural */
-    background: linear-gradient(to bottom, transparent 0%, #020617 100%);
-    z-index: 5;
-    pointer-events: none;
-  }
+  /* ELIMINAMOS LA CLASE .k-hero__bottom-fade POR COMPLETO */
 
   .k-hero__bg-image {
     width: 100%;
