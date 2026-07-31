@@ -1,5 +1,7 @@
 <section id="problema" class="k-problem">
   
+  <div class="k-problem__top-fade"></div>
+  <div class="k-problem__bottom-fade"></div>
   <div class="k-problem__top-blend"></div>
 
   <div class="k-problem__container">
@@ -98,20 +100,43 @@
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background-color: #020617; /* Sincronizado con Deep Navy Charcoal */
+    padding: 140px 0; /* Adiós al margen negativo */
     
-    /* Solapamos la sección por debajo del Hero fundido para que los fondos se mezclen */
-    margin-top: -150px; 
-    padding: 200px 0 140px 0;
+    /* EL FONDO RECUPERADO */
+    background-color: #020617;
+    background-image: url('/assets/bg-limbo.jpeg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
     
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-    /* Z-index menor para que se deslice por debajo del fundido del Hero */
-    z-index: 10; 
+    z-index: 10;
     overflow: hidden;
+  }
+/* Funde la parte de arriba con el Hero */
+  .k-problem__top-fade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(to bottom, #020617 0%, transparent 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+/* Funde la parte de abajo con la Solución (Amanecer oscuro) */
+  .k-problem__bottom-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(to bottom, transparent 0%, #060913 100%);
+    z-index: 1;
+    pointer-events: none;
   }
 
   /* Gradiente superior invisible que fusiona ambas imágenes celestiales */

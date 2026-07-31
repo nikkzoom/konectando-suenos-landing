@@ -1,6 +1,9 @@
 <section id="solucion" class="k-solution">
   
   <div class="k-solution__bg-image"></div>
+  <div class="k-solution__top-fade"></div>
+  
+  <div class="k-solution__bg-image"></div>
   
   <div class="k-solution__container">
     
@@ -65,22 +68,19 @@
 </section>
 
 <style>
-  .k-solution {
+.k-solution {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    padding: 200px 0 120px 0;
-    /* IMPORTANTE para la transición: Sube por debajo del problema */
-    margin-top: -150px; 
-    z-index: 10; /* Menor que el problema (20) */
+    padding: 140px 0; /* Adiós al margen negativo, nada se montará */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    z-index: 10;
   }
 
-  /* EL FONDO DEL AMANECER */
   .k-solution__bg-image {
     position: absolute;
     inset: 0;
@@ -91,6 +91,17 @@
     z-index: 1;
   }
 
+  /* Recibe el fundido oscuro del problema y revela el amanecer */
+  .k-solution__top-fade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(to bottom, #060913 0%, transparent 100%);
+    z-index: 2;
+    pointer-events: none;
+  }
   .k-solution__container {
     max-width: 1400px;
     width: 90%;
