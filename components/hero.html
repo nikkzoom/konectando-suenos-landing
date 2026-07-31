@@ -68,7 +68,7 @@
 </section>
 
 <style>
-.k-hero {
+ .k-hero {
     position: relative;
     width: 100%;
     min-height: 100vh;
@@ -85,9 +85,18 @@
     position: absolute;
     inset: -30px; 
     z-index: 1;
-    /* Difumina el 20% inferior de las nubes del hero hacia transparente */
-    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%);
+    /* ELIMINAMOS EL MASK-IMAGE DE AQUÍ */
+  }
+
+  .k-hero__bottom-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 250px; /* Más alto para que la transición sea natural */
+    background: linear-gradient(to bottom, transparent 0%, #020617 100%);
+    z-index: 5;
+    pointer-events: none;
   }
 
   .k-hero__bg-image {
@@ -121,18 +130,6 @@
     );
     pointer-events: none;
     mix-blend-mode: overlay;
-  }
-
-  /* MÁSCARA CLAVE: Elimina la línea recta inferior */
-  .k-hero__bottom-fade {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 180px;
-    background: linear-gradient(to bottom, transparent 0%, #020617 100%);
-    z-index: 5;
-    pointer-events: none;
   }
 
   .k-hero__content {

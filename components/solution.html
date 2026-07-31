@@ -72,14 +72,13 @@
     position: relative;
     width: 100%;
     min-height: 100vh;
-    /* Mismo truco: Solapamos 200px hacia arriba, empujamos contenido 300px */
-    margin-top: -200px;
-    padding: 300px 0 150px 0;
+    margin-top: 0; /* CERO MÁRGENES NEGATIVOS. Esto arregla el solapamiento */
+    padding: 160px 0; /* Espacio limpio para respirar */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 10; /* Queda por debajo del Problema (20) */
+    z-index: 10; 
   }
 
   .k-solution__bg-image {
@@ -90,19 +89,17 @@
     background-position: center top;
     background-repeat: no-repeat;
     z-index: 1;
-    /* Difumina los primeros 200px de arriba para recibir el fondo del Problema */
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 200px, black 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 200px, black 100%);
+    /* ELIMINAMOS EL MASK-IMAGE DE AQUÍ */
   }
 
-  /* Recibe el fundido oscuro del problema y revela el amanecer */
   .k-solution__top-fade {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 250px;
-    background: linear-gradient(to bottom, #060913 0%, transparent 100%);
+    /* Recibe el azul oscuro del Problema y lo desvanece para revelar el Amanecer */
+    background: linear-gradient(to bottom, #020617 0%, transparent 100%);
     z-index: 2;
     pointer-events: none;
   }
