@@ -5,14 +5,22 @@
   <div class="k-portfolio__container">
     
     <div class="k-portfolio__header fade-up">
-      <h2 class="k-portfolio__title">El Museo de los <span class="text-gold">Sueños</span></h2>
+      <h2 class="k-portfolio__title">El Museo de los <span class="text-gold-clean">Sueños</span></h2>
       <p class="k-portfolio__subtitle">Una experiencia interactiva a través de los creadores y marcas que confiaron en nosotros para elevar su contenido a nivel cinematográfico.</p>
     </div>
 
     <div class="vision-container fade-up">
+      
+      <div class="nav-zone nav-zone-left" id="zoneLeft">
+        <div class="nav-arrow">❮</div>
+      </div>
+      <div class="nav-zone nav-zone-right" id="zoneRight">
+        <div class="nav-arrow">❯</div>
+      </div>
+
       <div class="vision-carousel" id="visionCarousel">
         
-        <article class="vision-card active" 
+        <article class="vision-card" 
                  data-client="Fitness Coach Pro"
                  data-role="Estrategia & Edición Vertical"
                  data-story="Pasó de publicar rutinas ignoradas a crear contenido dinámico. En 3 meses multiplicó sus visualizaciones por 10 y llenó sus asesorías online."
@@ -27,7 +35,7 @@
           </div>
         </article>
 
-        <article class="vision-card next" 
+        <article class="vision-card" 
                  data-client="Finanzas con Juan"
                  data-role="Renovación YouTube"
                  data-story="Su canal estaba estancado. Implementamos una edición con retención dinámica, sound design cinematográfico y una línea gráfica premium. Logró la placa de 100k."
@@ -42,7 +50,7 @@
           </div>
         </article>
 
-        <article class="vision-card hidden-right" 
+        <article class="vision-card" 
                  data-client="Luxury Real Estate"
                  data-role="Tours Inmobiliarios"
                  data-story="Creamos tours inmobiliarios en formato TikTok/Reels con corrección de color cinemática, atrayendo a compradores de alto valor."
@@ -57,7 +65,7 @@
           </div>
         </article>
 
-        <article class="vision-card hidden-right" 
+        <article class="vision-card" 
                  data-client="Mentes Claras"
                  data-role="Clips Virales"
                  data-story="Extrajimos las mejores pepitas de oro de sus podcasts largos, aplicamos subtítulos dinámicos y ganchos visuales. Resultado: 5M de vistas."
@@ -85,24 +93,19 @@
   <div class="spatial-modal" id="portfolioModal">
     <div class="spatial-modal__backdrop" id="modalCloseBg"></div>
     <div class="spatial-modal__window">
-      
       <div class="spatial-modal__header">
         <span class="spatial-badge" id="modalRole">Rol</span>
         <button class="spatial-close" id="modalCloseBtn">✕</button>
       </div>
-
       <div class="spatial-modal__body">
-        
         <div class="spatial-video-container">
           <video id="modalVideo" controls autoplay muted playsinline></video>
         </div>
-
         <div class="spatial-info">
           <h2 id="modalTitle">Nombre Cliente</h2>
           <p id="modalStory">Historia...</p>
           <a href="#contacto" class="btn-spatial-gold">Quiero mi transformación ✦</a>
         </div>
-
       </div>
     </div>
   </div>
@@ -110,14 +113,14 @@
 </section>
 
 <style>
-  /* 1. ESTRUCTURA Y FONDO (INTACTOS) */
+  /* 1. ESTRUCTURA Y FONDO (INTACTOS PARA LA TRANSICIÓN) */
   .k-portfolio {
     position: relative;
     width: 100%;
     min-height: 100vh;
     margin-top: -150px; 
     padding: 250px 0 150px 0;
-    overflow: hidden; /* Mantiene la página sin scroll horizontal */
+    overflow: hidden; 
     z-index: 30; 
   }
 
@@ -139,10 +142,10 @@
     z-index: 10;
   }
 
-  /* 2. ENCABEZADO MEJORADO */
+  /* 2. ENCABEZADO EXPANDIDO Y LIMPIO */
   .k-portfolio__header {
     text-align: center;
-    max-width: 700px;
+    max-width: 1100px; /* AMPLIADO PARA PC */
     margin: 0 auto 3rem auto;
     padding: 0 5%;
   }
@@ -153,50 +156,87 @@
     line-height: 1.1;
     margin-bottom: 1rem;
     letter-spacing: -0.02em;
-    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    /* Sombra más limpia y difuminada, sin el negro sucio */
+    text-shadow: 0 4px 40px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.8);
   }
   .k-portfolio__subtitle {
     font-size: clamp(1.1rem, 1.4vw, 1.3rem);
     color: #cbd5e1;
     line-height: 1.6;
     margin: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
   }
-  .text-gold {
-    color: transparent;
-    background: linear-gradient(135deg, #ffffff 0%, #fef08a 40%, #f59e0b 100%);
+  /* El Dorado sin sombra negra sucia */
+  .text-gold-clean {
+    background: linear-gradient(135deg, #fef08a 0%, #d97706 100%);
     -webkit-background-clip: text;
     background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
   }
 
-  /* 3. ARQUITECTURA 3D (EL CARRUSEL VISION PRO) */
+  /* 3. ARQUITECTURA 3D AMPLIADA PARA PC */
   .vision-container {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
   }
 
   .vision-carousel {
     position: relative;
     width: 100%;
-    height: 550px;
-    perspective: 1500px; /* Crea el espacio 3D */
+    height: 600px; /* Más alto en PC */
+    perspective: 1800px; /* Perspectiva más amplia */
     display: flex;
     justify-content: center;
     align-items: center;
     transform-style: preserve-3d;
   }
 
-  /* La Tarjeta de Cristal */
+  /* Zonas Magnéticas (Hover para mover) */
+  .nav-zone {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 25%; /* Abarca el 25% de cada lado de la pantalla */
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .nav-zone:hover { opacity: 1; }
+  .nav-zone-left { left: 0; justify-content: flex-start; padding-left: 3rem; background: linear-gradient(to right, rgba(0,0,0,0.3), transparent); }
+  .nav-zone-right { right: 0; justify-content: flex-end; padding-right: 3rem; background: linear-gradient(to left, rgba(0,0,0,0.3), transparent); }
+  
+  .nav-arrow {
+    width: 60px; height: 60px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 0 30px rgba(255,255,255,0.2);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+  }
+  .nav-zone:hover .nav-arrow { transform: scale(1.1); }
+
+  /* La Tarjeta de Cristal Expandida */
   .vision-card {
     position: absolute;
-    width: 320px;
-    height: 500px;
+    width: 360px; /* Más anchas en PC */
+    height: 540px; /* Más altas en PC */
     border-radius: 24px;
     overflow: hidden;
     background: rgba(10, 15, 30, 0.5);
     border: 1px solid rgba(255,255,255,0.15);
-    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     cursor: pointer;
   }
@@ -215,7 +255,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1.5rem;
+    padding: 1.8rem;
     opacity: 0.8;
     transition: opacity 0.4s ease;
   }
@@ -224,7 +264,6 @@
     align-self: center;
     background: rgba(255,255,255,0.15);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.3);
     color: #fff;
     padding: 0.5rem 1.2rem;
@@ -238,55 +277,51 @@
 
   .vision-info h3 {
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     margin: 0 0 0.4rem 0;
     font-weight: 700;
   }
   .vision-info p {
     color: #94a3b8;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     margin: 0;
   }
 
   /* =========================================
-     CLASES DE ESTADO 3D (LA MAGIA)
+     CLASES DE ESTADO 3D (MÁS SEPARADAS PARA PC)
   ========================================= */
-  
-  /* Tarjeta Central (Activa) */
   .vision-card.active {
-    transform: translateX(0) translateZ(100px) rotateY(0deg);
+    transform: translateX(0) translateZ(150px) rotateY(0deg);
     z-index: 10;
     opacity: 1;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 40px rgba(245, 158, 11, 0.2);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.7), 0 0 40px rgba(245, 158, 11, 0.2);
     border-color: rgba(245, 158, 11, 0.4);
   }
   .vision-card.active .vision-overlay { opacity: 1; }
   .vision-card.active .vision-expand { opacity: 1; transform: translateY(0); }
   .vision-card.active img { transform: scale(1.05); }
 
-  /* Tarjeta a la Izquierda */
   .vision-card.prev {
-    transform: translateX(-65%) translateZ(-100px) rotateY(25deg);
+    transform: translateX(-120%) translateZ(-100px) rotateY(20deg); /* Más separada a la izquierda */
     z-index: 5;
-    opacity: 0.6;
+    opacity: 0.7;
   }
   
-  /* Tarjeta a la Derecha */
   .vision-card.next {
-    transform: translateX(65%) translateZ(-100px) rotateY(-25deg);
+    transform: translateX(120%) translateZ(-100px) rotateY(-20deg); /* Más separada a la derecha */
     z-index: 5;
-    opacity: 0.6;
+    opacity: 0.7;
   }
 
-  /* Ocultas a los extremos */
+  /* Las ocultas ahora se van aún más a los extremos para el efecto infinito */
   .vision-card.hidden-left {
-    transform: translateX(-100%) translateZ(-300px) rotateY(40deg);
+    transform: translateX(-240%) translateZ(-300px) rotateY(35deg);
     z-index: 1;
     opacity: 0;
     pointer-events: none;
   }
   .vision-card.hidden-right {
-    transform: translateX(100%) translateZ(-300px) rotateY(-40deg);
+    transform: translateX(240%) translateZ(-300px) rotateY(-35deg);
     z-index: 1;
     opacity: 0;
     pointer-events: none;
@@ -300,10 +335,11 @@
     margin-top: 2rem;
     background: rgba(255,255,255,0.05);
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     padding: 0.5rem 1rem;
     border-radius: 100px;
     border: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+    z-index: 45;
   }
   .vision-controls button {
     background: rgba(255,255,255,0.1);
@@ -315,7 +351,7 @@
     font-size: 1rem;
     transition: background 0.3s;
   }
-  .vision-controls button:hover { background: rgba(255,255,255,0.2); }
+  .vision-controls button:hover { background: rgba(255,255,255,0.3); }
   .vision-track-info {
     color: #fff;
     font-size: 0.9rem;
@@ -324,155 +360,44 @@
   }
 
   /* =======================================================
-     NUEVO MODAL (REPRODUCTOR ESPACIAL)
+     MODAL REPRODUCTOR (INTACTO)
   ======================================================== */
   .spatial-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
+    position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
   }
-  .spatial-modal.is-active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .spatial-modal__backdrop {
-    position: absolute;
-    inset: 0;
-    background: rgba(2, 6, 23, 0.6);
-    backdrop-filter: blur(25px); /* Desenfoque inmersivo */
-    -webkit-backdrop-filter: blur(25px);
-  }
-
+  .spatial-modal.is-active { opacity: 1; pointer-events: auto; }
+  .spatial-modal__backdrop { position: absolute; inset: 0; background: rgba(2, 6, 23, 0.6); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); }
   .spatial-modal__window {
-    position: relative;
-    width: 90%;
-    max-width: 900px;
-    background: rgba(15, 20, 30, 0.6);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 32px;
-    box-shadow: 0 40px 100px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.3);
-    padding: 1.5rem;
-    transform: scale(0.95);
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+    position: relative; width: 90%; max-width: 900px; background: rgba(15, 20, 30, 0.6); border: 1px solid rgba(255,255,255,0.2); border-radius: 32px; box-shadow: 0 40px 100px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.3); padding: 1.5rem; transform: scale(0.95); transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); display: flex; flex-direction: column; gap: 1.5rem;
   }
-  .spatial-modal.is-active .spatial-modal__window {
-    transform: scale(1);
-  }
-
-  .spatial-modal__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 0.5rem;
-  }
-  .spatial-badge {
-    background: rgba(245, 158, 11, 0.15);
-    color: #fcd34d;
-    border: 1px solid rgba(245, 158, 11, 0.3);
-    padding: 0.4rem 1rem;
-    border-radius: 100px;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  .spatial-close {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: #fff;
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-  }
-  .spatial-close:hover { background: rgba(255,255,255,0.2); }
-
-  .spatial-modal__body {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-  }
-
-  /* Contenedor inteligente: se adapta a videos verticales u horizontales */
-  .spatial-video-container {
-    flex: 1;
-    background: #000;
-    border-radius: 20px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    /* Altura máxima para que no se salga de la pantalla en PC */
-    height: 50vh; 
-  }
-  .spatial-video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Evita que el video se corte */
-  }
-
-  .spatial-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .spatial-info h2 {
-    font-size: 2.2rem;
-    color: #fff;
-    margin: 0 0 1rem 0;
-  }
-  .spatial-info p {
-    color: #cbd5e1;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin: 0 0 2rem 0;
-  }
-
-  .btn-spatial-gold {
-    align-self: flex-start;
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-    color: #fff;
-    padding: 0.8rem 1.8rem;
-    border-radius: 100px;
-    text-decoration: none;
-    font-weight: 600;
-    box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .btn-spatial-gold:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 25px rgba(245, 158, 11, 0.4);
-  }
+  .spatial-modal.is-active .spatial-modal__window { transform: scale(1); }
+  .spatial-modal__header { display: flex; justify-content: space-between; align-items: center; padding: 0 0.5rem; }
+  .spatial-badge { background: rgba(245, 158, 11, 0.15); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.3); padding: 0.4rem 1rem; border-radius: 100px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+  .spatial-close { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; transition: all 0.3s ease; }
+  .spatial-close:hover { background: rgba(255,255,255,0.3); }
+  .spatial-modal__body { display: flex; gap: 2rem; align-items: center; }
+  .spatial-video-container { flex: 1; background: #000; border-radius: 20px; overflow: hidden; display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); height: 50vh; }
+  .spatial-video-container video { width: 100%; height: 100%; object-fit: contain; }
+  .spatial-info { flex: 1; display: flex; flex-direction: column; }
+  .spatial-info h2 { font-size: 2.2rem; color: #fff; margin: 0 0 1rem 0; }
+  .spatial-info p { color: #cbd5e1; font-size: 1.1rem; line-height: 1.6; margin: 0 0 2rem 0; }
+  .btn-spatial-gold { align-self: flex-start; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #fff; padding: 0.8rem 1.8rem; border-radius: 100px; text-decoration: none; font-weight: 600; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .btn-spatial-gold:hover { transform: translateY(-2px); box-shadow: 0 15px 25px rgba(245, 158, 11, 0.4); }
 
   /* RESPONSIVO MÓVIL */
   @media (max-width: 1024px) {
-    .spatial-modal__body {
-      flex-direction: column;
-    }
-    .spatial-video-container {
-      width: 100%;
-      height: 40vh;
-    }
+    .nav-zone { display: none; /* Quitamos zonas magnéticas en tablets/móviles */ }
+    .vision-card.prev { transform: translateX(-80%) translateZ(-100px) rotateY(20deg); }
+    .vision-card.next { transform: translateX(80%) translateZ(-100px) rotateY(-20deg); }
+    .spatial-modal__body { flex-direction: column; }
+    .spatial-video-container { width: 100%; height: 40vh; }
   }
 
   @media (max-width: 768px) {
     .k-portfolio__title { font-size: 2.5rem; }
-    
-    /* Acercamos las tarjetas en móvil para que quepan */
-    .vision-card.prev { transform: translateX(-50%) translateZ(-80px) rotateY(20deg); }
-    .vision-card.next { transform: translateX(50%) translateZ(-80px) rotateY(-20deg); }
-    
+    .vision-card { width: 280px; height: 440px; }
+    .vision-card.prev { transform: translateX(-65%) translateZ(-80px) rotateY(20deg); }
+    .vision-card.next { transform: translateX(65%) translateZ(-80px) rotateY(-20deg); }
     .spatial-modal__window { padding: 1rem; }
     .spatial-info h2 { font-size: 1.8rem; }
   }

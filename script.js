@@ -80,51 +80,81 @@ function initBentoInteractive() {
 }
 
 /* --- LÓGICA INTERACTIVA DEL PORTAFOLIO (Museo & Reproductor) --- */
-/* --- LÓGICA INTERACTIVA DEL PORTAFOLIO (Carrusel 3D y Modal) --- */
+/* --- LÓGICA INTERACTIVA DEL PORTAFOLIO (Carrusel Infinito y Zonas Magnéticas) --- */
 function initPortfolioInteractive() {
     const cards = document.querySelectorAll('.vision-card');
     const prevBtn = document.getElementById('visionPrev');
     const nextBtn = document.getElementById('visionNext');
+    const zoneLeft = document.getElementById('zoneLeft');
+    const zoneRight = document.getElementById('zoneRight');
+    
     let currentIndex = 0;
+    const total = cards.length;
+    let hoverInterval;
 
-    // Función para calcular posiciones 3D
+    // Función que calcula la posición circular (Infinita)
     function updateCarousel() {
         cards.forEach((card, index) => {
-            // Limpiamos clases
             card.classList.remove('active', 'prev', 'next', 'hidden-left', 'hidden-right');
+            
+            // Calculamos la distancia circular
+            let dist = (index - currentIndex + total) % total;
 
-            if (index === currentIndex) {
-                card.classList.add('active');
-            } else if (index === currentIndex - 1) {
-                card.classList.add('prev');
-            } else if (index === currentIndex + 1) {
-                card.classList.add('next');
-            } else if (index < currentIndex - 1) {
-                card.classList.add('hidden-left');
-            } else if (index > currentIndex + 1) {
-                card.classList.add('hidden-right');
+            if (dist === 0) {
+                card.classList.add('active'); // Centro
+            } else if (dist === 1) {
+                card.classList.add('next'); // Derecha inmediata
+            } else if (dist === total - 1) {
+                card.classList.add('prev'); // Izquierda inmediata
+            } else {
+                // El resto se va a los extremos ocultos
+                if (dist <= Math.floor(total / 2)) {
+                    card.classList.add('hidden-right');
+                } else {
+                    card.classList.add('hidden-left');
+                }
             }
         });
     }
 
-    // Navegación con botones
+    // Funciones para avanzar y retroceder
+    function slideNext() {
+        currentIndex = (currentIndex + 1) % total;
+        updateCarousel();
+    }
+    
+    function slidePrev() {
+        currentIndex = (currentIndex - 1 + total) % total;
+        updateCarousel();
+    }
+
+    // Eventos de los botones inferiores
     if (prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateCarousel();
-            }
-        });
-
-        nextBtn.addEventListener('click', () => {
-            if (currentIndex < cards.length - 1) {
-                currentIndex++;
-                updateCarousel();
-            }
-        });
+        prevBtn.addEventListener('click', slidePrev);
+        nextBtn.addEventListener('click', slideNext);
     }
 
-    // Modal
+    // Eventos de las Zonas Magnéticas Laterales (Mover al pasar el cursor)
+    if (zoneLeft && zoneRight) {
+        // Clic
+        zoneLeft.addEventListener('click', slidePrev);
+        zoneRight.addEventListener('click', slideNext);
+
+        // Hover contínuo (avanza cada 1.2 segundos si dejas el ratón ahí)
+        zoneLeft.addEventListener('mouseenter', () => {
+            slidePrev();
+            hoverInterval = setInterval(slidePrev, 1200);
+        });
+        zoneLeft.addEventListener('mouseleave', () => clearInterval(hoverInterval));
+
+        zoneRight.addEventListener('mouseenter', () => {
+            slideNext();
+            hoverInterval = setInterval(slideNext, 1200);
+        });
+        zoneRight.addEventListener('mouseleave', () => clearInterval(hoverInterval));
+    }
+
+    // Lógica del Modal (Reproductor)
     const modal = document.getElementById('portfolioModal');
     if (cards.length > 0 && modal) {
         const modalCloseBtn = document.getElementById('modalCloseBtn');
@@ -136,14 +166,14 @@ function initPortfolioInteractive() {
 
         cards.forEach((card, index) => {
             card.addEventListener('click', () => {
-                // Si la tarjeta no es la central, al hacer click gira hacia ella
+                // Si haces clic en una tarjeta lateral, el carrusel gira hacia ella
                 if (index !== currentIndex) {
                     currentIndex = index;
                     updateCarousel();
                     return;
                 }
 
-                // Si ya está en el centro, abre el modal
+                // Si haces clic en la central, se abre el reproductor
                 modalTitle.textContent = card.getAttribute('data-client');
                 modalRole.textContent = card.getAttribute('data-role');
                 modalStory.textContent = card.getAttribute('data-story');
@@ -165,8 +195,10 @@ function initPortfolioInteractive() {
         if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
         if (modalCloseBg) modalCloseBg.addEventListener('click', closeModal);
     }
-}
 
+    // Inicializar carrusel
+    updateCarousel();
+}
 /* --- ANIMACIÓN DE ENTRADA AL HACER SCROLL (.fade-up) --- */
 function initScrollAnimations() {
     const animateElements = document.querySelectorAll('.fade-up');
