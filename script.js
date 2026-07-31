@@ -79,42 +79,40 @@ function initBentoInteractive() {
     }
 }
 
-/* --- LÓGICA INTERACTIVA DEL PORTAFOLIO (Museo & Reproductor) --- */
-/* --- LÓGICA INTERACTIVA DEL PORTAFOLIO (Carrusel Infinito & Natural Hover) --- */
+/* --- LÓGICA INTERACTIVA DEL PORTAFOLIO (Coverflow de 5 tarjetas y Hover) --- */
 function initPortfolioInteractive() {
     const cards = document.querySelectorAll('.vision-card');
-    const prevBtn = document.getElementById('visionPrev'); // Se mantiene para móvil
-    const nextBtn = document.getElementById('visionNext'); // Se mantiene para móvil
+    const prevBtn = document.getElementById('visionPrev'); 
+    const nextBtn = document.getElementById('visionNext'); 
     
     let currentIndex = 0;
     const total = cards.length;
 
-    // Función que calcula la posición circular infinita
     function updateCarousel() {
         cards.forEach((card, index) => {
-            card.classList.remove('active', 'prev', 'next', 'hidden-left', 'hidden-right');
+            // Limpiamos todas las clases
+            card.classList.remove('active', 'prev', 'next', 'prev-2', 'next-2', 'hidden');
             
-            // Calculamos la distancia circular
+            // Lógica circular para 5 posiciones
             let dist = (index - currentIndex + total) % total;
 
             if (dist === 0) {
                 card.classList.add('active'); // Centro
             } else if (dist === 1) {
-                card.classList.add('next'); // Derecha inmediata
+                card.classList.add('next'); // Derecha 1
+            } else if (dist === 2) {
+                card.classList.add('next-2'); // Derecha 2
             } else if (dist === total - 1) {
-                card.classList.add('prev'); // Izquierda inmediata
+                card.classList.add('prev'); // Izquierda 1
+            } else if (dist === total - 2) {
+                card.classList.add('prev-2'); // Izquierda 2
             } else {
-                // El resto se va a los extremos ocultos
-                if (dist <= Math.floor(total / 2)) {
-                    card.classList.add('hidden-right');
-                } else {
-                    card.classList.add('hidden-left');
-                }
+                card.classList.add('hidden'); // Ocultar si hay más de 5
             }
         });
     }
 
-    // Funciones para avanzar y retroceder (Usadas por móvil)
+    // Funciones de navegación
     function slideNext() {
         currentIndex = (currentIndex + 1) % total;
         updateCarousel();
@@ -125,33 +123,31 @@ function initPortfolioInteractive() {
         updateCarousel();
     }
 
-    // Eventos de los botones inferiores (Solo visibles en móvil)
     if (prevBtn && nextBtn) {
         prevBtn.addEventListener('click', slidePrev);
         nextBtn.addEventListener('click', slideNext);
     }
 
-    // 👈 SOLUCIÓN NATURAL: Navegación por Hover (Al poner el cursor encima)
+    // INTERACTIVIDAD NATURAL: Pasar el mouse trae la tarjeta al frente
     cards.forEach((card, index) => {
-        // Al poner el cursor encima de una tarjeta lateral...
+        
+        // Efecto Hover en PC
         card.addEventListener('mouseenter', () => {
-            if (window.innerWidth <= 1024) return; // Desactivar en móvil/tablet
-
-            // ...esta tarjeta pasa al frente automáticamente.
-            if (index !== currentIndex) {
-                currentIndex = index;
-                updateCarousel();
+            if (window.innerWidth > 1024) {
+                if (index !== currentIndex) {
+                    currentIndex = index;
+                    updateCarousel();
+                }
             }
         });
 
-        // Al hacer clic
+        // Efecto Click
         card.addEventListener('click', () => {
-            // Si la tarjeta ya está al frente (gracias al hover), abre el modal
-            if (card.classList.contains('active')) {
+            if (index === currentIndex) {
+                // Si ya está en el centro, abre el reproductor
                 openModal(card);
-            } 
-            // Si el hover falló (raro) y hacen clic en una lateral, la trae al frente
-            else if (window.innerWidth <= 1024) { 
+            } else if (window.innerWidth <= 1024) {
+                // En móvil, el clic la trae al frente
                 currentIndex = index;
                 updateCarousel();
             }
@@ -168,7 +164,6 @@ function initPortfolioInteractive() {
         const modalStory = document.getElementById('modalStory');
         const modalVideo = document.getElementById('modalVideo');
 
-        // Inyectar datos
         modalTitle.textContent = cardElement.getAttribute('data-client');
         modalRole.textContent = cardElement.getAttribute('data-role');
         modalStory.textContent = cardElement.getAttribute('data-story');
