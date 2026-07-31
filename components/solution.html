@@ -68,17 +68,18 @@
 </section>
 
 <style>
-.k-solution {
+  .k-solution {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    padding: 140px 0; /* Adiós al margen negativo, nada se montará */
+    /* Mismo truco: Solapamos 200px hacia arriba, empujamos contenido 300px */
+    margin-top: -200px;
+    padding: 300px 0 150px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    z-index: 10;
+    z-index: 10; /* Queda por debajo del Problema (20) */
   }
 
   .k-solution__bg-image {
@@ -89,6 +90,9 @@
     background-position: center top;
     background-repeat: no-repeat;
     z-index: 1;
+    /* Difumina los primeros 200px de arriba para recibir el fondo del Problema */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 200px, black 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 200px, black 100%);
   }
 
   /* Recibe el fundido oscuro del problema y revela el amanecer */
