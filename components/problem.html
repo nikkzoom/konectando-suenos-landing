@@ -1,11 +1,15 @@
 <section id="problema" class="k-problem">
   
-  <div class="k-problem__top-blend"></div>
-
-  <div class="k-problem__bg-pattern"></div>
-  <div class="k-problem__glow-orbs">
-    <div class="glow-orb orb-deep-blue"></div>
-    <div class="glow-orb orb-caotic-gold"></div>
+  <div class="k-problem__atmos-container">
+    <div class="k-problem__bg-image" style="background-image: url('/assets/bg-limbo.jpeg');"></div>
+    <div class="k-problem__top-blend"></div>
+    
+    <div class="k-problem__bg-pattern"></div>
+    
+    <div class="k-problem__glow-orbs">
+      <div class="glow-orb orb-deep-blue"></div>
+      <div class="glow-orb orb-caotic-gold"></div>
+    </div>
   </div>
 
   <div class="k-problem__container">
@@ -26,6 +30,7 @@
       
       <article class="b-folder fade-up">
         <div class="b-folder__tab">
+          <div class="os-dots"><span></span><span></span><span></span></div>
           <span class="b-tab-text">01 // horas_perdidas</span>
         </div>
         <div class="b-folder__body">
@@ -43,6 +48,7 @@
 
       <article class="b-folder fade-up">
         <div class="b-folder__tab">
+          <div class="os-dots"><span></span><span></span><span></span></div>
           <span class="b-tab-text">02 // algoritmo_invisible</span>
         </div>
         <div class="b-folder__body">
@@ -60,6 +66,7 @@
 
       <article class="b-folder fade-up">
         <div class="b-folder__tab">
+          <div class="os-dots"><span></span><span></span><span></span></div>
           <span class="b-tab-text">03 // sin_constancia</span>
         </div>
         <div class="b-folder__body">
@@ -77,6 +84,7 @@
 
       <article class="b-folder folder-accent fade-up">
         <div class="b-folder__tab">
+          <div class="os-dots"><span></span><span></span><span></span></div>
           <span class="b-tab-text">04 // suenos_en_el_disco</span>
         </div>
         <div class="b-folder__body">
@@ -101,7 +109,7 @@
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background-color: #020617; /* Sincronizado con Deep Navy Charcoal */
+    background-color: transparent; /* Fondo determinado por el contenedor atmos */
     padding: 140px 0;
     display: flex;
     flex-direction: column;
@@ -111,7 +119,24 @@
     overflow: hidden;
   }
 
-  /* 1. Transición Seamless con el Hero */
+  /* Contenedor del fondo atmosférico cinematográfico recuperado */
+  .k-problem__atmos-container {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .k-problem__bg-image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+    z-index: 1;
+  }
+
+  /* 1. Transición Seamless con el Hero (Máscara de calado suave sobre el fondo generado) */
   .k-problem__top-blend {
     position: absolute;
     top: 0;
@@ -119,7 +144,7 @@
     width: 100%;
     height: 180px;
     background: linear-gradient(to bottom, rgba(2, 6, 23, 0) 0%, rgba(2, 6, 23, 1) 100%);
-    z-index: 1;
+    z-index: 2;
     pointer-events: none;
   }
 
@@ -127,7 +152,7 @@
   .k-problem__bg-pattern {
     position: absolute;
     inset: 0;
-    z-index: 2;
+    z-index: 3;
     /* Cuadrícula de puntos estilo tech sutil */
     background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
     background-size: 35px 35px;
@@ -139,7 +164,7 @@
   .k-problem__glow-orbs {
     position: absolute;
     inset: 0;
-    z-index: 3;
+    z-index: 4;
     overflow: hidden;
     pointer-events: none;
   }
@@ -149,7 +174,7 @@
     border-radius: 50%;
     filter: blur(120px);
     opacity: 0.2;
-    animation: orbsDriftProblem 20s infinite alternate ease-in-out;
+    animation: orbsDriftProblemAtmos 20s infinite alternate ease-in-out;
   }
 
   .orb-deep-blue {
@@ -165,21 +190,21 @@
     animation-delay: -10s;
   }
 
-  @keyframes orbsDriftProblem {
+  @keyframes orbsDriftProblemAtmos {
     0% { transform: translate(0, 0) scale(1); }
     100% { transform: translate(100px, 150px) scale(1.15); }
   }
 
   /* Contenedor Principal Expandido */
   .k-problem__container {
-    max-width: 1650px; /* Aumentado para dar aire horizontal y evitar wrapping */
+    max-width: 1650px; /* Aumentado para un layout amplio */
     width: 92%;
     margin: 0 auto;
     position: relative;
     z-index: 10;
   }
 
-  /* 3. Encabezado modular Bilexer */
+  /* 3. Encabezado modular Bilexer (Inspirado en la referencia) */
   .k-problem__header {
     display: flex;
     flex-direction: row;
@@ -256,6 +281,9 @@
     width: 60%; /* Pestaña ancha de Bilexer */
     align-self: flex-end; /* Pestaña en la esquina superior DERECHA de la carpeta */
     padding: 0.8rem 1.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
@@ -286,6 +314,24 @@
   .b-folder:hover .b-folder__tab::before {
     opacity: 1;
   }
+
+  /* Botones OS */
+  .os-dots {
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+    position: relative;
+  }
+  .os-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(100, 116, 139, 0.4);
+    transition: background 0.3s ease;
+  }
+  .b-folder:hover .os-dots span:nth-child(1) { background: #ef4444; }
+  .b-folder:hover .os-dots span:nth-child(2) { background: #eab308; }
+  .b-folder:hover .os-dots span:nth-child(3) { background: #22c55e; }
 
   .b-tab-text {
     font-family: monospace;
@@ -534,26 +580,26 @@
 </style>
 
 <script>
-  (function initProblemHolographicGlass() {
+  (function initProblemHolographicGlassWithAtmosBg() {
     // Busca las carpetas cada medio segundo hasta que carguen en el DOM
-    const checkProblemExist = setInterval(function() {
-      const folders = document.querySelectorAll('.b-folder');
-      if (folders.length > 0) {
-        clearInterval(checkProblemExist);
+    const checkProblemExistAtmos = setInterval(function() {
+      const foldersProblem = document.querySelectorAll('.b-folder');
+      if (foldersProblem.length > 0) {
+        clearInterval(checkProblemExistAtmos);
         
-        folders.forEach(folder => {
+        foldersProblem.forEach(folder => {
           folder.addEventListener('mousemove', e => {
             // Ignorar interacciones en pantallas táctiles pequeñas
             if (window.innerWidth <= 1024) return; 
 
-            const rect = folder.getBoundingClientRect();
+            const rectProblem = folder.getBoundingClientRect();
             // Calcula la posición exacta del ratón dentro de la tarjeta
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            const xProblem = e.clientX - rectProblem.left;
+            const yProblem = e.clientY - rectProblem.top;
             
             // Pasa las variables al CSS (prefijo -b- para el problem)
-            folder.style.setProperty('--b-mouse-x', `${x}px`);
-            folder.style.setProperty('--b-mouse-y', `${y}px`);
+            folder.style.setProperty('--b-mouse-x', `${xProblem}px`);
+            folder.style.setProperty('--b-mouse-y', `${yProblem}px`);
           });
         });
       }
