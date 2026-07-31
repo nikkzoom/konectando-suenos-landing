@@ -80,19 +80,16 @@ function initBentoInteractive() {
 }
 
 /* --- LÓGICA INTERACTIVA DEL PORTAFOLIO (Museo & Reproductor) --- */
-/* --- LÓGICA INTERACTIVA DEL PORTAFOLIO (Carrusel Infinito y Zonas Magnéticas) --- */
+/* --- LÓGICA INTERACTIVA DEL PORTAFOLIO (Carrusel Infinito & Natural Hover) --- */
 function initPortfolioInteractive() {
     const cards = document.querySelectorAll('.vision-card');
-    const prevBtn = document.getElementById('visionPrev');
-    const nextBtn = document.getElementById('visionNext');
-    const zoneLeft = document.getElementById('zoneLeft');
-    const zoneRight = document.getElementById('zoneRight');
+    const prevBtn = document.getElementById('visionPrev'); // Se mantiene para móvil
+    const nextBtn = document.getElementById('visionNext'); // Se mantiene para móvil
     
     let currentIndex = 0;
     const total = cards.length;
-    let hoverInterval;
 
-    // Función que calcula la posición circular (Infinita)
+    // Función que calcula la posición circular infinita
     function updateCarousel() {
         cards.forEach((card, index) => {
             card.classList.remove('active', 'prev', 'next', 'hidden-left', 'hidden-right');
@@ -117,7 +114,7 @@ function initPortfolioInteractive() {
         });
     }
 
-    // Funciones para avanzar y retroceder
+    // Funciones para avanzar y retroceder (Usadas por móvil)
     function slideNext() {
         currentIndex = (currentIndex + 1) % total;
         updateCarousel();
@@ -128,62 +125,64 @@ function initPortfolioInteractive() {
         updateCarousel();
     }
 
-    // Eventos de los botones inferiores
+    // Eventos de los botones inferiores (Solo visibles en móvil)
     if (prevBtn && nextBtn) {
         prevBtn.addEventListener('click', slidePrev);
         nextBtn.addEventListener('click', slideNext);
     }
 
-    // Eventos de las Zonas Magnéticas Laterales (Mover al pasar el cursor)
-    if (zoneLeft && zoneRight) {
-        // Clic
-        zoneLeft.addEventListener('click', slidePrev);
-        zoneRight.addEventListener('click', slideNext);
+    // 👈 SOLUCIÓN NATURAL: Navegación por Hover (Al poner el cursor encima)
+    cards.forEach((card, index) => {
+        // Al poner el cursor encima de una tarjeta lateral...
+        card.addEventListener('mouseenter', () => {
+            if (window.innerWidth <= 1024) return; // Desactivar en móvil/tablet
 
-        // Hover contínuo (avanza cada 1.2 segundos si dejas el ratón ahí)
-        zoneLeft.addEventListener('mouseenter', () => {
-            slidePrev();
-            hoverInterval = setInterval(slidePrev, 1200);
+            // ...esta tarjeta pasa al frente automáticamente.
+            if (index !== currentIndex) {
+                currentIndex = index;
+                updateCarousel();
+            }
         });
-        zoneLeft.addEventListener('mouseleave', () => clearInterval(hoverInterval));
 
-        zoneRight.addEventListener('mouseenter', () => {
-            slideNext();
-            hoverInterval = setInterval(slideNext, 1200);
+        // Al hacer clic
+        card.addEventListener('click', () => {
+            // Si la tarjeta ya está al frente (gracias al hover), abre el modal
+            if (card.classList.contains('active')) {
+                openModal(card);
+            } 
+            // Si el hover falló (raro) y hacen clic en una lateral, la trae al frente
+            else if (window.innerWidth <= 1024) { 
+                currentIndex = index;
+                updateCarousel();
+            }
         });
-        zoneRight.addEventListener('mouseleave', () => clearInterval(hoverInterval));
-    }
+    });
 
     // Lógica del Modal (Reproductor)
     const modal = document.getElementById('portfolioModal');
-    if (cards.length > 0 && modal) {
-        const modalCloseBtn = document.getElementById('modalCloseBtn');
-        const modalCloseBg = document.getElementById('modalCloseBg');
+    
+    function openModal(cardElement) {
+        if (!modal) return;
         const modalTitle = document.getElementById('modalTitle');
         const modalRole = document.getElementById('modalRole');
         const modalStory = document.getElementById('modalStory');
         const modalVideo = document.getElementById('modalVideo');
 
-        cards.forEach((card, index) => {
-            card.addEventListener('click', () => {
-                // Si haces clic en una tarjeta lateral, el carrusel gira hacia ella
-                if (index !== currentIndex) {
-                    currentIndex = index;
-                    updateCarousel();
-                    return;
-                }
+        // Inyectar datos
+        modalTitle.textContent = cardElement.getAttribute('data-client');
+        modalRole.textContent = cardElement.getAttribute('data-role');
+        modalStory.textContent = cardElement.getAttribute('data-story');
+        modalVideo.src = cardElement.getAttribute('data-video');
+        modalVideo.play();
+        
+        modal.classList.add('is-active');
+        document.body.style.overflow = 'hidden'; 
+    }
 
-                // Si haces clic en la central, se abre el reproductor
-                modalTitle.textContent = card.getAttribute('data-client');
-                modalRole.textContent = card.getAttribute('data-role');
-                modalStory.textContent = card.getAttribute('data-story');
-                modalVideo.src = card.getAttribute('data-video');
-                modalVideo.play();
-                
-                modal.classList.add('is-active');
-                document.body.style.overflow = 'hidden'; 
-            });
-        });
+    if (modal) {
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+        const modalCloseBg = document.getElementById('modalCloseBg');
+        const modalVideo = document.getElementById('modalVideo');
 
         const closeModal = () => {
             modal.classList.remove('is-active');
