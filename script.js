@@ -79,7 +79,7 @@ function initBentoInteractive() {
     }
 }
 
-/* --- LÓGICA INTERACTIVA DEL PORTAFOLIO (Coverflow y Reproductor Espacial con Playlist) --- */
+/* --- LÓGICA INTERACTIVA DEL PORTAFOLIO --- */
 function initPortfolioInteractive() {
     const cards = document.querySelectorAll('.vision-card');
     const prevBtn = document.getElementById('visionPrev'); 
@@ -88,7 +88,6 @@ function initPortfolioInteractive() {
     let currentIndex = 0;
     const total = cards.length;
 
-    // Lógica del Carrusel (Mantenida intacta)
     function updateCarousel() {
         cards.forEach((card, index) => {
             card.classList.remove('active', 'prev', 'next', 'prev-2', 'next-2', 'hidden');
@@ -125,7 +124,6 @@ function initPortfolioInteractive() {
         nextBtn.addEventListener('click', slideNext);
     }
 
-    // Interactividad Hover 
     cards.forEach((card, index) => {
         card.addEventListener('mouseenter', () => {
             if (window.innerWidth > 1024) {
@@ -146,7 +144,6 @@ function initPortfolioInteractive() {
         });
     });
 
-    // 👈 NUEVO: Lógica del Modal Espacial y la Playlist
     const modal = document.getElementById('portfolioModal');
     
     function openModal(cardElement) {
@@ -155,47 +152,38 @@ function initPortfolioInteractive() {
         const modalTitle = document.getElementById('modalTitle');
         const modalRole = document.getElementById('modalRole');
         const modalStory = document.getElementById('modalStory');
-        const modalVideo = document.getElementById('modalVideo');
+        // AHORA LLAMAMOS AL IFRAME
+        const modalIframe = document.getElementById('modalIframe');
         const playlistContainer = document.getElementById('modalPlaylist');
 
-        // Inyectar datos básicos
         modalTitle.textContent = cardElement.getAttribute('data-client');
         modalRole.textContent = cardElement.getAttribute('data-role');
         modalStory.textContent = cardElement.getAttribute('data-story');
         
-        // 👈 MAGIA DE LA PLAYLIST: Parseamos el JSON de los videos
         const playlistDataRaw = cardElement.getAttribute('data-playlist');
-        playlistContainer.innerHTML = ''; // Limpiar playlist anterior
+        playlistContainer.innerHTML = ''; 
         
         if (playlistDataRaw) {
             try {
                 const playlistArray = JSON.parse(playlistDataRaw);
                 
                 playlistArray.forEach((videoItem, i) => {
-                    // Creamos el botón
                     const btn = document.createElement('button');
-                    // Si es el primero, le ponemos la clase active
                     btn.className = i === 0 ? 'playlist-btn active' : 'playlist-btn';
                     btn.innerHTML = `<span class="icon-play">▶</span> <span class="video-title">${videoItem.title}</span>`;
                     
-                    // Al hacer clic en un video de la playlist
                     btn.addEventListener('click', () => {
-                        // 1. Quitar 'active' a todos los botones
                         document.querySelectorAll('.playlist-btn').forEach(b => b.classList.remove('active'));
-                        // 2. Poner 'active' al botón clicado
                         btn.classList.add('active');
-                        // 3. Cambiar video y reproducir
-                        modalVideo.src = videoItem.url;
-                        modalVideo.play();
+                        // Inyectamos la URL al iframe
+                        modalIframe.src = videoItem.url;
                     });
                     
                     playlistContainer.appendChild(btn);
                 });
 
-                // Cargar automáticamente el primer video de la lista
                 if (playlistArray.length > 0) {
-                    modalVideo.src = playlistArray[0].url;
-                    modalVideo.play();
+                    modalIframe.src = playlistArray[0].url;
                 }
 
             } catch (error) {
@@ -203,21 +191,18 @@ function initPortfolioInteractive() {
             }
         }
         
-        // Mostrar Modal
         modal.classList.add('is-active');
         document.body.style.overflow = 'hidden'; 
     }
 
-    // Lógica para cerrar el Modal
     if (modal) {
         const modalCloseBtn = document.getElementById('modalCloseBtn');
         const modalCloseBg = document.getElementById('modalCloseBg');
-        const modalVideo = document.getElementById('modalVideo');
+        const modalIframe = document.getElementById('modalIframe');
 
         const closeModal = () => {
             modal.classList.remove('is-active');
-            modalVideo.pause();
-            modalVideo.src = ""; // Detiene el consumo de datos
+            modalIframe.src = ""; // Limpiamos el iframe al cerrar
             document.body.style.overflow = ''; 
         };
 
@@ -225,7 +210,6 @@ function initPortfolioInteractive() {
         if (modalCloseBg) modalCloseBg.addEventListener('click', closeModal);
     }
 
-    // Inicializar carrusel en pantalla al arrancar
     updateCarousel();
 }
 /* --- ANIMACIÓN DE ENTRADA AL HACER SCROLL (.fade-up) --- */
